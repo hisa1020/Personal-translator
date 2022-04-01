@@ -3,4 +3,9 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+
+  namespace :personaltranslator do
+    get '/', to: 'top#index'
+    get 'index', to: 'top#index'
+  end
 end

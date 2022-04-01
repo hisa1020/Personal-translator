@@ -1,0 +1,62 @@
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left-nav">
+      <%= link_to image_tag("/assets/Personal-logo.png", height: "70px", alt: "サイトのロゴ画像"), "/" %>
+    </div>
+    <div class="header-right-nav">
+      <div class="nav-item">
+      <%= link_to "ログイン", "/", class: "btn btn-primary my-2 mx-3" %>
+      <%= link_to "登録する", "/", class: "btn btn-secondary" %>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="top">
+  <div class="top-main">
+    <div class="container">
+      <div class="row col-lg-6">
+        <div class="form-fream">
+          <div class="form-area">
+            <h1 class="form-area-title mb-4">
+            言葉の壁をなくそう
+            </h1>
+            <div class="input-area mb-4">
+              <%= form_with url: personaltranslator_index_path do |form| %>
+                <input type="text" class="text_form">
+                <input type="submit" class="submit_form">
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="panel-area m-5">
+      <div class="row">
+        <div class="panel-item col-lg-4">
+          <span>投稿する</span>
+          <%= link_to image_tag("/assets/question.jpg", class: "panel-image"), "/" %>
+          <div class="shadow"></div>
+        </div>
+        <div class="panel-item col-lg-4">
+          <span>翻訳する</span>
+          <%= link_to image_tag("/assets/answer.jpg", class: "panel-image"), "/" %>
+          <div class="shadow"></div>
+        </div>
+        <div class="panel-item col-lg-4">
+          <span>調べる</span>
+          <%= link_to image_tag("/assets/search.jpg", class: "panel-image"), "/" %>
+          <div class="shadow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <%= image_tag "/assets/Personal-logo-black.png", height: "70px", alt: "フッターのロゴ画像" %>
+  <p><%= Time.current.year %> Non-Copyright</p>
+</footer>
+
+
