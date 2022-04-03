@@ -25,6 +25,13 @@ btn-primary{
   padding: 4px 30px;
 }
 
+.header_black{
+  width: 100%;
+  height: 70px;
+  padding: 4px 30px;
+  background-color: #000;
+}
+
 .header-left-nav{
   float: left;
 }
@@ -42,7 +49,11 @@ btn-primary{
 }
 
 .nav-item{
-  margin-top: 8px;
+  margin-top: 20px;
+}
+
+.header i{
+  font-size: 18px;
 }
 
 .footer{
@@ -60,6 +71,56 @@ btn-primary{
   font-size: 10px;
 }
 
+.required-a::after{
+  content: "必須";
+  color: #fff;
+  background-color: #ff0000a8;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 0 5px;
+}
+
+.required-b::before{
+  content: "必須";
+  color: #fff;
+  background-color: #ff0000a8;
+  font-size: 12px;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 0 5px;
+}
+
+.device{
+  padding-top: 80px;
+  font-size: 16px;
+}
+
+.device p{
+  font-size: 20px;
+}
+
+.device a{
+  display: block;
+  color: #007bff !important;
+  margin-bottom: 16px;
+}
+
+.device_frame{
+  max-width: 600px;
+  text-align: center;
+  padding: 24px;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: rgba(21, 27, 38, 0.15) 0px 1px 3px 0px;
+}
+
+.device_inner{
+  width: 360px;
+  margin: 0px auto;
+}
+
 body{
   background-color: #fff;
   color: #333;
@@ -69,6 +130,16 @@ body, p, ol, ul, td{
   font-family: verdana, ariral, helvetica, sans-serif;
   font-style: 13px;
   line-height: 18px;
+}
+
+pre{
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+div.field, div.actions{
+  margin-bottom: 10px;
 }
 
 .top .form-area-title{
@@ -105,7 +176,16 @@ body, p, ol, ul, td{
   width: 70px;
   cursor: pointer;
   color: #fff;
-  background-color: #000;
+  background-color: #007bff;
+}
+
+.signin-area{
+  color: #fff; 
+  font-weight: bold;
+}
+
+.signin-area a{
+  text-decoration: underline;
 }
 
 .top .top-main{

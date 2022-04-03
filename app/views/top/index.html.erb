@@ -5,8 +5,18 @@
     </div>
     <div class="header-right-nav">
       <div class="nav-item">
-      <%= link_to "ログイン", "/", class: "btn btn-primary my-2 mx-3" %>
-      <%= link_to "登録する", "/", class: "btn btn-secondary" %>
+        <% if user_signed_in? %>
+          <%= link_to(root_path, class: "my-2 mx-3") do %>
+            <i class="fa-solid fa-gear"></i>
+          <% end %>
+          <%= link_to(destroy_user_session_path, class: "my-2 mx-3") do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+          <% end %>
+        <% else %>
+          <%= link_to(new_user_session_path, class: "my-2 mx-3") do %>
+            <i class="fa-solid fa-right-to-bracket"></i>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -24,6 +34,16 @@
               <%= form_with url: root_path do |form| %>
                 <input type="text" class="text_form">
                 <input type="submit" class="submit_form">
+              <% end %>
+            </div>
+            <div class="signin-area">
+              <% if user_signed_in? %>
+                <%= link_to "過去の投稿を見る", root_path %>
+              <% else %>
+                <p>
+                  <%= link_to "会員登録", new_user_registration_path %>
+                  して翻訳を依頼する / 翻訳する
+                </p>
               <% end %>
             </div>
           </div>
@@ -53,10 +73,7 @@
     </div>
   </div>
 </div>
-
 <footer class="footer">
   <%= image_tag "/assets/Personal-logo-black.png", height: "70px", alt: "フッターのロゴ画像" %>
   <p><%= Time.current.year %> Non-Copyright</p>
 </footer>
-
-
