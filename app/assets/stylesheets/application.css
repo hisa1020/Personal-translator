@@ -33,15 +33,9 @@ btn-primary{
 }
 
 .header-left-nav{
-  float: left;
-}
-
-.header-left-nav{
-  width: 180px;
   display: inline-block;
   position: relative;
-  border-radius: 2px;
-  padding-left: 30px;
+  padding-left: 15px;
 }
 
 .header-right-nav{
@@ -54,6 +48,25 @@ btn-primary{
 
 .header i{
   font-size: 18px;
+}
+
+.notifications{
+  color: #fff;
+  text-align: center;
+}
+
+.notifications .notice{
+  background-color: lightBlue;
+}
+
+.notifications .alert{
+  background-color: #F35500;
+}
+
+.clearfix::after{
+  content: "";
+  display: block;
+  clear: both;
 }
 
 .footer{
@@ -106,6 +119,14 @@ btn-primary{
   margin-bottom: 16px;
 }
 
+.device_signin p{
+  font-size: 16px;
+}
+
+.device_signin a{
+  display: inline;
+}
+
 .device_frame{
   max-width: 600px;
   text-align: center;
@@ -138,8 +159,53 @@ pre{
   font-size: 11px;
 }
 
+th{
+  padding-bottom: 5px;
+}
+
+td{
+  padding: 0 5px 7px;
+}
+
 div.field, div.actions{
   margin-bottom: 10px;
+}
+
+#notice{
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+  }
+
+#error_explanation{
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0; 
+}
+
+#error_explanation h2{
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px -7px 0;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li{
+  font-size: 12px;
+  list-style: square;
+}
+
+label{
+  display: block;
 }
 
 .top .form-area-title{
@@ -214,4 +280,83 @@ div.field, div.actions{
   object-fit: cover;
   border-radius: 5px;
   margin-bottom: 25px;
+}
+
+.user{
+  width: 100%;
+}
+
+.user .user-nav{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px 15px;
+}
+
+.user .user-nav li{
+  font-size: 18px;
+  padding: 10px;
+}
+
+.user .user-nav li a:hover{
+  color: #4a90e2;
+  text-decoration: none;
+}
+
+.user .user-nav-pc{
+  height: 100vh;
+}
+
+.user .user-nav-pc .active{
+  border-right: 3px solid #4a90e2;
+}
+
+.user .user-nav-pc .active a{
+  color: #4a90e2;
+}
+
+.user .user-nav-mobile{
+  height: auto;
+}
+
+.user .user-nav-mobile li{
+  float: left;
+}
+
+.user .user-nav-mobile .active{
+  border-bottom: 3px solid #4a90e2;
+}
+
+.user .user-nav-mobile .active a{
+  color: #4a90e2;
+}
+
+.user .user-view{
+  background-color: #F6F8F9;
+  border-left: 2px solid #e2e2e2;
+}
+
+.user .user-view-box{
+  max-width: 880px;
+  background-color: #fff;
+  border: 1px solid #eaedef;
+  margin: 30px auto;
+}
+
+.user .card-body{
+  padding: 1.25rem 0;
+}
+
+.user .update-content{
+  border-bottom: 1px solid #eaedef;
+  padding: 20px;
+  margin: 0 15px;
+  font-size: 16px;
+}
+
+.user .update-content label{
+  font-weight: bold;
+}
+
+.user .icon-box{
+  text-align: center;
 }

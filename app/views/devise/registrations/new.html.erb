@@ -35,7 +35,12 @@
           <%= f.submit "新しいアカウントを作成", class: "form-control btn-primary my-4"%>
         </div>
       <% end %>
-      <%= link_to "すでにアカウントをお持ちの方はログイン", new_user_session_path %>
+      <div class="device_signin">
+        <p>
+          すでにアカウントをお持ちの方は
+          <%= link_to "ログイン", new_user_session_path %>
+        </p>
+      </div>
       <%= link_to "トップに戻る", root_path %>
     </div>
   </div>
