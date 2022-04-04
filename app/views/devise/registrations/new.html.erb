@@ -14,6 +14,11 @@
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
+          <%= f.text_field :name, class: "form-control col-10 px-2", placeholder: "ユーザー名を入力してください"  %>
+        </div>
+        <div class="field form-row">
+          <div class="col-2 required-b pt-2">
+          </div>
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-10 px-2", placeholder: "メールアドレスを入力してください"  %>
         </div>
         <div class="field form-row">
@@ -27,7 +32,7 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-10 px-2", placeholder: "パスワードを再度入力してください"  %>
         </div>
         <div class="action">
-          <%= f.submit "新しいアカウントを作成", {class: 'form-control btn-primary my-4'}%>
+          <%= f.submit "新しいアカウントを作成", class: "form-control btn-primary my-4"%>
         </div>
       <% end %>
       <%= link_to "すでにアカウントをお持ちの方はログイン", new_user_session_path %>

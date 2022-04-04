@@ -38,7 +38,13 @@
             </div>
             <div class="signin-area">
               <% if user_signed_in? %>
-                <%= link_to "過去の投稿を見る", root_path %>
+              <p>
+              こんにちは、
+              <%= link_to root_path do %>
+                <%= current_user.email %>
+              <% end %>
+              さん
+            </p>
               <% else %>
                 <p>
                   <%= link_to "会員登録", new_user_registration_path %>
