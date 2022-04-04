@@ -1,0 +1,93 @@
+<header class="header">
+  <div class="header-inner">
+    <div class="header-left-nav">
+      <%= link_to image_tag("/assets/Personal-logo.png", height: "70px", alt: "サイトのロゴ画像"), "/" %>
+    </div>
+    <div class="header-right-nav">
+      <div class="nav-item">
+        <% if user_signed_in? %>
+          <%= link_to(users_edit_path, class: "my-2 mx-3") do %>
+            <i class="fa-solid fa-gear"></i>
+          <% end %>
+          <%= link_to(destroy_user_session_path, class: "my-2 mx-3") do %>
+            <i class="fa-solid fa-right-from-bracket"></i>
+          <% end %>
+        <% else %>
+          <%= link_to(new_user_session_path, class: "my-2 mx-3") do %>
+            <i class="fa-solid fa-right-to-bracket"></i>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="container-fruid user">
+  <div class="row">
+    <%= render"shared/user_navbar" %>
+    <div class="col-lg-10 user-view">
+      <div class="user-view-box">
+        <div class="update-content">
+          <div class="row">
+            <h5>プロフィール編集</h5>
+          </div>
+          <%= form_with model: @user do |f| %>
+            <div class="update-content">
+              <div class="row">
+                <label for="name" class="col-md-3 required-a">
+                名前
+                </label>
+                <%= f.text_field :name, class:"form-control mb-4 col-md-9", placeholder: "名前を入力" %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <label for="introduction" class="col-md-3 required-a">
+                自己紹介
+                </label>
+                <%= f.text_area :introduction, class: "form-control mb-4 col-md-9", placeholder: "自己紹介を入力", rows: 5 %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <label for="user_icon" class="col-md-3 required-a">
+                アイコン画像
+                </label>
+                <%= f.file_field :user_icon, class: "mb-4 col-md-9", placeholder: "アイコン画像をアップロード" %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <label class="col-md-3" for="email">
+                メールアドレス
+                </label>
+                <div class="col-md-9">
+                  <%= @user.email %>
+                </div>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <label class="col-md-3" for="password">
+                パスワード
+                </label>
+                <div class="col-md-9">
+                *********
+                </div>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <%= link_to "パスワードを変更する", edit_user_registration_path, class: "col-md-4 btn btn-primary my-2 mx-3" %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <%= f.submit "プロフィールを更新する", class: "col-md-4 btn btn-primary mx-3" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

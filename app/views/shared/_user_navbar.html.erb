@@ -1,0 +1,32 @@
+<div class="col-lg-2 user-nav user-nav-pc d-lg-block d-none">
+  <ul>
+    <li class="<%= 'active' if current_page?(users_profile_path) %>">
+      <%= link_to "アカウント情報", users_profile_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(users_edit_path) %>">
+      <%= link_to "アカウント編集", users_edit_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(root_path) %>">
+      <%= link_to "投稿一覧", root_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(root_path) %>">
+      <%= link_to "コメント一覧", root_path %>
+    </li>
+  </ul>
+</div>
+<div class="col-lg-2 user-nav user-nav-mobile d-lg-none">
+  <ul>
+    <li class="<%= 'active' if current_page?(users_profile_path) %>">
+      <%= link_to "アカウント情報", users_profile_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(users_edit_path) %>">
+      <%= link_to "アカウント編集", users_edit_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(root_path) %>">
+      <%= link_to "投稿一覧", root_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(root_path) %>">
+      <%= link_to "コメント一覧", root_path %>
+    </li>
+  </ul>
+</div>

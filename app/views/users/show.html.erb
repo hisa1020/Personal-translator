@@ -23,43 +23,44 @@
 </header>
 <div class="container-fruid user">
   <div class="row">
-    <div class="col-lg-2 user-nav user-nav-pc d-lg-block d-none">
-      <ul>
-        <li class="<%= 'active' if current_page?(users_mypage_path) %>">
-          <%= link_to "アカウント情報", users_mypage_path %>
-        </li>
-        <li class="<%= 'active' if current_page?(root_path) %>">
-          <%= link_to "アカウント編集", root_path %>
-        </li>
-        <li class="<%= 'active' if current_page?(root_path) %>">
-          <%= link_to "投稿一覧", root_path %>
-        </li>
-        <li class="<%= 'active' if current_page?(root_path) %>">
-          <%= link_to "コメント一覧", root_path %>
-        </li>
-      </ul>
-    </div>
-    <div class="col-lg-2 user-nav user-nav-mobile d-lg-none">
-      <ul>
-        <li class="<%= 'active' if current_page?(users_mypage_path) %>">
-          <%= link_to "アカウント情報", users_mypage_path %>
-        </li>
-        <li class="<%= 'active' if current_page?(root_path) %>">
-          <%= link_to "アカウント編集", root_path %>
-        </li>
-        <li class="<%= 'active' if current_page?(root_path) %>">
-          <%= link_to "投稿一覧", root_path %>
-        </li>
-        <li class="<%= 'active' if current_page?(root_path) %>">
-          <%= link_to "コメント一覧", root_path %>
-        </li>
-      </ul>
-    </div>
+    <%= render"shared/user_navbar" %>
     <div class="col-md-10 user-view">
       <div class="user-view-box">
         <div class="update-content">
           <div class="row">
-            <h5>アカウント</h5>
+            <h5>プロフィール情報</h5>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="email">
+            ユーザー名
+            </label>
+            <div class="col-md-9">
+              <%= @user.name %>
+            </div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="email">
+            自己紹介文
+            </label>
+            <div class="col-md-9">
+              <%= @user.introduction %>
+            </div>
+          </div>
+        </div>
+        <div class="update-content">
+          <label class="col-md-3" for="email">
+          アイコン画像
+          </label>
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <div class="icon-box">
+                <%= image_tag @user.user_icon.url, class: "icon-image host-icon", alt: "アイコン画像"  %>
+              </div>
+            </div>
           </div>
         </div>
         <div class="update-content">
@@ -84,7 +85,7 @@
         </div>
         <div class="update-content">
           <div class="row">
-            <%= link_to "編集", edit_user_registration_path, class: "col-md-2 btn btn-primary my-2 mx-3" %>
+            <%= link_to "プロフィールを編集", users_edit_path, class: "col-md-4 btn btn-primary my-2 mx-3" %>
           </div>
         </div>
       </div>

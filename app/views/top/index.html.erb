@@ -40,8 +40,8 @@
               <% if user_signed_in? %>
               <p>
               こんにちは、
-              <%= link_to users_mypage_path do %>
-                <%= current_user.email %>
+              <%= link_to users_profile_path do %>
+                <%= current_user.name %>
               <% end %>
               さん
             </p>
