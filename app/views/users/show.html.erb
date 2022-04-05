@@ -1,4 +1,7 @@
 <%= render "shared/header-white" %>
+<div class="notifications">
+  <%= render "shared/flash" %>
+</div>
 <div class="container-fruid user">
   <div class="row">
     <%= render "shared/user_navbar" %>
@@ -11,7 +14,7 @@
         </div>
         <div class="update-content">
           <div class="row">
-            <label class="col-md-3" for="email">
+            <label class="col-md-3" for="name">
             ユーザー名
             </label>
             <div class="col-md-9">
@@ -21,7 +24,7 @@
         </div>
         <div class="update-content">
           <div class="row">
-            <label class="col-md-3" for="email">
+            <label class="col-md-3" for="introduction">
             自己紹介文
             </label>
             <div class="col-md-9">
@@ -30,11 +33,11 @@
           </div>
         </div>
         <div class="update-content">
-          <label class="col-md-3" for="email">
-          アイコン画像
-          </label>
           <div class="row">
-            <div class="col-md-6 offset-md-3">
+            <label class="col-md-3" for="user_icon">
+            アイコン画像
+            </label>
+            <div class="col-md-6">
               <div class="icon-box">
                 <%= image_tag @user.user_icon.url, class: "icon-image host-icon", alt: "アイコン画像"  %>
               </div>

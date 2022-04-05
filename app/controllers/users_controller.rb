@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       flash[:notice]="プロフィールの更新に成功しました。"
       redirect_to users_profile_path
     else
+      flash[:notice]="プロフィールの更新に失敗しました。"
       render action: :edit
     end
   end

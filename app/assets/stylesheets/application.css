@@ -297,6 +297,10 @@ label{
   padding: 10px;
 }
 
+.user .user-nav a{
+  color: #000;
+}
+
 .user .user-nav li a:hover{
   color: #4a90e2;
   text-decoration: none;

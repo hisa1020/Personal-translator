@@ -1,4 +1,7 @@
 <%= render "shared/header-white" %>
+<div class="notifications">
+  <%= render "shared/flash" %>
+</div>
 <div class="top">
   <div class="top-main">
     <div class="container">
@@ -38,19 +41,14 @@
   <div class="container">
     <div class="panel-area m-5">
       <div class="row">
-        <div class="panel-item col-lg-4">
+        <div class="panel-item col-lg-6">
           <span>投稿する</span>
           <%= link_to image_tag("/assets/question.jpg", class: "panel-image"), "/" %>
           <div class="shadow"></div>
         </div>
-        <div class="panel-item col-lg-4">
+        <div class="panel-item col-lg-6">
           <span>翻訳する</span>
           <%= link_to image_tag("/assets/answer.jpg", class: "panel-image"), "/" %>
-          <div class="shadow"></div>
-        </div>
-        <div class="panel-item col-lg-4">
-          <span>調べる</span>
-          <%= link_to image_tag("/assets/search.jpg", class: "panel-image"), "/" %>
           <div class="shadow"></div>
         </div>
       </div>
