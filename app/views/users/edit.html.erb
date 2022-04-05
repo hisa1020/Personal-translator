@@ -35,31 +35,6 @@
             </div>
             <div class="update-content">
               <div class="row">
-                <label class="col-md-3" for="email">
-                メールアドレス
-                </label>
-                <div class="col-md-9">
-                  <%= @user.email %>
-                </div>
-              </div>
-            </div>
-            <div class="update-content">
-              <div class="row">
-                <label class="col-md-3" for="password">
-                パスワード
-                </label>
-                <div class="col-md-9">
-                *********
-                </div>
-              </div>
-            </div>
-            <div class="update-content">
-              <div class="row">
-                <%= link_to "パスワードを変更する", edit_user_registration_path, class: "col-md-4 btn btn-primary my-2 mx-3" %>
-              </div>
-            </div>
-            <div class="update-content">
-              <div class="row">
                 <%= f.submit "プロフィールを更新する", class: "col-md-4 btn btn-primary mx-3" %>
               </div>
             </div>
