@@ -3,7 +3,8 @@
   <div class="device_frame">
     <p class="my-4">ログイン</p>
     <div class="device_inner">
-      <%= form_with model: @user, url: user_session_path, id: 'signin_user', class: 'signin_user', local: true do |f| %>
+      <%= form_with model: @user, url: user_session_path, id: 'signin_user', class: 'signin_user' do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>

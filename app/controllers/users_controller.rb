@@ -14,7 +14,7 @@ class UsersController < ApplicationController
       redirect_to users_profile_path
     else
       flash[:notice]="プロフィールの更新に失敗しました。"
-      render action: :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 end

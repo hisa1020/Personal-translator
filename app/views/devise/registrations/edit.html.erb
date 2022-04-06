@@ -3,7 +3,8 @@
   <div class="device_frame">
     <h2 class="mb-3">アカウント編集</h2>
     <div class="device_inner">
-      <%= form_with model: @user, url: user_registration_path, id: 'edit_user', class: 'edit_user', local: true do |f| %>
+      <%= form_with model: @user, url: user_registration_path, id: 'edit_user', class: 'edit_user' do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
         <div class="field">
           <div class="form-group">
             <%= f.label :email, "メールアドレス" %>

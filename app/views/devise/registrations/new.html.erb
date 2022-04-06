@@ -1,9 +1,9 @@
 <%= render "shared/header-black" %>
 <div class="container device">
   <div class="device_frame">
-    <p class="my-4">新しいアカウントを作成する</p>
+    <p class="my-4">新しいアカウントを作成</p>
     <div class="device_inner">
-      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user' do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
@@ -39,4 +39,3 @@
     </div>
   </div>
 </div>
-
