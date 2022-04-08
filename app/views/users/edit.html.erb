@@ -3,6 +3,7 @@
   <div class="row">
     <%= render"shared/user_navbar" %>
     <div class="col-lg-10 user-view">
+      <%= render "shared/error", obj: @user %>
       <div class="user-view-box">
         <div class="update-content">
           <div class="row">
@@ -12,7 +13,7 @@
             <div class="update-content">
               <div class="row">
                 <label for="name" class="col-md-3 required-a">
-                名前
+                ユーザー名(3~12文字)
                 </label>
                 <%= f.text_field :name, class:"form-control mb-4 col-md-9", placeholder: "名前を入力" %>
               </div>
@@ -20,7 +21,7 @@
             <div class="update-content">
               <div class="row">
                 <label for="introduction" class="col-md-3 required-a">
-                自己紹介
+                自己紹介(10~30文字)
                 </label>
                 <%= f.text_area :introduction, class: "form-control mb-4 col-md-9", placeholder: "自己紹介を入力", rows: 5 %>
               </div>

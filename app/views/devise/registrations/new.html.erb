@@ -8,22 +8,22 @@
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= f.text_field :name, class: "form-control col-10 px-2", placeholder: "ユーザー名を入力してください"  %>
+          <%= f.text_field :name, class: "form-control col-10 px-2", placeholder: "ユーザー名(3~12文字)を入力" %>
         </div>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-10 px-2", placeholder: "メールアドレスを入力してください"  %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-10 px-2", placeholder: "メールアドレスを入力" %>
         </div>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-10 px-2", placeholder: "パスワードを入力してください" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-10 px-2", placeholder: "パスワードを入力" %>
         </div>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-10 px-2", placeholder: "パスワードを再度入力してください"  %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-10 px-2", placeholder: "パスワードを再度入力" %>
         </div>
         <div class="action">
           <%= f.submit "新しいアカウントを作成", class: "form-control btn-primary my-4"%>
