@@ -19,7 +19,7 @@
               <% if user_signed_in? %>
               <p>
               こんにちは、
-              <%= link_to users_profile_path do %>
+              <%= link_to users_profile_path, class: "form-users-profile-link" do %>
                 <%= current_user.name %>
               <% end %>
               さん

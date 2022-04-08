@@ -6,14 +6,14 @@
     <div class="header-right-nav">
       <div class="nav-item">
         <% if user_signed_in? %>
-          <%= link_to(users_profile_path, class: "my-2 mx-3") do %>
+          <%= link_to(users_profile_path, class: "users-profile-link my-2 mx-3") do %>
             <i class="fa-solid fa-gear"></i>
           <% end %>
-          <%= link_to(destroy_user_session_path, class: "my-2 mx-3") do %>
+          <%= link_to(destroy_user_session_path, class: "signout-link my-2 mx-3") do %>
             <i class="fa-solid fa-right-from-bracket"></i>
           <% end %>
         <% else %>
-          <%= link_to(new_user_session_path, class: "my-2 mx-3") do %>
+          <%= link_to(new_user_session_path, class: "signin-link my-2 mx-3") do %>
             <i class="fa-solid fa-right-to-bracket"></i>
           <% end %>
         <% end %>
