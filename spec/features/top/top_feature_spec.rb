@@ -24,7 +24,7 @@ RSpec.feature "Top::Index", type: :feature do
       visit root_path
     end
 
-    scenario "プロフィールに移動" do
+    scenario "プロフィールに移動(header)" do
       find('.users-profile-link').click
       expect(current_path).to eq users_profile_path
     end
@@ -38,7 +38,7 @@ RSpec.feature "Top::Index", type: :feature do
     scenario "ログアウト状態でトップページに移動" do
       find('.signout-link').click
       expect(current_path).to eq root_path
-      expect(page).to have_link '会員登録' 
+      expect(page).to have_link '会員登録'
     end
 
     scenario "プロフィールに移動" do

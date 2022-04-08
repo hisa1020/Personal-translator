@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  validates :name, presence: true, length: {in:3..12}
-  validates :introduction, presence: true, length: {in:10..30}, on: :update
+  validates :name, presence: true, length: { in: 3..12 }
+  validates :introduction, presence: true, length: { in: 10..30 }, on: :update
 
   mount_uploader :user_icon, UserIconUploader
 

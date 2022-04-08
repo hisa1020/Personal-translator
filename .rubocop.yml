@@ -15,3 +15,4 @@ AllCops:
     - 'Gemfile'
     - 'spec/spec_helper.rb'
     - 'spec/rails_helper.rb'
+    - 'app/uploaders/user_icon_uploader.rb'
