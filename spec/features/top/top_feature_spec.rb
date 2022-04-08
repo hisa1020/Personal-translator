@@ -6,11 +6,6 @@ RSpec.feature "Top::Index", type: :feature do
       visit root_path
     end
 
-    scenario "ロゴのクリックでトップページに移動" do
-      find('.header-left-nav').click
-      expect(current_path).to eq root_path
-    end
-
     scenario "ログインページに移動" do
       find('.signin-link').click
       expect(current_path).to eq new_user_session_path
