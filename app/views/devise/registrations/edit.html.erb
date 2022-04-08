@@ -1,7 +1,8 @@
+<% provide(:title, "パスワードを変更") %>
 <%= render "shared/header-black" %>
 <div class="container device">
   <div class="device_frame">
-    <h2 class="mb-3">アカウント編集</h2>
+    <h2 class="mb-3">パスワードを変更</h2>
     <div class="device_inner">
       <%= form_with model: @user, url: user_registration_path, id: 'edit_user', class: 'edit_user' do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>

@@ -15,8 +15,7 @@
     <link href="https://use.fontawesome.com/releases/v6.1.1/css/all.css" rel="stylesheet">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-
-    <title>Personal Translator</title>
+    <title><%= full_title(yield(:title)) %></title> 
   </head>
   <body>
     <%= yield %>

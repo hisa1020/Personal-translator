@@ -1,3 +1,4 @@
+<% provide(:title, "新しいアカウントを作成") %>
 <%= render "shared/header-black" %>
 <div class="container device">
   <div class="device_frame">
@@ -32,7 +33,7 @@
       <div class="device_signin">
         <p>
           すでにアカウントをお持ちの方は
-          <%= link_to "ログイン", new_user_session_path %>
+          <%= link_to "サインイン", new_user_session_path %>
         </p>
       </div>
       <%= link_to "トップに戻る", root_path %>

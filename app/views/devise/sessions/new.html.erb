@@ -1,7 +1,8 @@
+<% provide(:title, "サインイン") %>
 <%= render "shared/header-black" %>
 <div class="container device">
   <div class="device_frame">
-    <p class="my-4">ログイン</p>
+    <p class="my-4">サインイン</p>
     <div class="device_inner">
       <%= form_with model: @user, url: user_session_path, id: 'signin_user', class: 'signin_user' do |f| %>
         <%= render "devise/shared/error_messages", resource: resource %>
@@ -16,7 +17,7 @@
           <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-10 px-2", placeholder: "パスワードを入力" %>
         </div>
         <div class="actions">
-        <%= f.submit"ログイン", class: "form-control btn-primary my-4" %>
+        <%= f.submit"サインイン", class: "form-control btn-primary my-4" %>
         </div>
       <% end %>
       <%= link_to"新しいアカウントを作成", "/users/sign_up" %>
