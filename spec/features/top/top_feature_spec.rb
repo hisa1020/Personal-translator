@@ -35,10 +35,10 @@ RSpec.feature "Top::Index", type: :feature do
       end
     end
 
-    scenario "ログアウト状態でトップページに移動" do
+    scenario "サインアウトでトップページに移動" do
       find('.signout-link').click
       expect(current_path).to eq root_path
-      expect(page).to have_link '会員登録'
+      expect(page).to have_content("サインアウトしました。")
     end
 
     scenario "プロフィールに移動" do

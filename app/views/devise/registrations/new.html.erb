@@ -4,27 +4,27 @@
   <div class="device_frame">
     <p class="my-4">新しいアカウントを作成</p>
     <div class="device_inner">
-      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user' do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+        <%= render "devise/shared/error_messages", resource: @user %>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= f.text_field :name, class: "form-control col-10 px-2", placeholder: "ユーザー名(3~12文字)を入力" %>
+          <%= f.text_field :name, autofocus: true, class: "form-control col-10 px-2", id: "name", placeholder: "ユーザー名(3~12文字)を入力" %>
         </div>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-10 px-2", placeholder: "メールアドレスを入力" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-10 px-2", id: "email", placeholder: "メールアドレスを入力" %>
         </div>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-10 px-2", placeholder: "パスワードを入力" %>
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control col-10 px-2", id: "password", placeholder: "パスワードを入力" %>
         </div>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-10 px-2", placeholder: "パスワードを再度入力" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control col-10 px-2", id: "password_confirmation", placeholder: "パスワードを再度入力" %>
         </div>
         <div class="action">
           <%= f.submit "新しいアカウントを作成", class: "form-control btn-primary my-4"%>

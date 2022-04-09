@@ -4,23 +4,23 @@
   <div class="device_frame">
     <p class="my-4">サインイン</p>
     <div class="device_inner">
-      <%= form_with model: @user, url: user_session_path, id: 'signin_user', class: 'signin_user' do |f| %>
-        <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_with model: @user, url: user_session_path, id: 'signin_user', class: 'signin_user', local: true do |f| %>
+        <%= render "devise/shared/error_messages", resource: @user %>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-10 px-2", placeholder: "メールアドレスを入力" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-10 px-2", id: "email", placeholder: "メールアドレスを入力" %>
         </div>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>
-          <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-10 px-2", placeholder: "パスワードを入力" %>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-10 px-2", id: "password", placeholder: "パスワードを入力" %>
         </div>
         <div class="actions">
-        <%= f.submit"サインイン", class: "form-control btn-primary my-4" %>
+        <%= f.submit "サインイン", class: "form-control btn-primary my-4" %>
         </div>
       <% end %>
-      <%= link_to"新しいアカウントを作成", "/users/sign_up" %>
+      <%= link_to "新しいアカウントを作成", new_user_registration_path %>
       <%= link_to "トップに戻る", root_path %>
     </div>
   </div>
