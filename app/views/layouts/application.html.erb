@@ -18,7 +18,19 @@
     <title><%= full_title(yield(:title)) %></title> 
   </head>
   <body>
+  <!-- HEADER -->
+    <% if controller.controller_name == "registrations" || controller.controller_name == "sessions" %>
+      <%= render "shared/header-black" %>
+    <% else %>
+      <%= render "shared/header-white" %>
+    <% end %>
+    <!-- MAIN CONTENT SECTION -->
+    <%= render "shared/flash" %>
     <%= yield %>
+    <!-- FOOTER -->
+    <% unless controller.controller_name == "registrations" || controller.controller_name == "sessions" %>
+      <%= render "shared/footer-white" %>
+    <% end %>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
