@@ -5,6 +5,6 @@ FactoryBot.define do
     password_confirmation           { password }
     name                            { Faker::Name.name }
     introduction                    { 'Nice to meet you!' }
-    user_icon                       { 'assets/image/test.jpg' }
+    user_icon { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/factories/test.jpg')) }
   end
 end

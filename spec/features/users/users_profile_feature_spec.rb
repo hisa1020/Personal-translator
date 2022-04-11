@@ -37,20 +37,17 @@ RSpec.feature "Users::Profile", type: :feature do
       expect(page).to have_content @user.name
       expect(page).to have_content @user.introduction
       expect(page).to have_content @user.email
+      expect(page).to have_selector("img[src$='test.jpg']")
     end
   end
 
   scenario "プロフィール編集に移動" do
-    within('.user-view-box') do
-      click_link 'プロフィールを編集'
-      expect(current_path).to eq users_profile_edit_path
-    end
+    click_link 'プロフィールを編集'
+    expect(current_path).to eq users_profile_edit_path
   end
 
   scenario "パスワード変更に移動" do
-    within('.user-view-box') do
-      click_link 'パスワードを変更'
-      expect(current_path).to eq edit_user_registration_path
-    end
+    click_link 'パスワードを変更'
+    expect(current_path).to eq edit_user_registration_path
   end
 end
