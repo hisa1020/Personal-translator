@@ -12,8 +12,8 @@ RSpec.feature "Users::Profile", type: :feature do
     expect(current_path).to eq root_path
   end
 
-  describe "user_nav内のリンクのテスト" do
-    context ".user-nav-pc内のリンクのテスト" do
+  describe "user_nav内にあるリンクが正常に作動する" do
+    context ".user-nav-pc内のリンク" do
       scenario "プロフィール編集に移動" do
         within('.user-nav-pc') do
           click_link 'プロフィール編集'
@@ -22,7 +22,7 @@ RSpec.feature "Users::Profile", type: :feature do
       end
     end
 
-    context ".user-nav-mobile内のリンクのテスト" do
+    context ".user-nav-mobile内のリンク" do
       scenario "プロフィール編集に移動" do
         within('.user-nav-mobile') do
           click_link 'プロフィール編集'

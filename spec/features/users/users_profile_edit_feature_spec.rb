@@ -7,8 +7,8 @@ RSpec.feature "Users::Profile_Edit", type: :feature do
     visit users_profile_edit_path
   end
 
-  describe "user_nav内のリンクのテスト" do
-    context ".user-nav-pc内のリンクのテスト" do
+  describe "user_nav内のリンクが正常に作動する" do
+    context ".user-nav-pc内のリンク" do
       scenario "プロフィールに移動" do
         within('.user-nav-pc') do
           click_link 'プロフィール'
@@ -17,7 +17,7 @@ RSpec.feature "Users::Profile_Edit", type: :feature do
       end
     end
 
-    context ".user-nav-mobile内のリンクのテスト" do
+    context ".user-nav-mobile内のリンク" do
       scenario "プロフィールに移動" do
         within('.user-nav-mobile') do
           click_link 'プロフィール'
@@ -27,7 +27,7 @@ RSpec.feature "Users::Profile_Edit", type: :feature do
     end
   end
 
-  describe "プロフィール変更が正常に行われるか" do
+  describe "プロフィール変更が正常に行われる" do
     scenario "変更前のユーザー情報を表示" do
       expect(page).to have_field("name", with: @user.name)
       expect(page).to have_field("introduction", with: @user.introduction)
@@ -102,7 +102,7 @@ RSpec.feature "Users::Profile_Edit", type: :feature do
 
     context "アイコン画像を更新する場合" do
       scenario "新しいアイコン画像を表示" do
-        attach_file "user-icon", "#{Rails.root}/spec/factories/new_icon.jpg"
+        attach_file "user-icon", "#{Rails.root}/spec/fixtures/new_icon.jpg"
         click_button 'プロフィールを更新'
         expect(current_path).to eq users_profile_path
         expect(page).to have_content("プロフィールの更新に成功しました。")
