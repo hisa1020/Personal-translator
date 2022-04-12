@@ -88,4 +88,11 @@ RSpec.describe User, type: :model do
       end
     end
   end
+
+  describe 'ゲストログイン' do
+    it 'ゲストログイン用のアカウントが作られること' do
+      expect(User.guest.name).to eq "ゲスト"
+      expect(User.guest.email).to eq "guest@example.com"
+    end
+  end
 end
