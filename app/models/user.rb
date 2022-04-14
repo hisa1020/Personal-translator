@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  has_many :posts, dependent: :destroy
   validates :name, presence: true, length: { in: 3..12 }
   validates :introduction, presence: true, length: { in: 10..30 }, on: :update
 

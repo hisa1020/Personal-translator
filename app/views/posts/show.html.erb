@@ -1,0 +1,36 @@
+<% provide(:title, @post.title) %>
+<div class="container-fruid post">
+  <div class="row">
+    <%= render"shared/post_navbar" %>
+    <div class="col-lg-10 post-view">
+      <div class="post-view-box">
+        <div class="post-show-box">
+          <div class="post-context">
+            <%= image_tag @post.user.user_icon.url, class: "user-icon" %>
+            <p class="user-name"><%= @post.user.name %></p>
+            <div class="post-content-right">
+              <% if @post.user_id == current_user.id %>
+                <%= link_to(edit_post_path, class: "my-2 mx-3") do %>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+                <%= link_to(post_path, data: {turbo_method: :delete, turbo_confirm: '本当に削除してよろしいですか?'}, class: "my-2 mx-3") do %>
+                  <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+              <% end %>
+            </div>
+            <p class="post-created">
+            投稿日 <%= @post.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>
+            更新日 <%= @post.updated_at.strftime("%Y年 %m月%d日 %H時%M分") %>
+            </p>
+          </div>
+          <div class="title-box">
+            <h1><%= @post.title %></h1>
+          </div>
+          <p class="post-content-box">
+            <%= safe_join(@post.content.split("\n"), tag(:br)) %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
