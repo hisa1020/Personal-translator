@@ -1,16 +1,17 @@
 require 'rails_helper'
 
 RSpec.feature "Users::Sign_In", type: :feature do
+  let(:user) { FactoryBot.create(:user) }
+
   before do
-    @user = FactoryBot.create(:user)
     visit new_user_session_path
   end
 
   describe "サインイン" do
     context "サインイン成功" do
       scenario "全ての条件を満たす" do
-        fill_in "email", with: @user.email
-        fill_in "password", with: @user.password
+        fill_in "email", with: user.email
+        fill_in "password", with: user.password
         click_button 'サインイン'
         expect(current_path).to eq root_path
       end
@@ -19,27 +20,27 @@ RSpec.feature "Users::Sign_In", type: :feature do
     context "サインイン失敗" do
       scenario "メールアドレス認証失敗(空白)" do
         fill_in "email", with: ""
-        fill_in "password", with: @user.password
+        fill_in "password", with: user.password
         click_button 'サインイン'
         expect(current_path).to eq new_user_session_path
       end
 
       scenario "メールアドレス認証失敗(不一致)" do
         fill_in "email", with: "abcdefghijklmn@sample.jp"
-        fill_in "password", with: @user.password
+        fill_in "password", with: user.password
         click_button 'サインイン'
         expect(current_path).to eq new_user_session_path
       end
 
       scenario "パスワード認証失敗(空白)" do
-        fill_in "email", with: @user.email
+        fill_in "email", with: user.email
         fill_in "password", with: ""
         click_button 'サインイン'
         expect(current_path).to eq new_user_session_path
       end
 
       scenario "パスワード認証失敗(不一致)" do
-        fill_in "email", with: @user.email
+        fill_in "email", with: user.email
         fill_in "password", with: "123abcd"
         click_button 'サインイン'
         expect(current_path).to eq new_user_session_path

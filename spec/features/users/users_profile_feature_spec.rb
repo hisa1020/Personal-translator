@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature "Users::Profile", type: :feature do
+  let(:user) { FactoryBot.create(:user) }
+
   before do
-    @user = FactoryBot.create(:user)
-    sign_in @user
+    sign_in user
     visit users_profile_path
   end
 
@@ -34,10 +35,10 @@ RSpec.feature "Users::Profile", type: :feature do
 
   scenario "ユーザー情報の表示" do
     within('.user-view-box') do
-      expect(page).to have_content @user.name
-      expect(page).to have_content @user.introduction
-      expect(page).to have_content @user.email
-      expect(page).to have_selector("img[src$='test.jpg']")
+      expect(page).to have_content user.name
+      expect(page).to have_content user.introduction
+      expect(page).to have_content user.email
+      expect(page).to have_selector("img[src$='#{user.user_icon.filename}']")
     end
   end
 

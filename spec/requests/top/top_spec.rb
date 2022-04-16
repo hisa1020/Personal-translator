@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe "Top::Index", type: :request do
+  let(:user) { FactoryBot.create(:user) }
+
   before do
-    @user = FactoryBot.create(:user)
-    sign_in @user
+    sign_in user
     get root_path
   end
 
@@ -12,6 +13,6 @@ RSpec.describe "Top::Index", type: :request do
   end
 
   it "ユーザー名の表示" do
-    expect(response.body).to include @user.name
+    expect(response.body).to include user.name
   end
 end
