@@ -53,7 +53,7 @@ RSpec.feature "Users::Sign_In", type: :feature do
   end
 
   scenario "ゲストログイン" do
-    click_link 'ゲストログイン(閲覧用)'
+    click_link 'ゲストログイン'
     expect(current_path).to eq root_path
     expect(page).to have_content("ゲストユーザーとしてサインインしました。")
   end

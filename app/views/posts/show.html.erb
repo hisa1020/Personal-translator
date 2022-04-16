@@ -10,10 +10,10 @@
             <p class="user-name"><%= @post.user.name %></p>
             <div class="post-content-right">
               <% if @post.user_id == current_user.id %>
-                <%= link_to(edit_post_path, class: "my-2 mx-3") do %>
+                <%= link_to(edit_post_path, class: "post-edit-link my-2 mx-3") do %>
                   <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
-                <%= link_to(post_path, data: {turbo_method: :delete, turbo_confirm: '本当に削除してよろしいですか?'}, class: "my-2 mx-3") do %>
+                <%= link_to(post_path, data: {turbo_method: :delete, turbo_confirm: '本当に削除してよろしいですか?'}, class: "post-delete-link my-2 mx-3") do %>
                   <i class="fa-solid fa-trash-can"></i>
                 <% end %>
               <% end %>

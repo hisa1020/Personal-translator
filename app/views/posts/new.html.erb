@@ -12,7 +12,7 @@
               <label for="title" class="col-md-3 required-a">
               タイトル
               </label>
-              <%= f.text_field :title, class: "form-control mb-4 col-md-9", placeholder: "タイトルを入力" %>
+              <%= f.text_field :title, id: "title", class: "form-control mb-4 col-md-9", placeholder: "タイトルを入力" %>
             </div>
           </div>
           <div class="update-content">
@@ -20,12 +20,12 @@
               <label for="content" class="col-md-3 required-a">
               本文
               </label>
-              <%= f.text_area :content, class: "form-control mb-4 col-md-9", placeholder: "ここに解決したい内容を記載してください。" , rows: 25 %>
+              <%= f.text_area :content, id: "content", class: "form-control mb-4 col-md-9", placeholder: "ここに解決したい内容を記載してください。" , rows: 25 %>
             </div>
           </div>
           <div class="update-content">
             <div class="row">
-              <%= f.submit "投稿", class: "col-md-2 btn btn-primary mx-3" %>
+              <%= f.submit "投稿する", class: "col-md-2 btn btn-primary mx-3" %>
             </div>
           </div>
         <% end %>

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.order(updated_at: :"DESC")
+    @posts = Post.all.order(updated_at: :DESC)
   end
 
   def new
@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params.require(:post).permit(:title, :content, :user_id))
     if @post.save
-      flash[:notice]="投稿に成功しました。"
+      flash[:notice] = "投稿に成功しました。"
       redirect_to post_path(@post.id)
     else
       render :new, status: :unprocessable_entity
@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(params.require(:post).permit(:title, :content, :user_id))
-      flash[:notice]="投稿内容を更新しました。"
+      flash[:notice] = "投稿内容を更新しました。"
       redirect_to post_path(@post.id)
     else
       render :edit, status: :unprocessable_entity
