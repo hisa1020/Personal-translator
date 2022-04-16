@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_many :posts, dependent: :destroy
   validates :name, presence: true, length: { in: 3..12 }
   validates :introduction, presence: true, length: { in: 10..30 }, on: :update
 
@@ -16,4 +15,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+  
+  has_many :posts, dependent: :destroy
+  has_many :questions, dependent: :destroy
 end
