@@ -13,4 +13,7 @@ ja:
      post:
       title: タイトル
       content: 内容
+     question:
+      q_title: タイトル
+      q_content: 内容
 
