@@ -10,7 +10,7 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(params.require(:question).permit(:q_title, :q_content, :user_id))
     if @question.save
-      flash[:notice] = "投稿に成功しました。"
+      flash[:notice] = "質問の投稿が完了しました。"
       redirect_to question_path(@question.id)
     else
       render :new, status: :unprocessable_entity
@@ -38,7 +38,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question = Question.find(params[:id])
     @question.destroy
-    flash[:notice] = "投稿を削除しました。"
+    flash[:notice] = "質問を削除しました。"
     redirect_to questions_path, status: :see_other
   end
 end

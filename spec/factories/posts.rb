@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :post do
-    title { "Test-Title" }
-    content { "Test-Content" }
+    title { "Test-Post-Title" }
+    content { "Test-Post-Content" }
     association :user
   end
 end

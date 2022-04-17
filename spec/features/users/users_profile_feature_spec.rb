@@ -12,26 +12,6 @@ RSpec.feature "Users::Profile", type: :feature do
     expect(current_path).to eq root_path
   end
 
-  describe "user_nav内にあるリンクが正常に作動する" do
-    context ".user-nav-pc内のリンク" do
-      scenario "プロフィール編集に移動" do
-        within('.user-nav-pc') do
-          click_link 'プロフィール編集'
-          expect(current_path).to eq users_profile_edit_path
-        end
-      end
-    end
-
-    context ".user-nav-mobile内のリンク" do
-      scenario "プロフィール編集に移動" do
-        within('.user-nav-mobile') do
-          click_link 'プロフィール編集'
-          expect(current_path).to eq users_profile_edit_path
-        end
-      end
-    end
-  end
-
   scenario "ユーザー情報の表示" do
     within('.user-view-box') do
       expect(page).to have_content @user.name

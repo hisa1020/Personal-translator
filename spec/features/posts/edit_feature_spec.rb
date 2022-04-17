@@ -10,7 +10,7 @@ RSpec.feature "Posts::Edit", type: :feature do
   end
 
   describe "投稿内容を変更できる" do
-    scenario "変更前のユーザー情報を表示" do
+    scenario "変更前の投稿内容が表示されている" do
       expect(page).to have_field("title", with: post.title)
       expect(page).to have_field("content", with: post.content)
     end

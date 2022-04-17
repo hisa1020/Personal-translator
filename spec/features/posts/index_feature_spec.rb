@@ -11,19 +11,47 @@ RSpec.feature "Posts::Index", type: :feature do
 
   describe "post_nav内のリンクが正常に作動する" do
     context ".post-nav-pc内のリンク" do
+      scenario "質問一覧に移動" do
+        within('.post-nav-pc') do
+          click_link '質問一覧'
+          expect(current_path).to eq questions_path
+        end
+      end
+
       scenario "新規投稿に移動" do
         within('.post-nav-pc') do
-          click_link '新規投稿'
+          click_link '投稿する'
           expect(current_path).to eq new_post_path
+        end
+      end
+
+      scenario "新規質問に移動" do
+        within('.post-nav-pc') do
+          click_link '質問する'
+          expect(current_path).to eq new_question_path
         end
       end
     end
 
     context ".post-nav-mobile内のリンク" do
-      scenario "新規登録に移動" do
+      scenario "質問一覧に移動" do
         within('.post-nav-mobile') do
-          click_link '新規投稿'
+          click_link '質問一覧'
+          expect(current_path).to eq questions_path
+        end
+      end
+
+      scenario "新規投稿に移動" do
+        within('.post-nav-mobile') do
+          click_link '投稿する'
           expect(current_path).to eq new_post_path
+        end
+      end
+
+      scenario "新規質問に移動" do
+        within('.post-nav-mobile') do
+          click_link '質問する'
+          expect(current_path).to eq new_question_path
         end
       end
     end
