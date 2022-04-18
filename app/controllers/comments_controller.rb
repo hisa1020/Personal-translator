@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
       flash[:notice] = "コメントを投稿しました。"
       redirect_to post_path(@comment.post_id)
     else
-      flash[:notice] = "コメントの投稿に失敗しました。"
+      flash[:alert] = "コメントの投稿に失敗しました。"
       redirect_to post_path(@comment.post_id)
     end
   end

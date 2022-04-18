@@ -270,6 +270,8 @@ btn-primary{
 
 .post-show-box .title-box{
   padding-top: 8px;
+  border-bottom: 1px solid #eaedef;
+  margin-bottom: 8px;
 }
 
 .post-content-right{
