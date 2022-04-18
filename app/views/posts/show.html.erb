@@ -31,6 +31,41 @@
           </p>
         </div>
       </div>
+      <% @comments.each do |comment| %>
+        <div class="post-view-box">
+          <ul class="post-box">
+            <li>
+              <%= image_tag comment.user.user_icon.url, class: "user-icon" %>
+              <p class="post-detail">
+              <span><%= comment.user.name %></span>が
+              <%= comment.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>に投稿</p>
+            </li>
+            <li>
+              <p class="post-content-box">
+                <%= comment.content %>
+              </p>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      <div class="post-view-box post-new">
+        <%= form_with model: @comment do |f| %>
+          <%= f.hidden_field :post_id, value: @post.id %>
+          <div class="update-content">
+            <div class="row">
+              <label for="content" class="col-md-3 required-a">
+              コメント
+              </label>
+              <%= f.text_area :content, id: "content", class: "form-control mb-4 col-md-9", placeholder: "ここにコメントしたい内容を記載してください。" , rows: 6 %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.submit "コメントする", class: "col-md-2 btn btn-primary mx-3" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

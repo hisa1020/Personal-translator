@@ -5,7 +5,7 @@
     <div class="col-lg-10 post-view">
       <% @questions.each do |question| %>
         <div class="post-view-box">
-          <%= link_to question, class: "post-link-box" do%>
+          <%= link_to question, class: "post-link-box" do %>
             <ul class="post-box">
               <li>
                 <%= image_tag question.user.user_icon.url, class: "user-icon" %>
