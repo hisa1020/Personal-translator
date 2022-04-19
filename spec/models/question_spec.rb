@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Question, type: :model do
   let(:user) { FactoryBot.create(:user) }
-  let!(:question) { FactoryBot.create(:question, user_id: user.id) }
+  let(:question) { FactoryBot.build(:question, user_id: user.id) }
 
   describe '新規質問' do
     context '新規質問成功' do

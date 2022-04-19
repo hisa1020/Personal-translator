@@ -16,4 +16,8 @@ ja:
      question:
       q_title: タイトル
       q_content: 内容
+     comment:
+      content: コメント
+     q_comment:
+      q_content: コメント
 

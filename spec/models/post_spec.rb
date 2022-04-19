@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   let(:user) { FactoryBot.create(:user) }
-  let!(:post) { FactoryBot.create(:post, user_id: user.id) }
+  let(:post) { FactoryBot.build(:post, user_id: user.id) }
 
   describe '新規投稿' do
     context '新規投稿成功' do
