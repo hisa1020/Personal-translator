@@ -48,24 +48,26 @@
           </ul>
         </div>
       <% end %>
-      <div class="post-view-box post-new">
-        <%= form_with model: @comment do |f| %>
-          <%= f.hidden_field :post_id, value: @post.id %>
-          <div class="update-content">
-            <div class="row">
-              <label for="content" class="col-md-3 required-a">
-              コメント
-              </label>
-              <%= f.text_area :content, id: "content", class: "form-control mb-4 col-md-9", placeholder: "ここにコメントしたい内容を記載してください。" , rows: 6 %>
+      <% if @post.user_id == current_user.id %>
+        <div class="post-view-box post-new">
+          <%= form_with model: @comment do |f| %>
+            <%= f.hidden_field :post_id, value: @post.id %>
+            <div class="update-content">
+              <div class="row">
+                <label for="content" class="col-md-3 required-a">
+                コメント
+                </label>
+                <%= f.text_area :content, id: "content", class: "form-control mb-4 col-md-9", placeholder: "ここにコメントしたい内容を記載してください。" , rows: 6 %>
+              </div>
             </div>
-          </div>
-          <div class="update-content">
-            <div class="row">
-              <%= f.submit "コメントする", class: "col-md-2 btn btn-primary mx-3" %>
+            <div class="update-content">
+              <div class="row">
+                <%= f.submit "コメントする", class: "col-md-2 btn btn-primary mx-3" %>
+              </div>
             </div>
-          </div>
-        <% end %>
-      </div>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
