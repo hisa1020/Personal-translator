@@ -7,11 +7,13 @@ Rails.application.routes.draw do
   end
   get 'users/profile', to: 'users#show'
   get 'users/profile_edit', to: 'users#edit'
-  resources :users, only: :update
-  resources :posts
+  resources :users, only: [:update]
+  resources :posts do
+    resource :favorites, only: [:create, :destroy]
+  end
   resources :questions
-  resources :comments, only: :create
-  resources :q_comments, only: :create
+  resources :comments, only: [:create]
+  resources :q_comments, only: [:create]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 end

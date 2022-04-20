@@ -240,6 +240,14 @@ btn-primary{
   word-break: break-all;
 }
 
+.post .post-count-box{
+  margin: 4px 0 4px 4px;
+}
+
+.post .post-count-box span:nth-child(1){
+  margin-right: 24px;
+}
+
 .post-new .update-content{
   border-bottom: 1px solid #eaedef;
   padding: 20px;
@@ -271,7 +279,6 @@ btn-primary{
 .post-show-box .title-box{
   padding-top: 8px;
   border-bottom: 1px solid #eaedef;
-  margin-bottom: 8px;
 }
 
 .post-content-right{

@@ -10,11 +10,21 @@
             <p class="user-name"><%= @post.user.name %></p>
             <div class="post-content-right">
               <% if @post.user_id == current_user.id %>
-                <%= link_to(edit_post_path, class: "post-edit-link my-2 mx-3") do %>
+                <%= link_to edit_post_path, class: "post-edit-link my-2 mx-3" do %>
                   <i class="fa-solid fa-pen-to-square"></i>
                 <% end %>
-                <%= link_to(post_path, data: {turbo_method: :delete, turbo_confirm: '本当に削除してよろしいですか?'}, class: "post-delete-link my-2 mx-3") do %>
+                <%= link_to post_path, data: {turbo_method: :delete, turbo_confirm: '本当に削除してよろしいですか?'}, class: "post-delete-link my-2 mx-3" do %>
                   <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+              <% else %>
+                <% if @post.favorited?(current_user) %>
+                  <%= link_to post_favorites_path(@post.id), data: {turbo_method: :delete}, class: "favorite-button my-2 mx-3" do %>
+                    <i style="color: #4a90e2;" class="fa-solid fa-heart-circle-check"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to post_favorites_path(@post.id), data: {turbo_method: :post}, class: "favorite-button my-2 mx-3" do %>
+                    <i class="fa-regular fa-heart"></i>
+                  <% end %>
                 <% end %>
               <% end %>
             </div>
@@ -25,6 +35,14 @@
           </div>
           <div class="title-box">
             <h3><%= @post.title %></h3>
+            <p class="post-count-box">
+              <span>
+                <i class="fa-regular fa-heart"></i> <%= @post.favorites.count %>
+              </span>
+              <span>
+                <i class="fa-regular fa-comment"></i> <%= @post.comments.count %>
+              </span>
+            </p>
           </div>
           <p class="post-content-box">
             <%= safe_join(@post.content.split("\n"), tag(:br)) %>
