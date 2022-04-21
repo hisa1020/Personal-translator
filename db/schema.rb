@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_20_130544) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_21_071341) do
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.integer "user_id", null: false
@@ -48,6 +48,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_20_130544) do
     t.index ["user_id"], name: "index_q_comments_on_user_id"
   end
 
+  create_table "q_favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_q_favorites_on_question_id"
+    t.index ["user_id"], name: "index_q_favorites_on_user_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "q_title"
     t.text "q_content"
@@ -78,5 +87,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_20_130544) do
   add_foreign_key "favorites", "users"
   add_foreign_key "q_comments", "questions"
   add_foreign_key "q_comments", "users"
+  add_foreign_key "q_favorites", "questions"
+  add_foreign_key "q_favorites", "users"
   add_foreign_key "questions", "users"
 end

@@ -16,15 +16,33 @@
                 <%= link_to(question_path, data: {turbo_method: :delete, turbo_confirm: '本当に削除してよろしいですか?'}, class: "question-delete-link my-2 mx-3") do %>
                   <i class="fa-solid fa-trash-can"></i>
                 <% end %>
+              <% else %>
+                <% if @question.favorited?(current_user) %>
+                  <%= link_to question_q_favorites_path(@question.id), data: {turbo_method: :delete}, class: "favorite-button my-2 mx-3" do %>
+                    <i style="color: #4a90e2;" class="fa-solid fa-heart-circle-check"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to question_q_favorites_path(@question.id), data: {turbo_method: :post}, class: "favorite-button my-2 mx-3" do %>
+                    <i class="fa-regular fa-heart"></i>
+                  <% end %>
+                <% end %>
               <% end %>
             </div>
             <p class="post-created">
-            投稿日 <%= @question.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>
-            更新日 <%= @question.updated_at.strftime("%Y年 %m月%d日 %H時%M分") %>
+              投稿日 <%= @question.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>
+              更新日 <%= @question.updated_at.strftime("%Y年 %m月%d日 %H時%M分") %>
             </p>
           </div>
           <div class="title-box">
             <h3><%= @question.q_title %></h3>
+            <p class="post-count-box">
+              <span>
+                <i class="fa-regular fa-heart"></i> <%= @question.q_favorites.count %>
+              </span>
+              <span>
+                <i class="fa-regular fa-comment"></i> <%= @question.q_comments.count %>
+              </span>
+            </p>
           </div>
           <p class="post-content-box">
             <%= safe_join(@question.q_content.split("\n"), tag(:br)) %>

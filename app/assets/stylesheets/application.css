@@ -279,6 +279,7 @@ btn-primary{
 .post-show-box .title-box{
   padding-top: 8px;
   border-bottom: 1px solid #eaedef;
+  margin-bottom: 20px;
 }
 
 .post-content-right{
@@ -441,51 +442,51 @@ label{
   width: 100%;
 }
 
-.user .user-nav{
+.user-nav{
   width: 100%;
   box-sizing: border-box;
   padding: 30px 15px;
 }
 
-.user .user-nav li{
+.user-nav li{
   font-size: 18px;
   padding: 10px;
 }
 
-.user .user-nav a{
+.user-nav a{
   color: #000;
 }
 
-.user .user-nav li a:hover{
+.user-nav li a:hover{
   color: #4a90e2;
   text-decoration: none;
 }
 
-.user .user-nav-pc{
+.user-nav-pc{
   height: 100vh;
 }
 
-.user .user-nav-pc .active{
+.user-nav-pc .active{
   border-right: 3px solid #4a90e2;
 }
 
-.user .user-nav-pc .active a{
+.user-nav-pc .active a{
   color: #4a90e2;
 }
 
-.user .user-nav-mobile{
+.user-nav-mobile{
   height: auto;
 }
 
-.user .user-nav-mobile li{
+.user-nav-mobile li{
   float: left;
 }
 
-.user .user-nav-mobile .active{
+.user-nav-mobile .active{
   border-bottom: 3px solid #4a90e2;
 }
 
-.user .user-nav-mobile .active a{
+.user-nav-mobile .active a{
   color: #4a90e2;
 }
 

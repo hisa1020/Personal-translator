@@ -7,11 +7,16 @@ Rails.application.routes.draw do
   end
   get 'users/profile', to: 'users#show'
   get 'users/profile_edit', to: 'users#edit'
+  get 'users/posts', to: 'users#posts'
+  get 'users/comments', to: 'users#comments'
+  get 'users/favorites', to: 'users#favorites'
   resources :users, only: [:update]
   resources :posts do
     resource :favorites, only: [:create, :destroy]
   end
-  resources :questions
+  resources :questions do
+    resource :q_favorites, only: [:create, :destroy]
+  end
   resources :comments, only: [:create]
   resources :q_comments, only: [:create]
 
