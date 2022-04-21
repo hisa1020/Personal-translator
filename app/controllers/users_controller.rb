@@ -17,4 +17,20 @@ class UsersController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def posts
+    @posts = current_user.posts.order(updated_at: :DESC)
+  end
+
+  def questions
+    @questions = current_user.questions.order(created_at: :DESC)
+  end
+
+  def favorite_posts
+    @favorites = current_user.favorites.order(created_at: :DESC)
+  end
+
+  def favorite_questions
+    @favorites = current_user.q_favorites.order(created_at: :DESC)
+  end
 end

@@ -8,6 +8,7 @@ body{
 
 ul{
   list-style: none;
+  margin: 0;
 }
 
 a:hover{
@@ -230,6 +231,10 @@ btn-primary{
   left: 28px;
 }
 
+.post .user-post-detail{
+  font-size: 16px;
+}
+
 .post h3{
   margin: 12px 0;
 }
@@ -445,7 +450,7 @@ label{
 .user-nav{
   width: 100%;
   box-sizing: border-box;
-  padding: 30px 15px;
+  padding: 30px 15px 8px 15px;
 }
 
 .user-nav li{
@@ -488,6 +493,31 @@ label{
 
 .user-nav-mobile .active a{
   color: #4a90e2;
+}
+
+.align-menu-bar{
+  width: 100%;
+  background-color: #F6F8F9;
+  padding-top: 15px;
+}
+
+.align-menu-bar li{
+  display: inline;
+  padding: 0 20px;
+  border-right: 2px solid #eaedef;
+}
+
+.align-menu-bar li a{
+  color: #000;
+  font-size: 18px;
+}
+
+.align-menu-bar .active{
+  border-bottom: 3px solid #4a90e2;
+}
+
+.align-menu-bar .active a{
+  color:#4a90e2
 }
 
 .user .user-view{

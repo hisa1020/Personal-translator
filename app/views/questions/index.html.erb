@@ -11,7 +11,7 @@
                 <%= image_tag question.user.user_icon.url, class: "user-icon" %>
                 <p class="post-detail">
                   <span><%= question.user.name %></span>が
-                  <%= question.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>に投稿
+                  <%= question.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>に投稿しました。
                 </p>
               </li>
               <li>
@@ -19,7 +19,7 @@
               </li>
               <li>
                 <p class="post-content-box">
-                  <%= truncate(question.q_content, length: 80) %>
+                  <%= truncate(question.q_content, length: 70) %>
                 </p>
               </li>
               <li>

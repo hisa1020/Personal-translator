@@ -1,0 +1,27 @@
+<% provide(:title, "過去の質問をみる") %>
+<div class="container-fruid post">
+  <div class="row">
+    <%= render"shared/user_navbar" %>
+    <div class="col-lg-10 post-view">
+      <% @questions.each do |question| %>
+        <div class="post-view-box">
+          <%= link_to question, class: "post-link-box" do %>
+            <ul class="post-box">
+              <li class="user-post-detail">
+                <%= question.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>に投稿しました。
+              </li>
+              <li>
+                <h3><%= question.q_title %></h3>
+              </li>
+              <li>
+                <p class="post-content-box">
+                  <%= truncate(question.q_content, length: 70) %>
+                </p>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
