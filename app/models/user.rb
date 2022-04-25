@@ -11,6 +11,18 @@ class User < ApplicationRecord
     end
   end
 
+  def posts_counts
+    posts.count + questions.count
+  end
+
+  def comments_counts
+    comments.count + q_comments.count
+  end
+
+  def favorites_counts
+    favorites.count + q_favorites.count
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

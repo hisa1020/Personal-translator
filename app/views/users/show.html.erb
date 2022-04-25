@@ -43,21 +43,31 @@
         </div>
         <div class="update-content">
           <div class="row">
-            <label class="col-md-3" for="email">
-            メールアドレス
+            <label class="col-md-3">
+            投稿数
             </label>
             <div class="col-md-9">
-              <%= @user.email %>
+              <%= @user.posts_counts %>
             </div>
           </div>
         </div>
         <div class="update-content">
           <div class="row">
-            <label class="col-md-3" for="password">
-            パスワード
+            <label class="col-md-3">
+            コメント数
             </label>
             <div class="col-md-9">
-              *********
+              <%= @user.comments_counts %>
+            </div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3">
+            お気に入りした数
+            </label>
+            <div class="col-md-9">
+              <%= @user.favorites_counts %>
             </div>
           </div>
         </div>

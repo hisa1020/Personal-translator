@@ -5,6 +5,11 @@
     <%= render"shared/post_navbar" %>
     <div class="col-lg-10 post-view">
       <div class="post-view-box">
+        <div class="update-content">
+          <div class="row">
+            <h5>質問内容を編集</h5>
+          </div>
+        </div>
         <%= form_with model: @question do |f| %>
           <div class="update-content">
             <div class="row">
