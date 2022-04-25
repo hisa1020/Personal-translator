@@ -9,23 +9,10 @@ RSpec.feature "Posts::New", type: :feature do
     visit new_post_path
   end
 
-  describe "post_nav内のリンクが正常に作動する" do
-    context ".post-nav-pc内のリンク" do
-      scenario "投稿一覧に移動" do
-        within('.post-nav-pc') do
-          click_link '投稿一覧'
-          expect(current_path).to eq posts_path
-        end
-      end
-    end
-
-    context ".post-nav-mobile内のリンク" do
-      scenario "投稿一覧に移動" do
-        within('.post-nav-mobile') do
-          click_link '投稿一覧'
-          expect(current_path).to eq posts_path
-        end
-      end
+  scenario "新規投稿(質問)に移動" do
+    within('.align-menu-bar') do
+      click_link '質問'
+      expect(current_path).to eq new_question_path
     end
   end
 

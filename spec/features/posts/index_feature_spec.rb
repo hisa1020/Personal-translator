@@ -3,6 +3,8 @@ require 'rails_helper'
 RSpec.feature "Posts::Index", type: :feature do
   let(:user) { FactoryBot.create(:user) }
   let!(:post) { FactoryBot.create(:post) }
+  let(:comment) { FactoryBot.build(:comment, post_id: post.id) }
+  let(:favorite) { FactoryBot.create(:favorite, post_id: post.id) }
 
   before do
     sign_in user
@@ -17,20 +19,6 @@ RSpec.feature "Posts::Index", type: :feature do
           expect(current_path).to eq questions_path
         end
       end
-
-      scenario "新規投稿に移動" do
-        within('.post-nav-pc') do
-          click_link '投稿する'
-          expect(current_path).to eq new_post_path
-        end
-      end
-
-      scenario "新規質問に移動" do
-        within('.post-nav-pc') do
-          click_link '質問する'
-          expect(current_path).to eq new_question_path
-        end
-      end
     end
 
     context ".post-nav-mobile内のリンク" do
@@ -38,20 +26,6 @@ RSpec.feature "Posts::Index", type: :feature do
         within('.post-nav-mobile') do
           click_link '質問一覧'
           expect(current_path).to eq questions_path
-        end
-      end
-
-      scenario "新規投稿に移動" do
-        within('.post-nav-mobile') do
-          click_link '投稿する'
-          expect(current_path).to eq new_post_path
-        end
-      end
-
-      scenario "新規質問に移動" do
-        within('.post-nav-mobile') do
-          click_link '質問する'
-          expect(current_path).to eq new_question_path
         end
       end
     end
@@ -64,5 +38,7 @@ RSpec.feature "Posts::Index", type: :feature do
     expect(page).to have_content post.updated_at.strftime("%Y年 %m月%d日 %H時%M分")
     expect(page).to have_content post.title
     expect(page).to have_content post.content
+    expect(page).to have_content post.favorites.count
+    expect(page).to have_content post.comments.count
   end
 end

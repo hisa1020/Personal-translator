@@ -5,6 +5,7 @@ RSpec.feature "Questions::Show", type: :feature do
     let(:user) { FactoryBot.create(:user) }
     let(:question) { FactoryBot.create(:question, user_id: user.id) }
     let!(:q_comment) { FactoryBot.create(:q_comment, question_id: question.id) }
+    let(:favorite) { FactoryBot.create(:favorite, post_id: post.id) }
     let(:new_q_comment) { FactoryBot.build(:q_comment, question_id: question.id) }
 
     before do
@@ -28,6 +29,8 @@ RSpec.feature "Questions::Show", type: :feature do
       expect(page).to have_content question.updated_at.strftime("%Y年 %m月%d日 %H時%M分")
       expect(page).to have_content question.q_title
       expect(page).to have_content question.q_content
+      expect(page).to have_content question.q_favorites.count
+      expect(page).to have_content question.q_comments.count
     end
 
     scenario "質問に対するコメントを表示" do

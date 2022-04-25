@@ -5,6 +5,7 @@ RSpec.feature "Posts::Show", type: :feature do
     let(:user) { FactoryBot.create(:user) }
     let(:post) { FactoryBot.create(:post, user_id: user.id) }
     let!(:comment) { FactoryBot.create(:comment, post_id: post.id) }
+    let(:favorite) { FactoryBot.create(:favorite, post_id: post.id) }
     let(:new_comment) { FactoryBot.build(:comment, post_id: post.id) }
 
     before do
@@ -28,6 +29,8 @@ RSpec.feature "Posts::Show", type: :feature do
       expect(page).to have_content post.updated_at.strftime("%Y年 %m月%d日 %H時%M分")
       expect(page).to have_content post.title
       expect(page).to have_content post.content
+      expect(page).to have_content post.favorites.count
+      expect(page).to have_content post.comments.count
     end
 
     scenario "投稿に対するコメントを表示" do

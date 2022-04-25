@@ -26,10 +26,29 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  describe 'ユーザー情報を入手' do
+  describe '投稿したユーザーの情報を入手' do
     it 'ユーザー名とアイコンを取得' do
       expect(post.user.name).to eq user.name
       expect(post.user.user_icon.identifier).to eq user.user_icon.identifier
+    end
+  end
+
+  describe '既にお気に入りに追加されているかを取得' do
+    context "既にお気に入りに登録されている場合" do
+      let(:post) { FactoryBot.create(:post) }
+      let!(:favorite) { FactoryBot.create(:favorite, user_id: user.id, post_id: post.id) }
+
+      it 'post.favorited?でtrueを返す' do
+        expect(post.favorited?(user)).to eq true
+      end
+    end
+
+    context "お気に入りに登録されていない場合" do
+      let!(:post) { FactoryBot.create(:post) }
+
+      it 'post.favorited?でfalseを返す' do
+        expect(post.favorited?(user)).to eq false
+      end
     end
   end
 end

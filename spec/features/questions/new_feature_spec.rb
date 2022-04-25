@@ -9,6 +9,13 @@ RSpec.feature "Questions::New", type: :feature do
     visit new_question_path
   end
 
+  scenario "新規投稿(投稿)に移動" do
+    within('.align-menu-bar') do
+      click_link '投稿'
+      expect(current_path).to eq new_post_path
+    end
+  end
+
   describe "新規質問" do
     context "新規質問成功" do
       scenario "タイトルと内容を記入" do

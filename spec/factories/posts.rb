@@ -1,7 +1,12 @@
 FactoryBot.define do
   factory :post do
-    title { "Test-Post-Title" }
-    content { "Test-Post-Content" }
+    sequence(:title) { |n| "title-#{n}" }
+    sequence(:content) { |n| "This is post#{n}" }
     association :user
+  end
+
+  trait :others do
+    title { 'title0' }
+    content{ 'This is excluded post'}
   end
 end

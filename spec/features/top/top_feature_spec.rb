@@ -24,6 +24,11 @@ RSpec.feature "Top::Index", type: :feature do
       visit root_path
     end
 
+    scenario "新規投稿(header)" do
+      find('.header-new-post-link').click
+      expect(current_path).to eq new_post_path
+    end
+
     scenario "プロフィールに移動(header)" do
       find('.users-profile-link').click
       expect(current_path).to eq users_profile_path
