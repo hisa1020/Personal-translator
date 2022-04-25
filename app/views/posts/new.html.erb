@@ -4,6 +4,16 @@
   <div class="row">
     <%= render"shared/post_navbar" %>
     <div class="col-lg-10 post-view">
+      <div class="align-menu-bar">
+        <ul>
+          <li class="<%= 'active' if current_page?(new_post_path) %>">
+            <%= link_to "投稿", new_post_path %>
+          </li>
+          <li class="<%= 'active' if current_page?(new_question_path) %>">
+            <%= link_to "質問", new_question_path %>
+          </li>
+        </ul>
+      </div>
       <div class="post-view-box">
         <%= form_with model: @post do |f| %>
           <%= f.hidden_field :user_id, value: current_user.id %>
