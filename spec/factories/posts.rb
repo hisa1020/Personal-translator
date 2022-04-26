@@ -7,6 +7,6 @@ FactoryBot.define do
 
   trait :others do
     title { 'title0' }
-    content{ 'This is excluded post'}
+    content { 'This is excluded post' }
   end
 end

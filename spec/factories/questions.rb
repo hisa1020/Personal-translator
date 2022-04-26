@@ -7,6 +7,6 @@ FactoryBot.define do
 
   trait :q_others do
     q_title { 'Qtitle0' }
-    q_content{ 'This is excluded Question'}
+    q_content { 'This is excluded Question' }
   end
 end

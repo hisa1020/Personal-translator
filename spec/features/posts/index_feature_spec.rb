@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.feature "Posts::Index", type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  let!(:post) { FactoryBot.create(:post) }
-  let(:comment) { FactoryBot.build(:comment, post_id: post.id) }
-  let(:favorite) { FactoryBot.create(:favorite, post_id: post.id) }
+  let(:post) { FactoryBot.create(:post) }
+  let!(:comments) { FactoryBot.create_list(:comment, rand(10), post_id: post.id) }
+  let!(:favorites) { FactoryBot.create_list(:favorite, rand(10), post_id: post.id) }
 
   before do
     sign_in user

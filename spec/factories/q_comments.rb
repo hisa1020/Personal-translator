@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :q_comment do
-    q_content { "Test-Question-comment" }
+    sequence(:q_content) { |n| "This is test-Qcomment#{n}" }
     association :user
     association :question
   end

@@ -36,8 +36,10 @@ RSpec.describe Question, type: :model do
   describe '既にお気に入りに追加されているかを取得' do
     context "既にお気に入りに登録されている場合" do
       let(:questionB) { FactoryBot.create(:question) }
-      let!(:q_favorite) { FactoryBot.create(:q_favorite, 
-      user_id: user.id, question_id: questionB.id) }
+      let!(:q_favorite) do
+        FactoryBot.create(:q_favorite,
+      user_id: user.id, question_id: questionB.id)
+      end
 
       it 'question.favorited?でtrueを返す' do
         expect(questionB.favorited?(user)).to eq true

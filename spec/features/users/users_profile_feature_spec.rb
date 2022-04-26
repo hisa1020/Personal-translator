@@ -2,6 +2,12 @@ require 'rails_helper'
 
 RSpec.feature "Users::Profile", type: :feature do
   let(:user) { FactoryBot.create(:user) }
+  let!(:posts) { FactoryBot.create_list(:post, rand(10), user_id: user.id) }
+  let!(:questions) { FactoryBot.create_list(:question, rand(10), user_id: user.id) }
+  let!(:comments) { FactoryBot.create_list(:comment, rand(10), user_id: user.id) }
+  let!(:q_comments) { FactoryBot.create_list(:q_comment, rand(10), user_id: user.id) }
+  let!(:favorites) { FactoryBot.create_list(:favorite, rand(10), user_id: user.id) }
+  let!(:q_favorites) { FactoryBot.create_list(:q_favorite, rand(10), user_id: user.id) }
 
   before do
     sign_in user
@@ -65,8 +71,10 @@ RSpec.feature "Users::Profile", type: :feature do
     within('.user-view-box') do
       expect(page).to have_content user.name
       expect(page).to have_content user.introduction
-      expect(page).to have_content user.email
       expect(page).to have_selector("img[src$='#{user.user_icon.identifier}']")
+      expect(page).to have_content user.posts_counts
+      expect(page).to have_content user.comments_counts
+      expect(page).to have_content user.favorites_counts
     end
   end
 

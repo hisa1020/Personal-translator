@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.feature "Users::Questions", type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  let!(:question) { FactoryBot.create_list(:question, 3, user_id: user.id) }
+  let(:question) { FactoryBot.create(:question, user_id: user.id) }
   let!(:others_question) { FactoryBot.create(:question, :q_others) }
-  let(:q_comment) { FactoryBot.build(:q_comment, question_id: post.id) }
-  let(:q_favorite) { FactoryBot.create(:q_favorite, question_id: question.id) }
+  let!(:q_comments) { FactoryBot.create_list(:q_comment, rand(10), question_id: question.id) }
+  let!(:q_favorites) { FactoryBot.create_list(:q_favorite, rand(10), question_id: question.id) }
 
   before do
     sign_in user
