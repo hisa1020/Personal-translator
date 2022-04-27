@@ -20,7 +20,17 @@ class User < ApplicationRecord
   end
 
   def favorites_counts
-    favorites.count + q_favorites.count
+    fav_count = 0
+    posts.each do |post|
+      fav_count += post.favorites.count
+    end
+    
+    q_fav_count = 0
+    questions.each do |question|
+      q_fav_count += question.q_favorites.count
+    end
+
+    fav_count + q_fav_count
   end
 
   # Include default devise modules. Others available are:
