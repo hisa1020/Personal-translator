@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.feature "Users::Profile", type: :feature do
   let(:user) { FactoryBot.create(:user) }

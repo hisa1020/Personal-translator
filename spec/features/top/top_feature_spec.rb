@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.feature "Top::Index", type: :feature do
   context "新規登録/サインイン前" do

@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.feature "Questions::Show", type: :feature do
   context "ログインユーザーと質問者が同じ場合" do
