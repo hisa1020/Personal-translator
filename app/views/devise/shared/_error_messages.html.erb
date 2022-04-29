@@ -1,6 +1,6 @@
 <div class="notifications">
-  <% if resource.errors.any? %>
-    <div id="alert">
+  <% if resource.errors.full_messages.any? %>
+    <div class="alert">
       <h2>
         <%= I18n.t("errors.messages.not_saved",
                   count: resource.errors.count,
