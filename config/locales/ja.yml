@@ -10,3 +10,7 @@ ja:
        password_confirmation: 確認用パスワード
        current_password: 現在のパスワード
        password: パスワード
+     post:
+      title: タイトル
+      content: 内容
+

@@ -9,6 +9,11 @@ RSpec.describe User, type: :model do
         expect(user).to be_valid
       end
 
+      it 'emailが255文字以下のユーザーが作成可能' do
+        user.email = 'a' * 245 + '@sample.jp'
+        expect(user).to be_valid
+      end
+
       it 'emailは全て小文字で保存される' do
         user.email = 'SAMPLE@SAMPLE.JP'
         user.save!

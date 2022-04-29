@@ -46,5 +46,10 @@ RSpec.feature "Top::Index", type: :feature do
       find('.form-users-profile-link').click
       expect(current_path).to eq users_profile_path
     end
+
+    scenario "新規投稿に移動" do
+      find('.new-post-link').click
+      expect(current_path).to eq new_post_path
+    end
   end
 end
