@@ -1,2 +1,0 @@
-module Personaltranslator::TopHelper
-end

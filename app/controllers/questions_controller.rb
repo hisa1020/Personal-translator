@@ -19,6 +19,8 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @q_comments = @question.q_comments
+    @q_comment = QComment.new
   end
 
   def edit

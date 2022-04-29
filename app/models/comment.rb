@@ -1,8 +1,7 @@
-class Post < ApplicationRecord
-  validates :title, presence: true
+class Comment < ApplicationRecord
   validates :content, presence: true
   belongs_to :user
-  has_many :comments, dependent: :destroy
+  belongs_to :post
 
   def user
     User.find_by(id: user_id)
