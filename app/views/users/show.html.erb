@@ -1,0 +1,77 @@
+<% provide(:title, "プロフィール") %>
+<div class="container-fruid user">
+  <div class="row">
+    <%= render "shared/user_navbar" %>
+    <div class="col-md-10 user-view">
+      <div class="user-view-box">
+        <div class="update-content">
+          <div class="row">
+            <h5>プロフィール</h5>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="name">
+            ユーザー名
+            </label>
+            <div class="col-md-9">
+              <%= @user.name %>
+            </div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="introduction">
+            自己紹介文
+            </label>
+            <div class="col-md-9">
+              <%= @user.introduction %>
+            </div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="user_icon">
+            アイコン画像
+            </label>
+            <div class="col-md-6">
+              <div class="icon-box">
+                <%= image_tag @user.user_icon.url, class: "icon-image host-icon", alt: "アイコン画像"  %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="email">
+            メールアドレス
+            </label>
+            <div class="col-md-9">
+              <%= @user.email %>
+            </div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <label class="col-md-3" for="password">
+            パスワード
+            </label>
+            <div class="col-md-9">
+              *********
+            </div>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <%= link_to "プロフィールを編集", users_profile_edit_path, class: "col-md-4 btn btn-primary my-2 mx-3" %>
+          </div>
+        </div>
+        <div class="update-content">
+          <div class="row">
+            <%= link_to "パスワードを変更", edit_user_registration_path, class: "col-md-4 btn btn-outline-secondary my-2 mx-3" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
