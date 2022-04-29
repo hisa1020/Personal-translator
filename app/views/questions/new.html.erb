@@ -1,31 +1,31 @@
-<% provide(:title, "投稿する") %>
-<%= render "shared/error", obj: @post %>
+<% provide(:title, "質問する") %>
+<%= render "shared/error", obj: @question %>
 <div class="container-fruid post post-new">
   <div class="row">
     <%= render"shared/post_navbar" %>
     <div class="col-lg-10 post-view">
       <div class="post-view-box">
-        <%= form_with model: @post do |f| %>
+        <%= form_with model: @question do |f| %>
           <%= f.hidden_field :user_id, value: current_user.id %>
           <div class="update-content">
             <div class="row">
-              <label for="title" class="col-md-3 required-a">
+              <label for="q_title" class="col-md-3 required-a">
               タイトル
               </label>
-              <%= f.text_field :title, id: "title", class: "form-control mb-4 col-md-9", placeholder: "タイトルを入力" %>
+              <%= f.text_field :q_title, id: "q_title", class: "form-control mb-4 col-md-9", placeholder: "タイトルを入力" %>
             </div>
           </div>
           <div class="update-content">
             <div class="row">
-              <label for="content" class="col-md-3 required-a">
+              <label for="q_content" class="col-md-3 required-a">
               本文
               </label>
-              <%= f.text_area :content, id: "content", class: "form-control mb-4 col-md-9", placeholder: "ここに投稿したい内容を記載してください。" , rows: 25 %>
+              <%= f.text_area :q_content, id: "q_content", class: "form-control mb-4 col-md-9", placeholder: "ここに質問したい内容を記載してください。" , rows: 25 %>
             </div>
           </div>
           <div class="update-content">
             <div class="row">
-              <%= f.submit "投稿する", class: "col-md-2 btn btn-primary mx-3" %>
+              <%= f.submit "質問する", class: "col-md-2 btn btn-primary mx-3" %>
             </div>
           </div>
         <% end %>

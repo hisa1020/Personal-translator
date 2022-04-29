@@ -10,7 +10,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(params.require(:post).permit(:title, :content, :user_id))
     if @post.save
-      flash[:notice] = "投稿に成功しました。"
+      flash[:notice] = "投稿が完了しました。"
       redirect_to post_path(@post.id)
     else
       render :new, status: :unprocessable_entity

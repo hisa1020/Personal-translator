@@ -35,7 +35,7 @@ RSpec.feature "Posts::New", type: :feature do
         fill_in "title", with: post.title
         fill_in "content", with: post.content
         click_button '投稿する'
-        expect(page).to have_content("投稿に成功しました。")
+        expect(page).to have_content("投稿が完了しました。")
         expect(page).to have_content post.title
         expect(page).to have_content post.content
       end

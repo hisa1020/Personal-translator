@@ -24,7 +24,7 @@
             </p>
           </div>
           <div class="title-box">
-            <h1><%= @post.title %></h1>
+            <h3><%= @post.title %></h3>
           </div>
           <p class="post-content-box">
             <%= safe_join(@post.content.split("\n"), tag(:br)) %>

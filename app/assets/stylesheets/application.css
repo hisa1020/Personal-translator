@@ -35,7 +35,6 @@ btn-primary{
 .header-left-nav{
   display: inline-block;
   position: relative;
-  padding-left: 15px;
 }
 
 .header-right-nav{
@@ -157,6 +156,10 @@ btn-primary{
   padding: 10px;
 }
 
+.post .post-nav a{
+  color: #000;
+}
+
 .post-nav li a:hover{
   color: #4a90e2;
   text-decoration: none;
@@ -227,7 +230,7 @@ btn-primary{
   left: 28px;
 }
 
-.post h1{
+.post h3{
   margin: 12px 0;
 }
 
@@ -247,6 +250,7 @@ btn-primary{
 .post-new .update-content label{
   font-weight: bold;
 }
+
 .post-show-box{
   padding: 28px;
 }
@@ -262,6 +266,10 @@ btn-primary{
   position: relative;
   top: 6px;
   left: 32px;
+}
+
+.post-show-box .title-box{
+  padding-top: 8px;
 }
 
 .post-content-right{

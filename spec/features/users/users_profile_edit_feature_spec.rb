@@ -111,4 +111,9 @@ RSpec.feature "Users::Profile_Edit", type: :feature do
       end
     end
   end
+
+  scenario "プロフィールに戻る" do
+    click_link '戻る'
+    expect(current_path).to eq users_profile_path
+  end
 end

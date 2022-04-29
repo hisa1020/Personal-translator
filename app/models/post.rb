@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
-  belongs_to :user
   validates :title, presence: true
   validates :content, presence: true
+  belongs_to :user
 
   def user
     User.find_by(id: user_id)

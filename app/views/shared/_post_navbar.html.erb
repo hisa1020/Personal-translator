@@ -1,20 +1,32 @@
 <div class="col-lg-2 post-nav post-nav-pc d-lg-block d-none">
   <ul>
     <li class="<%= 'active' if current_page?(posts_path) %>">
-      <%= link_to"投稿一覧", posts_path %>
+      <%= link_to "投稿一覧", posts_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(questions_path) %>">
+      <%= link_to "質問一覧", questions_path %>
     </li>
     <li class="<%= 'active' if current_page?(new_post_path) %>">
-      <%= link_to"新規投稿", new_post_path %>
+      <%= link_to "投稿する", new_post_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(new_question_path) %>">
+      <%= link_to "質問する", new_question_path %>
     </li>
   </ul>
 </div>
 <div class="col-lg-2 post-nav post-nav-mobile d-lg-none">
   <ul>
     <li class="<%= 'active' if current_page?(posts_path) %>">
-      <%= link_to"投稿一覧", posts_path %>
+      <%= link_to "投稿一覧", posts_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(questions_path) %>">
+      <%= link_to "質問一覧", questions_path %>
     </li>
     <li class="<%= 'active' if current_page?(new_post_path) %>">
-      <%= link_to"新規投稿", new_post_path %>
+      <%= link_to "投稿する", new_post_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(new_question_path) %>">
+      <%= link_to "質問する", new_question_path %>
     </li>
   </ul>
 </div>
