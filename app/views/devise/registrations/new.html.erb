@@ -1,10 +1,10 @@
 <% provide(:title, "新しいアカウントを作成") %>
+<%= render "shared/error", obj: @user %>
 <div class="container device">
   <div class="device_frame">
     <p class="my-4">新しいアカウントを作成</p>
     <div class="device_inner">
-      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
-        <%= render "devise/shared/error_messages", resource: @user %>
+      <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', data: { turbo: false }, local: true do |f| %>
         <div class="field form-row">
           <div class="col-2 required-b pt-2">
           </div>

@@ -1,6 +1,7 @@
 class User < ApplicationRecord
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   validates :name, presence: true, length: { in: 3..12 }
-  validates :introduction, presence: true, length: { in: 10..30 }, on: :update
 
   mount_uploader :user_icon, UserIconUploader
 
@@ -20,24 +21,8 @@ class User < ApplicationRecord
   end
 
   def favorites_counts
-    fav_count = 0
-    posts.each do |post|
-      fav_count += post.favorites.count
-    end
-    
-    q_fav_count = 0
-    questions.each do |question|
-      q_fav_count += question.q_favorites.count
-    end
-
-    fav_count + q_fav_count
+    favorites.count + q_favorites.count
   end
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-
   has_many :posts, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :comments, dependent: :destroy
