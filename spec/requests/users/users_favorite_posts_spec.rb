@@ -3,9 +3,7 @@ require 'rails_helper'
 RSpec.describe "Users::Favorite_Posts", type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:post) { FactoryBot.create(:post) }
-  let!(:comments) { FactoryBot.create_list(:comment, rand(10), post_id: post.id) }
   let!(:favorite) { FactoryBot.create(:favorite, user_id: user.id, post_id: post.id) }
-  let!(:favorites) { FactoryBot.create_list(:favorite, rand(10), post_id: post.id) }
 
   before do
     sign_in user

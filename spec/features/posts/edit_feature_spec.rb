@@ -19,7 +19,6 @@ RSpec.feature "Posts::Edit", type: :feature do
     context "変更なしで投稿を更新する場合" do
       scenario "元の投稿を表示" do
         click_button '投稿内容を更新'
-        expect(current_path).to eq post_path(post.id)
         expect(page).to have_content("投稿内容を更新しました。")
         expect(page).to have_content post.title
         expect(page).to have_content post.content
@@ -30,7 +29,6 @@ RSpec.feature "Posts::Edit", type: :feature do
       scenario "新しいタイトルを表示" do
         fill_in "title", with: "New-Test-Title"
         click_button '投稿内容を更新'
-        expect(current_path).to eq post_path(post.id)
         expect(page).to have_content("投稿内容を更新しました。")
         expect(page).to have_content("New-Test-Title")
         expect(page).to have_content post.content
@@ -47,7 +45,6 @@ RSpec.feature "Posts::Edit", type: :feature do
       scenario "新しい内容を表示" do
         fill_in "content", with: "New-Test-Content"
         click_button '投稿内容を更新'
-        expect(current_path).to eq post_path(post.id)
         expect(page).to have_content("投稿内容を更新しました。")
         expect(page).to have_content post.title
         expect(page).to have_content("New-Test-Content")

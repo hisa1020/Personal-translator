@@ -25,11 +25,25 @@ RSpec.describe User, type: :model do
       it 'ユーザー名が空' do
         user.name = ""
         user.valid?
+        expect(user.errors.full_messages).to include("ユーザー名を入力してください")
+      end
+
+      it 'nameが3文字以下のユーザーを許可しない' do
+        user.name = 'ああ'
+        user.valid?
+        expect(user.errors.full_messages).to include("ユーザー名は3文字以上で入力してください")
+      end
+
+      it 'nameが13文字以上のユーザーを許可しない' do
+        user.name = 'あ' * 13
+        user.valid?
+        expect(user.errors.full_messages).to include("ユーザー名は12文字以内で入力してください")
       end
 
       it "emailが空では登録できない" do
         user.email = ""
         user.valid?
+        expect(user.errors.full_messages).to include("メールアドレスを入力してください")
       end
 
       it "重複したemailが存在する場合登録できない" do
@@ -37,16 +51,13 @@ RSpec.describe User, type: :model do
         another_user = FactoryBot.build(:user)
         another_user.email = user.email
         another_user.valid?
-      end
-
-      it 'emailが256文字以上のユーザーを許可しない' do
-        user.email = 'a' * 246 + '@sample.jp'
-        user.valid?
+        expect(another_user.errors.full_messages).to include("メールアドレスはすでに存在します")
       end
 
       it "passwordが空では登録できない" do
         user.password = ""
         user.valid?
+        expect(user.errors.full_messages).to include("パスワードを入力してください")
       end
 
       it "passwordが5文字以下であれば登録できない" do
@@ -59,22 +70,14 @@ RSpec.describe User, type: :model do
       it "passwordが存在してもpassword_confirmationが空では登録できない" do
         user.password_confirmation = ""
         user.valid?
-      end
-
-      it "passwordが半角英数字混合でなければ登録できない" do
-        user.password = "aaaaaa"
-        user.valid?
-      end
-
-      it "passwordが全角であれば登録できない" do
-        user.password = "ああああああ"
-        user.valid?
+        expect(user.errors.full_messages).to include("確認用パスワードとパスワードの入力が一致しません")
       end
 
       it 'パスワードと確認用パスワードが間違っている場合、無効であること' do
         user.password = 'password'
         user.password_confirmation = 'pass'
         user.valid?
+        expect(user.errors.full_messages).to include("確認用パスワードとパスワードの入力が一致しません")
       end
 
       it 'メールアドレスが正常なフォーマットの場合、有効であること' do
@@ -92,12 +95,12 @@ RSpec.describe User, type: :model do
 
   describe '登録後のユーザー情報' do
     let(:user) { FactoryBot.create(:user) }
-    let(:posts) { FactoryBot.create_list(:post, rand(10), user_id: user.id) }
-    let(:questions) { FactoryBot.create_list(:question, rand(10), user_id: user.id) }
-    let(:comments) { FactoryBot.create_list(:comment, rand(10), user_id: user.id) }
-    let(:q_comments) { FactoryBot.create_list(:q_comment, rand(10), user_id: user.id) }
-    let(:favorites) { FactoryBot.create_list(:favorite, rand(10), user_id: user.id) }
-    let(:q_favorites) { FactoryBot.create_list(:q_favorite, rand(10), user_id: user.id) }
+    let!(:posts) { FactoryBot.create_list(:post, rand(3), user_id: user.id) }
+    let!(:questions) { FactoryBot.create_list(:question, rand(3), user_id: user.id) }
+    let!(:comments) { FactoryBot.create_list(:comment, rand(3), user_id: user.id) }
+    let!(:q_comments) { FactoryBot.create_list(:q_comment, rand(3), user_id: user.id) }
+    let!(:favorites) { FactoryBot.create_list(:favorite, rand(3), user_id: user.id) }
+    let!(:q_favorites) { FactoryBot.create_list(:q_favorite, rand(3), user_id: user.id) }
 
     it 'パスワードが暗号化されていること' do
       expect(user.encrypted_password).not_to eq 'password'

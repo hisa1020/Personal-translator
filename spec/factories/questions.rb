@@ -3,6 +3,11 @@ FactoryBot.define do
     sequence(:q_title) { |n| "Qtitle-#{n}" }
     sequence(:q_content) { |n| "This is question#{n}" }
     association :user
+
+    after(:create) do |question|
+      create_list(:q_comment, rand(3), question_id: question.id)
+      create_list(:q_favorite, rand(3), question_id: question.id)
+    end
   end
 
   trait :q_others do

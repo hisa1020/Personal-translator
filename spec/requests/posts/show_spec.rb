@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe "Posts::Show", type: :request do
   let(:user) { FactoryBot.create(:user) }
   let(:post) { FactoryBot.create(:post, user_id: user.id) }
-  let!(:comments) { FactoryBot.create_list(:comment, rand(10), post_id: post.id) }
-  let!(:favorites) { FactoryBot.create_list(:favorite, rand(10), post_id: post.id) }
 
   before do
     sign_in user

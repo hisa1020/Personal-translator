@@ -3,9 +3,7 @@ require 'spec_helper'
 
 RSpec.feature "Questions::Index", type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  let(:question) { FactoryBot.create(:question) }
-  let!(:q_comments) { FactoryBot.create_list(:q_comment, rand(10), question_id: question.id) }
-  let!(:q_favorites) { FactoryBot.create_list(:q_favorite, rand(10), question_id: question.id) }
+  let!(:question) { FactoryBot.create(:question) }
 
   before do
     sign_in user
@@ -13,21 +11,10 @@ RSpec.feature "Questions::Index", type: :feature do
   end
 
   describe "post_nav内のリンクが正常に作動する" do
-    context ".post-nav-pc内のリンク" do
-      scenario "投稿一覧に移動" do
-        within('.post-nav-pc') do
-          click_link '投稿一覧'
-          expect(current_path).to eq posts_path
-        end
-      end
-    end
-
-    context ".post-nav-mobile内のリンク" do
-      scenario "投稿一覧に移動" do
-        within('.post-nav-mobile') do
-          click_link '投稿一覧'
-          expect(current_path).to eq posts_path
-        end
+    scenario "投稿一覧に移動" do
+      within('.post-nav') do
+        click_link '投稿一覧'
+        expect(current_path).to eq posts_path
       end
     end
   end

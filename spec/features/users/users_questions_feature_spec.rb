@@ -3,9 +3,7 @@ require 'spec_helper'
 
 RSpec.feature "Users::Questions", type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  let(:question) { FactoryBot.create(:question, user_id: user.id) }
-  let!(:q_comments) { FactoryBot.create_list(:q_comment, rand(10), question_id: question.id) }
-  let!(:q_favorites) { FactoryBot.create_list(:q_favorite, rand(10), question_id: question.id) }
+  let!(:question) { FactoryBot.create(:question, user_id: user.id) }
   let!(:others_question) { FactoryBot.create(:question, :q_others) }
 
   before do

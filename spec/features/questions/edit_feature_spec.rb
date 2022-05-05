@@ -19,7 +19,6 @@ RSpec.feature "Questions::Edit", type: :feature do
     context "変更なしで質問を更新する場合" do
       scenario "元の質問を表示" do
         click_button '質問内容を更新'
-        expect(current_path).to eq question_path(question.id)
         expect(page).to have_content("質問内容を更新しました。")
         expect(page).to have_content question.q_title
         expect(page).to have_content question.q_content
@@ -30,7 +29,6 @@ RSpec.feature "Questions::Edit", type: :feature do
       scenario "新しいタイトルを表示" do
         fill_in "q_title", with: "New-Test-Question-Title"
         click_button '質問内容を更新'
-        expect(current_path).to eq question_path(question.id)
         expect(page).to have_content("質問内容を更新しました。")
         expect(page).to have_content("New-Test-Question-Title")
         expect(page).to have_content question.q_content
@@ -47,7 +45,6 @@ RSpec.feature "Questions::Edit", type: :feature do
       scenario "新しい内容を表示" do
         fill_in "q_content", with: "New-Test-Question-Content"
         click_button '質問内容を更新'
-        expect(current_path).to eq question_path(question.id)
         expect(page).to have_content("質問内容を更新しました。")
         expect(page).to have_content question.q_title
         expect(page).to have_content("New-Test-Question-Content")

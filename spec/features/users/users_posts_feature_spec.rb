@@ -3,10 +3,8 @@ require 'spec_helper'
 
 RSpec.feature "Users::Posts", type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  let(:post) { FactoryBot.create(:post, user_id: user.id) }
+  let!(:post) { FactoryBot.create(:post, user_id: user.id) }
   let!(:others_post) { FactoryBot.create(:post, :others) }
-  let!(:comments) { FactoryBot.create_list(:comment, rand(10), post_id: post.id) }
-  let!(:favorites) { FactoryBot.create_list(:favorite, rand(10), post_id: post.id) }
 
   before do
     sign_in user
@@ -14,21 +12,10 @@ RSpec.feature "Users::Posts", type: :feature do
   end
 
   describe "user_nav内のリンクが正常に作動する" do
-    context ".user-nav-pc内のリンク" do
-      scenario "プロフィールに移動" do
-        within('.user-nav-pc') do
-          click_link 'プロフィール'
-          expect(current_path).to eq users_profile_path
-        end
-      end
-    end
-
-    context ".user-nav-mobile内のリンク" do
-      scenario "プロフィールに移動" do
-        within('.user-nav-mobile') do
-          click_link 'プロフィール'
-          expect(current_path).to eq users_profile_path
-        end
+    scenario "プロフィールに移動" do
+      within('.user-nav') do
+        click_link 'プロフィール'
+        expect(current_path).to eq users_profile_path
       end
     end
   end

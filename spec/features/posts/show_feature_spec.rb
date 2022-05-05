@@ -1,11 +1,10 @@
 require 'rails_helper'
+require 'spec_helper'
 
-RSpec.feature "Posts::Show", type: :feature do
+RSpec.feature "Posts::Show", type: :feature, js: true do
   context "ログインユーザーと投稿者が同じ場合" do
     let(:user) { FactoryBot.create(:user) }
     let(:post) { FactoryBot.create(:post, user_id: user.id) }
-    let!(:comments) { FactoryBot.create_list(:comment, rand(10), post_id: post.id) }
-    let!(:favorites) { FactoryBot.create_list(:favorite, rand(10), post_id: post.id) }
 
     before do
       sign_in user
@@ -15,6 +14,14 @@ RSpec.feature "Posts::Show", type: :feature do
     scenario "編集ページに移動できる" do
       find('.post-edit-link').click
       expect(current_path).to eq edit_post_path(post.id)
+    end
+
+    scenario "投稿を削除できる" do
+      find('.post-delete-link').click
+      expect  do
+        expect(page.accept_confirm).to eq "本当に削除してよろしいですか?"
+        expect(page).to have_content "投稿を削除しました。"
+      end. to change(user.posts, :count).by(-1)
     end
 
     scenario "投稿情報を表示" do
@@ -41,8 +48,6 @@ RSpec.feature "Posts::Show", type: :feature do
   context "ログインユーザーと投稿者が違う場合" do
     let(:user) { FactoryBot.create(:user) }
     let(:post) { FactoryBot.create(:post) }
-    let!(:comments) { FactoryBot.create_list(:comment, rand(10), post_id: post.id) }
-    let!(:favorites) { FactoryBot.create_list(:favorite, rand(10), post_id: post.id) }
     let(:new_comment) { FactoryBot.build(:comment, post_id: post.id) }
 
     before do
@@ -59,6 +64,25 @@ RSpec.feature "Posts::Show", type: :feature do
       expect(page).to have_content post.content
       expect(page).to have_content post.favorites.count
       expect(page).to have_content post.comments.count
+    end
+
+    describe 'お気に入りに登録、解除する' do
+      context 'お気に入りに登録' do
+        scenario 'お気に入りの数が増える' do
+          f = post.favorites.count
+          find('.favorite-button').click
+          expect(post.favorites.count).to eq(f + 1)
+        end
+      end
+
+      context 'お気に入りを解除' do
+        scenario 'お気に入りの数が減る' do
+          find('.favorite-button').click
+          f = post.favorites.count
+          find('.favorite-button').click
+          expect(post.favorites.count).to eq(f - 1)
+        end
+      end
     end
 
     scenario "投稿に対するコメントを表示" do

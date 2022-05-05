@@ -3,7 +3,7 @@ require 'spec_helper'
 
 RSpec.feature "Questions::New", type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  let(:question) { FactoryBot.create(:question) }
+  let(:question) { FactoryBot.build(:question) }
 
   before do
     sign_in user

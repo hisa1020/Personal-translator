@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Questions::Index", type: :request do
   let(:user) { FactoryBot.create(:user) }
-  let(:question) { FactoryBot.create(:question) }
-  let!(:q_comments) { FactoryBot.create_list(:q_comment, rand(10), question_id: question.id) }
-  let!(:q_favorites) { FactoryBot.create_list(:q_favorite, rand(10), question_id: question.id) }
+  let!(:question) { FactoryBot.create(:question) }
 
   before do
     sign_in user

@@ -19,9 +19,10 @@ RSpec.feature "Top::Index", type: :feature do
   end
 
   context "サインイン後" do
+    let(:user) { FactoryBot.create(:user) }
+
     before do
-      @user = FactoryBot.create(:user)
-      sign_in @user
+      sign_in user
       visit root_path
     end
 
@@ -37,13 +38,12 @@ RSpec.feature "Top::Index", type: :feature do
 
     scenario "ユーザー名の表示" do
       within('.form-users-profile-link') do
-        expect(page).to have_content @user.name
+        expect(page).to have_content user.name
       end
     end
 
     scenario "サインアウトでトップページに移動" do
       find('.signout-link').click
-      expect(current_path).to eq root_path
       expect(page).to have_content("サインアウトしました。")
     end
 
