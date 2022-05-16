@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-    @comment = Comment.new(params.require(:comment).permit(:content, :post_id))
+    @comment = Comment.new(params.require(:comment).permit(:rate, :content, :post_id))
     @comment.user_id = current_user.id
     if @comment.save
       flash[:notice] = "コメントを投稿しました。"

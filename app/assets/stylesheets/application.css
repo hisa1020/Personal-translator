@@ -240,17 +240,23 @@ btn-primary{
 }
 
 .post .post-content-box{
+  margin-top: 8px;
   font-size: 16px;
   line-height: 30px;
   word-break: break-all;
 }
 
 .post .post-count-box{
-  margin: 4px 0 4px 4px;
+  margin: 4px 0;
+  margin-left: 4px;
 }
 
 .post .post-count-box span:nth-child(1){
   margin-right: 24px;
+}
+
+.post .post-count-box span:nth-child(3){
+  float: right;
 }
 
 .post-new .update-content{
@@ -266,6 +272,10 @@ btn-primary{
 
 .post-show-box{
   padding: 28px;
+}
+
+.post-show-box .post-user-link{
+  color:#000
 }
 
 .post-show-box .user-icon{
@@ -375,7 +385,6 @@ label{
   line-height: 33px;
   letter-spacing: 1px;
   font-size: 45px;
-  padding-bottom: 20px;
 }
 
 .top .form-fream{
@@ -389,14 +398,14 @@ label{
   border-radius: 5px;
 }
 
-.input-area input{
+.input-area input,select{
   height: 40px;
   border: 0;
   border-radius: 5px;
 }
 
 .input-area .text_form{
-  width: 350px;
+  width: 250px;
 }
 
 .input-area .submit_form{
@@ -404,15 +413,6 @@ label{
   cursor: pointer;
   color: #fff;
   background-color: #007bff;
-}
-
-.signin-area{
-  color: #fff; 
-  font-weight: bold;
-}
-
-.signin-area a{
-  text-decoration: underline;
 }
 
 .top .top-main{
@@ -503,8 +503,10 @@ label{
 
 .align-menu-bar li{
   display: inline;
-  padding: 0 20px;
-  border-right: 2px solid #eaedef;
+  font-style: 20px;
+  padding: 10px 20px;
+  border-left: 1px solid #eaedef;
+  border-right: 1px solid #eaedef;
 }
 
 .align-menu-bar li a{
@@ -525,7 +527,7 @@ label{
   border-left: 2px solid #e2e2e2;
 }
 
-.user .user-view-box{
+.user-view-box{
   max-width: 880px;
   background-color: #fff;
   border: 1px solid #eaedef;
@@ -556,4 +558,73 @@ label{
   height: 65px;
   object-fit: cover;
   border-radius: 50px;
+}
+
+.profile-box{
+  margin: 50px;
+  padding: 0px;
+  text-align: center;
+}
+
+.profile-box .icon-image{
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50px;
+}
+
+.profile-box .user-name{
+  margin: 16px 0;
+  font-size: 28px;
+  letter-spacing: 0.25em;
+  font-weight: bold;
+}
+
+.profile-box .introduction{
+  font-size: 16px;
+  letter-spacing: 0.125em;
+  border-bottom: 1px solid #eaedef;
+  margin-bottom: 8px;
+}
+
+.user-count-box{
+  display: inline;
+}
+
+.user-count-box th{
+  padding: 0 50px;
+}
+
+.site-guide{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.guide-box{
+  margin: 60px 0;
+}
+
+.guide-image{
+  width: 400px;
+  height: 300px;
+}
+
+.guide-right{
+  margin-top: 45px;
+  width: 100%
+}
+
+.guide-right p{
+  font-size: 20px;
+  margin-top: 12px;
+}
+
+.search-area input,.search-area select{
+  height: 40px;
+  border-radius: 5px;
+  margin: 15px 15px;
+}
+
+.search-area .text_form{
+  width: 300px;
 }

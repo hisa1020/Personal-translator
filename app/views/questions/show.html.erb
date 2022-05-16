@@ -6,8 +6,10 @@
       <div class="post-view-box">
         <div class="post-show-box">
           <div class="post-context">
-            <%= image_tag @question.user.user_icon.url, class: "user-icon" %>
-            <p class="user-name"><%= @question.user.name %></p>
+            <%= link_to user_path(@question.user_id), class: "post-user-link" do %>
+              <%= image_tag @question.user.user_icon.url, class: "user-icon" %>
+              <p class="user-name"><%= @question.user.name %></p>
+            <% end %>
             <div class="post-content-right">
               <% if @question.user_id == current_user.id %>
                 <%= link_to(edit_question_path, class: "question-edit-link my-2 mx-3") do %>
@@ -58,7 +60,7 @@
               <%= image_tag q_comment.user.user_icon.url, class: "user-icon" %>
               <p class="post-detail">
               <span><%= q_comment.user.name %></span>が
-              <%= q_comment.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>に投稿</p>
+              <%= q_comment.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>に回答しました。</p>
             </li>
             <li>
               <p class="post-content-box">
@@ -74,14 +76,14 @@
           <div class="update-content">
             <div class="row">
               <label for="q_content" class="col-md-3 required-a">
-              コメント
+              回答する
               </label>
-              <%= f.text_area :q_content, id: "q_content", class: "form-control mb-4 col-md-9", placeholder: "ここにコメントしたい内容を記載してください。" , rows: 6 %>
+              <%= f.text_area :q_content, id: "q_content", class: "form-control mb-4 col-md-9", placeholder: "ここに内容を記載してください。" , rows: 6 %>
             </div>
           </div>
           <div class="update-content">
             <div class="row">
-              <%= f.submit "コメントする", class: "col-md-2 btn btn-primary mx-3" %>
+              <%= f.submit "回答する", class: "col-md-2 btn btn-primary mx-3" %>
             </div>
           </div>
         <% end %>

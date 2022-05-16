@@ -1,87 +1,72 @@
-<% provide(:title, "プロフィール") %>
-<div class="container-fruid user">
+<% provide(:title, @user.name) %>
+<div class="container-fruid post">
   <div class="row">
-    <%= render "shared/user_navbar" %>
-    <div class="col-md-10 user-view">
-      <div class="user-view-box">
-        <div class="update-content">
-          <div class="row">
-            <h5>プロフィール</h5>
-          </div>
-        </div>
-        <div class="update-content">
-          <div class="row">
-            <label class="col-md-3" for="name">
-            ユーザー名
-            </label>
-            <div class="col-md-9">
-              <%= @user.name %>
-            </div>
-          </div>
-        </div>
-        <div class="update-content">
-          <div class="row">
-            <label class="col-md-3" for="introduction">
-            自己紹介文
-            </label>
-            <div class="col-md-9">
-              <%= @user.introduction %>
-            </div>
-          </div>
-        </div>
-        <div class="update-content">
-          <div class="row">
-            <label class="col-md-3" for="user_icon">
-            アイコン画像
-            </label>
-            <div class="col-md-6">
-              <div class="icon-box">
-                <%= image_tag @user.user_icon.url, class: "icon-image host-icon", alt: "アイコン画像"  %>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="update-content">
-          <div class="row">
-            <label class="col-md-3">
-            投稿数
-            </label>
-            <div class="col-md-9">
-              <%= @user.posts_counts %>
-            </div>
-          </div>
-        </div>
-        <div class="update-content">
-          <div class="row">
-            <label class="col-md-3">
-            コメント数
-            </label>
-            <div class="col-md-9">
-              <%= @user.comments_counts %>
-            </div>
-          </div>
-        </div>
-        <div class="update-content">
-          <div class="row">
-            <label class="col-md-3">
-            お気に入りに登録した投稿数
-            </label>
-            <div class="col-md-9">
-              <%= @user.favorites_counts %>
-            </div>
-          </div>
-        </div>
-        <div class="update-content">
-          <div class="row">
-            <%= link_to "プロフィールを編集", users_profile_edit_path, class: "col-md-4 btn btn-primary my-2 mx-3" %>
-          </div>
-        </div>
-        <div class="update-content">
-          <div class="row">
-            <%= link_to "パスワードを変更", edit_user_registration_path, class: "col-md-4 btn btn-outline-secondary my-2 mx-3" %>
-          </div>
-        </div>
+    <%= render"shared/post_navbar" %>
+    <div class="col-lg-10 post-view">
+      <div class="post-view-box">
+        <ul class="profile-box">
+          <li class="icon">
+            <%= image_tag @user.user_icon.url, class: "icon-image", alt: "アイコン画像"  %>
+          </li>
+          <li class="user-name"><%= @user.name %></li>
+          <li class="introduction"><%= @user.introduction %></li>
+          <table class="user-count-box">
+            <tbody>
+              <tr>
+                <th>投稿</th>
+                <th>質問</th>
+                <th>得点</th>
+              </tr>
+              <tr>
+                <td><%= @user.posts_counts %></td>
+                <td><%= @user.comments_counts %></td>
+                <td><%= @user.user_score.round(1) %></td>
+              </tr>
+            </tbody>
+          </table>
+        </ul>
       </div>
+      <% @user.posts.each do |post| %>
+        <div class="post-view-box">
+          <%= link_to post, class: "post-link-box" do %>
+            <ul class="post-box">
+              <li>
+                <%= image_tag post.user.user_icon.url, class: "user-icon" %>
+                <p class="post-detail">
+                  <span><%= post.user.name %></span>が
+                  <%= post.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>に投稿しました。
+                </p>
+              </li>
+              <li>
+                <h3><%= post.title %></h3>
+              </li>
+              <li>
+                <p class="post-content-box">
+                  <%= truncate(post.content, length: 70) %>
+                </p>
+              </li>
+              <li>
+                <p class="post-count-box">
+                  <span>
+                    <i class="fa-regular fa-star"></i>
+                    <%= post.favorites.count %>
+                  </span>
+                  <span>
+                    <i class="fa-regular fa-comment"></i> <%= post.comments.count %>
+                  </span>
+                  <span>
+                    <% if post.comments.count == 0 %>
+                      未評価
+                    <% else %>
+                      平均評価 <%= post.average.round(1) %> 点
+                    <% end %>
+                  </span>
+                </p>
+              </li>
+            </ul>
+          <% end %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>

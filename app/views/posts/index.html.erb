@@ -31,6 +31,13 @@
                   <span>
                     <i class="fa-regular fa-comment"></i> <%= post.comments.count %>
                   </span>
+                  <span>
+                    <% if post.comments.count == 0 %>
+                      未評価
+                    <% else %>
+                      平均評価 <%= post.average.round(1) %> 点
+                    <% end %>
+                  </span>
                 </p>
               </li>
             </ul>

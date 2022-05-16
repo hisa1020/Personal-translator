@@ -9,7 +9,29 @@ class Post < ApplicationRecord
     User.find_by(id: user_id)
   end
 
+  def average
+    average = 0
+    comments.each do |comment|
+      average += (comment.rate / comments.count)
+    end
+    return average
+  end
+
   def favorited?(user)
     favorites.where(user_id: user.id).exists?
+  end
+
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @posts = Post.where("title LIKE?","#{word}")
+    elsif search == "forward_match"
+      @posts = Post.where("title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @posts = Post.where("title LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @posts = Post.where("title LIKE?","%#{word}%")
+    else
+      @posts = Post.where("title LIKE?","%#{word}%")
+    end
   end
 end

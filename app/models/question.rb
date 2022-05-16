@@ -12,4 +12,18 @@ class Question < ApplicationRecord
   def favorited?(user)
     q_favorites.where(user_id: user.id).exists?
   end
+
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @questions = Question.where("q_title LIKE?","#{word}")
+    elsif search == "forward_match"
+      @questions = Question.where("q_title LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @questions = Question.where("q_title LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @questions = Question.where("q_title LIKE?","%#{word}%")
+    else
+      @questions = Question.where("q_title LIKE?","%#{word}%")
+    end
+  end
 end

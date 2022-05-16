@@ -1,9 +1,13 @@
 class UsersController < ApplicationController
   def show
+    @user = User.find(params[:id])
+  end
+
+  def profile
     @user = current_user
   end
 
-  def edit
+  def profile_edit
     @user = current_user
   end
 
@@ -13,7 +17,7 @@ class UsersController < ApplicationController
       flash[:notice] = "プロフィールの更新に成功しました。"
       redirect_to users_profile_path
     else
-      render :edit, status: :unprocessable_entity
+      render :profile_edit, status: :unprocessable_entity
     end
   end
 
