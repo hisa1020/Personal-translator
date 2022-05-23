@@ -1,0 +1,25 @@
+ja:
+ activerecord:
+
+   attributes:
+     user:
+       email: メールアドレス
+       name: ユーザー名
+       user_icon: アイコン画像
+       introduction: 自己紹介文
+       password_confirmation: 確認用パスワード
+       current_password: 現在のパスワード
+       password: パスワード
+     post:
+      title: 曲名
+      artist: 歌手名
+      content: 内容
+     question:
+      q_title: タイトル
+      q_content: 内容
+     comment:
+      rate: 評価点
+      content: コメント
+     q_comment:
+      q_content: コメント
+

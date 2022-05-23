@@ -1,0 +1,23 @@
+<% provide(:title, "さがす") %>
+<div class="container-fruid post post-new">
+  <div class="row">
+    <%= render"shared/post_navbar" %>
+    <div class="col-lg-10 post-view">
+      <div class="post-view-box">
+        <div class="update-content">
+          <div class="row">
+            <h5>検索する</h5>
+          </div>
+        </div>
+        <div class="search-area">
+          <%= form_with url: search_path, local: true, method: :get do |f| %>
+            <%= f.text_field :word, id: "word", placeholder: " キーワードを入力してください。", class:"text_form" %>
+            <%= f.select :range, options_for_select([['投稿'], ['質問']]) %>
+            <%= f.select :search, options_for_select([["部分一致","partial_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["完全一致","perfect_match"]]) %>
+            <%= f.submit "検索", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

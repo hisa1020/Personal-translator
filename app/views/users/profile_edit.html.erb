@@ -1,0 +1,52 @@
+<% provide(:title, "プロフィールを編集") %>
+<div class="container-fruid user">
+  <div class="row">
+    <%= render"shared/user_navbar" %>
+    <div class="col-lg-10 user-view">
+      <%= render "shared/error", obj: @user %>
+      <div class="user-view-box">
+        <div class="update-content">
+          <div class="row">
+            <h5>プロフィール編集</h5>
+          </div>
+          <%= form_with  model: @user do |f| %>
+            <div class="update-content">
+              <div class="row">
+                <label for="name" class="col-md-3 required-a">
+                ユーザー名(3~12文字)
+                </label>
+                <%= f.text_field :name, class:"form-control mb-4 col-md-9", id: "name", placeholder: "名前を入力" %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <label for="introduction" class="col-md-3">
+                自己紹介文
+                </label>
+                <%= f.text_area :introduction, class: "form-control mb-4 col-md-9", id: "introduction", placeholder: "自己紹介を入力", rows: 5 %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <label for="user_icon" class="col-md-3">
+                アイコン画像
+                </label>
+                <%= f.file_field :user_icon, class: "mb-4 col-md-9", id: "user-icon", placeholder: "アイコン画像をアップロード" %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <%= f.submit "プロフィールを更新", class: "col-md-4 btn btn-primary my-2 mx-3" %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <%= link_to "戻る", users_profile_path, class: "col-md-4 btn btn-outline-secondary my-2 mx-3" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

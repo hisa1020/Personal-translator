@@ -1,0 +1,27 @@
+<% provide(:title, "サインイン") %>
+<%= render "shared/error", obj: @user %>
+<div class="container device">
+  <div class="device_frame">
+    <p class="my-4">サインイン</p>
+    <div class="device_inner">
+      <%= form_with model: @user, url: user_session_path, id: 'signin_user', class: 'signin_user', data: { turbo: false }, local: true do |f| %>
+        <div class="field form-row">
+          <div class="col-2 required-b pt-2">
+          </div>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control col-10 px-2", id: "email", placeholder: "メールアドレスを入力" %>
+        </div>
+        <div class="field form-row">
+          <div class="col-2 required-b pt-2">
+          </div>
+          <%= f.password_field :password, autocomplete: "current-password", class: "form-control col-10 px-2", id: "password", placeholder: "パスワードを入力" %>
+        </div>
+        <div class="actions">
+        <%= f.submit "サインイン", class: "form-control btn-primary my-4" %>
+        </div>
+      <% end %>
+      <%= link_to "新しいアカウントを作成", new_user_registration_path %>
+      <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post %>
+      <%= link_to "トップに戻る", root_path %>
+    </div>
+  </div>
+</div>

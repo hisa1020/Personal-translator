@@ -1,0 +1,121 @@
+<% provide(:title, @post.title) %>
+<%= render "shared/error", obj: @comment %>
+<div class="container-fruid post">
+  <div class="row">
+    <%= render"shared/post_navbar" %>
+    <div class="col-lg-10 post-view">
+      <div class="post-view-box">
+        <div class="post-show-box">
+          <div class="post-context">
+            <%= link_to user_path(@post.user_id), class: "post-user-link" do %>
+              <%= image_tag @post.user.user_icon.url, class: "user-icon" %>
+              <p class="user-name"><%= @post.user.name %></p>
+            <% end %>
+            <div class="post-content-right">
+              <% if @post.user_id == current_user.id %>
+                <%= link_to edit_post_path, class: "post-edit-link my-2 mx-3" do %>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+                <%= link_to post_path, data: {turbo_method: :delete, turbo_confirm: '本当に削除してよろしいですか?'}, class: "post-delete-link my-2 mx-3" do %>
+                  <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+              <% else %>
+                <% if @post.favorited?(current_user) %>
+                  <%= link_to post_favorites_path(@post.id), data: {turbo_method: :delete}, class: "favorite-button my-2 mx-3" do %>
+                    <i style="color: #4a90e2;" class="fa-solid fa-star fa-lg"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to post_favorites_path(@post.id), data: {turbo_method: :post}, class: "favorite-button my-2 mx-3" do %>
+                    <i class="fa-regular fa-star fa-lg"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+            <p class="post-created">
+              投稿日 <%= @post.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>
+              更新日 <%= @post.updated_at.strftime("%Y年 %m月%d日 %H時%M分") %>
+            </p>
+          </div>
+          <div class="title-box">
+            <h3><%= @post.title %></h3>
+            <h5><%= @post.artist %></h5>
+            <p class="post-count-box">
+              <span>
+                <i class="fa-regular fa-comment"></i>
+                <%= @post.comments.count %>
+              </span>
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <%= @post.favorites.count %>
+              </span>
+              <span>
+                <% if @post.comments.count == 0 %>
+                  未評価
+                <% else %>
+                  平均評価 <%= @post.average.round(1) %> 点
+                <% end %>
+              </span>
+            </p>
+          </div>
+          <p class="post-content-box">
+            <%= safe_join(@post.content.split("\n"), tag(:br)) %>
+          </p>
+        </div>
+      </div>
+      <% @comments.each do |comment| %>
+        <div class="post-view-box">
+          <ul class="post-box">
+            <li>
+              <%= image_tag comment.user.user_icon.url, class: "user-icon" %>
+              <p class="post-detail">
+              <span><%= comment.user.name %></span>さんが
+              <%= comment.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>にコメントしました。</p>
+            </li>
+            <li>
+              <p class="post-content-box">
+                <% unless comment.content == "" %>
+                  評価 <%= comment.rate %> 点 | <%= comment.content %>
+                <% else %>
+                  <%= comment.rate %> 点の評価をつけました!
+                <% end %>
+              </p>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      <% unless @post.user_id == current_user.id %>
+        <div class="post-view-box post-new">
+          <div class="update-content">
+            <div class="row">
+              <h5>感想を書く</h5>
+            </div>
+          </div>
+          <%= form_with model: @comment do |f| %>
+            <%= f.hidden_field :post_id, value: @post.id %>
+            <div class="update-content">
+              <div class="row">
+                <label for="rate" class="col-md-3 col-md-3 required-a">
+                評価
+                </label>
+                <%= f.number_field :rate, id: "rate", class: "form-control mb-4 col-md-9", placeholder: "投稿のわかりやすさを5点満点で評価してください。", min:1, max:5 %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <label for="content" class="col-md-3">
+                コメント
+                </label>
+                <%= f.text_area :content, id: "content", class: "form-control mb-4 col-md-9", placeholder: "投稿に対して感想や気になった点があれば記載してください。" , rows: 6 %>
+              </div>
+            </div>
+            <div class="update-content">
+              <div class="row">
+                <%= f.submit "コメントする", class: "col-md-2 btn btn-primary mx-3" %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

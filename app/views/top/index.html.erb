@@ -1,0 +1,62 @@
+<div class="top">
+  <div class="top-main">
+    <div class="container">
+      <div class="row col-lg-8">
+        <div class="form-fream">
+          <div class="form-area">
+            <h3 class="form-area-title mb-4">
+            洋楽の訳詞が簡単に探せる。
+            </h3>
+            <% if user_signed_in? %>
+              <div class="input-area mb-4">
+                <%= form_with url: search_path, local: true, method: :get do |f| %>
+                  <%= f.text_field :word, id: "word", placeholder: " 曲名または歌手名を入力", class: "text_form" %>
+                  <%= f.select :range, options_for_select([['投稿']]) %>
+                  <%= f.submit "検索", class: "btn btn-primary submit_form" %>
+                <% end %>
+              </div>
+            <% else %>
+              <%= link_to "新規登録", new_user_registration_path, class: "col-md-4 btn btn-primary" %>
+              <%= link_to "サインイン", new_user_session_path, class: "col-md-4 btn btn-secondary my-2" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <% if user_signed_in? %>
+      <div class="panel-area m-5">
+        <div class="row">
+          <div class="panel-item col-lg-6">
+            <span>投稿を作成する</span>
+            <%= link_to image_tag("/assets/question.jpg", class: "panel-image"), new_post_path , class: "new-post-link" %>
+            <div class="shadow"></div>
+          </div>
+          <div class="panel-item col-lg-6">
+            <span>過去の投稿を見る</span>
+            <%= link_to image_tag("/assets/answer.jpg", class: "panel-image"), posts_path, class: "posts-link" %>
+            <div class="shadow"></div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="site-guide">
+        <h1>
+        お気に入りの歌詞の意味を知る、翻訳する。
+        </h1>
+        <div class="guide-box">
+          <%= image_tag '/assets/computer_man_simple.png', class:"guide-image col-12" %> 
+          <div class="guide-right col-12">
+            <h3>○このサイトを使ってできること</h3>
+            <p>洋楽の歌詞を簡単に調べられる!</p>
+            <p>英語の歌詞を翻訳して投稿することができる!</p>
+            <p>投稿に対して評価・コメントを返すことができる!</p>
+            <p>わからない部分や翻訳してほしい歌詞があるときに質問を投稿できる!</p>
+            <p>各ユーザーの過去の投稿・評価を見ることができる!</p>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

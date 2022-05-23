@@ -1,0 +1,50 @@
+<% provide(:title, "質問する") %>
+<%= render "shared/error", obj: @question %>
+<div class="container-fruid post post-new">
+  <div class="row">
+    <%= render"shared/post_navbar" %>
+    <div class="col-lg-10 post-view">
+      <div class="align-menu-bar">
+        <ul>
+          <li class="<%= 'active' if current_page?(new_post_path) %>">
+            <%= link_to "投稿", new_post_path %>
+          </li>
+          <li class="<%= 'active' if current_page?(new_question_path) %>">
+            <%= link_to "質問", new_question_path %>
+          </li>
+        </ul>
+      </div>
+      <div class="post-view-box">
+        <div class="update-content">
+          <div class="row">
+            <h5>新しく質問を作成する</h5>
+          </div>
+        </div>
+        <%= form_with model: @question do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <div class="update-content">
+            <div class="row">
+              <label for="q_title" class="col-md-3 required-a">
+              タイトル
+              </label>
+              <%= f.text_field :q_title, id: "q_title", class: "form-control mb-4 col-md-9", placeholder: "タイトルを入力" %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <label for="q_content" class="col-md-3 required-a">
+              本文
+              </label>
+              <%= f.text_area :q_content, id: "q_content", class: "form-control mb-4 col-md-9", placeholder: "ここに質問したい内容を入力してください。" , rows: 25 %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.submit "質問する", class: "col-md-2 btn btn-primary mx-3" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

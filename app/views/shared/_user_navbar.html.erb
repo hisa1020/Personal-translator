@@ -1,0 +1,32 @@
+<div class="col-lg-2 user-nav user-nav-pc d-lg-block d-none">
+  <ul>
+    <li class="<%= 'active' if current_page?(users_profile_path) %>">
+      <%= link_to "プロフィール", users_profile_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(users_posts_path) %>">
+      <%= link_to "投稿をみる", users_posts_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(users_questions_path) %>">
+      <%= link_to "質問をみる", users_questions_path %>
+    </li>
+    <li class="<%= 'active' if %w[users_favorite_posts users_favorite_questions].any? { |name| current_page?(send("#{name}_path")) } %>">
+      <%= link_to "お気に入りをみる",  users_favorite_posts_path %>
+    </li>
+  </ul>
+</div>
+<div class="col-lg-2 user-nav user-nav-mobile d-lg-none">
+  <ul>
+    <li class="<%= 'active' if current_page?(users_profile_path) %>">
+      <%= link_to "プロフィール", users_profile_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(users_posts_path) %>">
+      <%= link_to "投稿をみる", users_posts_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(users_questions_path) %>">
+      <%= link_to "質問をみる", users_questions_path %>
+    </li>
+    <li class="<%= 'active' if %w[users_favorite_posts users_favorite_questions].any? { |name| current_page?(send("#{name}_path")) } %>">
+      <%= link_to "お気に入りをみる",  users_favorite_posts_path %>
+    </li>
+  </ul>
+</div>

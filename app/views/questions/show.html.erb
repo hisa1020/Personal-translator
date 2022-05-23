@@ -1,0 +1,93 @@
+<% provide(:title, @question.q_title) %>
+<div class="container-fruid post">
+  <div class="row">
+    <%= render"shared/post_navbar" %>
+    <div class="col-lg-10 post-view">
+      <div class="post-view-box">
+        <div class="post-show-box">
+          <div class="post-context">
+            <%= link_to user_path(@question.user_id), class: "post-user-link" do %>
+              <%= image_tag @question.user.user_icon.url, class: "user-icon" %>
+              <p class="user-name"><%= @question.user.name %></p>
+            <% end %>
+            <div class="post-content-right">
+              <% if @question.user_id == current_user.id %>
+                <%= link_to(edit_question_path, class: "question-edit-link my-2 mx-3") do %>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+                <%= link_to(question_path, data: {turbo_method: :delete, turbo_confirm: '本当に削除してよろしいですか?'}, class: "question-delete-link my-2 mx-3") do %>
+                  <i class="fa-solid fa-trash-can"></i>
+                <% end %>
+              <% else %>
+                <% if @question.favorited?(current_user) %>
+                  <%= link_to question_q_favorites_path(@question.id), data: {turbo_method: :delete}, class: "favorite-button my-2 mx-3" do %>
+                    <i style="color: #4a90e2;" class="fa-solid fa-star fa-lg"></i>
+                  <% end %>
+                <% else %>
+                  <%= link_to question_q_favorites_path(@question.id), data: {turbo_method: :post}, class: "favorite-button my-2 mx-3" do %>
+                    <i class="fa-regular fa-star fa-lg"></i>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </div>
+            <p class="post-created">
+              投稿日 <%= @question.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>
+              更新日 <%= @question.updated_at.strftime("%Y年 %m月%d日 %H時%M分") %>
+            </p>
+          </div>
+          <div class="title-box">
+            <h3><%= @question.q_title %></h3>
+            <p class="post-count-box">
+              <span>
+                <i class="fa-regular fa-star"></i>
+                <%= @question.q_favorites.count %>
+              </span>
+              <span>
+                <i class="fa-regular fa-comment"></i>
+                <%= @question.q_comments.count %>
+              </span>
+            </p>
+          </div>
+          <p class="post-content-box">
+            <%= safe_join(@question.q_content.split("\n"), tag(:br)) %>
+          </p>
+        </div>
+      </div>
+      <% @q_comments.each do |q_comment| %>
+        <div class="post-view-box">
+          <ul class="post-box">
+            <li>
+              <%= image_tag q_comment.user.user_icon.url, class: "user-icon" %>
+              <p class="post-detail">
+              <span><%= q_comment.user.name %></span>が
+              <%= q_comment.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>に回答しました。</p>
+            </li>
+            <li>
+              <p class="post-content-box">
+                <%= q_comment.q_content %>
+              </p>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+      <div class="post-view-box post-new">
+        <%= form_with model: @q_comment do |f| %>
+          <%= f.hidden_field :question_id, value: @question.id %>
+          <div class="update-content">
+            <div class="row">
+              <label for="q_content" class="col-md-3 required-a">
+              回答する
+              </label>
+              <%= f.text_area :q_content, id: "q_content", class: "form-control mb-4 col-md-9", placeholder: "ここに内容を記載してください。" , rows: 6 %>
+            </div>
+          </div>
+          <div class="update-content">
+            <div class="row">
+              <%= f.submit "回答する", class: "col-md-2 btn btn-primary mx-3" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
