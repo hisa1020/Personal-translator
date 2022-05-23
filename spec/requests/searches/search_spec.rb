@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-RSpec.describe "Top::Index", type: :request do
+RSpec.describe "Search", type: :request do
   let(:user) { FactoryBot.create(:user) }
 
   before do
     sign_in user
-    get root_path
+    get search_path
   end
 
   it "statusが200であること" do

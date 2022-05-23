@@ -19,6 +19,11 @@ RSpec.feature "Questions::Index", type: :feature do
     end
   end
 
+  scenario "質問詳細ページに移動できる" do
+    find('.post-link-box').click
+    expect(current_path).to eq question_path(question.id)
+  end
+
   scenario "質問情報を表示" do
     expect(page).to have_content question.user.name
     expect(page).to have_selector("img[src$='#{question.user.user_icon.identifier}']")

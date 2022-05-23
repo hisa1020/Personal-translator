@@ -7,16 +7,21 @@ RSpec.describe Comment, type: :model do
 
   describe '投稿に対するコメント' do
     context '新規コメント成功' do
-      it '内容に問題ない場合' do
+      it '問題ない場合' do
+        expect(comment).to be_valid
+      end
+
+      it '内容が空' do
+        comment.content = ""
         expect(comment).to be_valid
       end
     end
 
     context '新規コメント失敗' do
-      it '内容が空' do
-        comment.content = ""
+      it '評価点が空' do
+        comment.rate = ""
         comment.valid?
-        expect(comment.errors.full_messages).to include("コメントを入力してください")
+        expect(comment.errors.full_messages).to include("評価点を入力してください")
       end
     end
   end

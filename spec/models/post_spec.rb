@@ -12,10 +12,16 @@ RSpec.describe Post, type: :model do
     end
 
     context '新規投稿失敗' do
-      it 'タイトルが空' do
+      it '曲名が空' do
         post.title = ""
         post.valid?
-        expect(post.errors.full_messages).to include("タイトルを入力してください")
+        expect(post.errors.full_messages).to include("曲名を入力してください")
+      end
+
+      it '歌手名が空' do
+        post.artist = ""
+        post.valid?
+        expect(post.errors.full_messages).to include("歌手名を入力してください")
       end
 
       it '内容が空' do
@@ -26,10 +32,18 @@ RSpec.describe Post, type: :model do
     end
   end
 
-  describe '投稿したユーザーの情報を入手' do
-    it 'ユーザー名とアイコンを取得' do
-      expect(post.user.name).to eq user.name
-      expect(post.user.user_icon.identifier).to eq user.user_icon.identifier
+  it '投稿したユーザーの情報を入手' do
+    expect(post.user.name).to eq user.name
+    expect(post.user.user_icon.identifier).to eq user.user_icon.identifier
+  end
+
+  describe 'コメントの得点の平均値を求める' do
+    it '平均評価の算出' do
+      t_average = 0
+      post.comments.each do |comment|
+        t_average += (comment.rate / comments.count)
+      end
+      expect(post.average).to eq t_average
     end
   end
 

@@ -13,7 +13,7 @@ RSpec.describe "Questions::Edit", type: :request do
     expect(response.status).to eq(200)
   end
 
-  it "ユーザー情報の表示" do
+  it "質問情報の表示" do
     expect(response.body).to include question.q_title
     expect(response.body).to include question.q_content
   end

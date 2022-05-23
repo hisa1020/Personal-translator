@@ -16,6 +16,13 @@ RSpec.feature "Questions::Edit", type: :feature do
       expect(page).to have_field("q_content", with: question.q_content)
     end
 
+    scenario "質問の変更に成功" do
+      fill_in "q_title", with: "New-Test-Question-Title"
+      fill_in "q_content", with: "New-Test-Question-Content"
+      click_button '質問内容を更新'
+      expect(page).to have_content("質問内容を更新しました。")
+    end
+
     context "変更なしで質問を更新する場合" do
       scenario "元の質問を表示" do
         click_button '質問内容を更新'
@@ -31,7 +38,6 @@ RSpec.feature "Questions::Edit", type: :feature do
         click_button '質問内容を更新'
         expect(page).to have_content("質問内容を更新しました。")
         expect(page).to have_content("New-Test-Question-Title")
-        expect(page).to have_content question.q_content
       end
 
       scenario "タイトルを更新できず(空白)" do
@@ -46,7 +52,6 @@ RSpec.feature "Questions::Edit", type: :feature do
         fill_in "q_content", with: "New-Test-Question-Content"
         click_button '質問内容を更新'
         expect(page).to have_content("質問内容を更新しました。")
-        expect(page).to have_content question.q_title
         expect(page).to have_content("New-Test-Question-Content")
       end
 

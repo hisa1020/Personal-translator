@@ -11,7 +11,8 @@ FactoryBot.define do
   end
 
   trait :q_others do
-    q_title { 'Qtitle0' }
+    q_title { 'brand new planet' }
     q_content { 'This is excluded Question' }
+    association :user
   end
 end

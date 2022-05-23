@@ -24,8 +24,6 @@ RSpec.feature "Questions::New", type: :feature do
         fill_in "q_content", with: question.q_content
         click_button '質問する'
         expect(page).to have_content("質問の投稿が完了しました。")
-        expect(page).to have_content question.q_title
-        expect(page).to have_content question.q_content
       end
     end
 
@@ -35,15 +33,15 @@ RSpec.feature "Questions::New", type: :feature do
         fill_in "q_content", with: question.q_content
         click_button '質問する'
         expect(page).to have_content("タイトルを入力してください")
-        expect(page).not_to have_content("内容を入力してください")
+        expect(page).to have_field("q_content", with: question.q_content)
       end
 
       scenario "内容が未記入" do
         fill_in "q_title", with: question.q_title
         fill_in "q_content", with: ""
         click_button '質問する'
-        expect(page).not_to have_content("タイトルを入力してください")
         expect(page).to have_content("内容を入力してください")
+        expect(page).to have_field("q_title", with: question.q_title)
       end
     end
   end

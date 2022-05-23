@@ -49,7 +49,7 @@ RSpec.feature "Questions::Show", type: :feature, js: true do
       context '新規コメント成功' do
         it '内容に問題ない場合' do
           fill_in "q_content", with: new_Qcomment.q_content
-          click_button 'コメントする'
+          click_button '回答する'
           expect(page).to have_content("コメントを投稿しました。")
         end
       end
@@ -57,7 +57,7 @@ RSpec.feature "Questions::Show", type: :feature, js: true do
       context '新規コメント失敗' do
         it '内容が空' do
           fill_in "q_content", with: ''
-          click_button 'コメントする'
+          click_button '回答する'
           expect(page).to have_content("コメントの投稿に失敗しました。")
         end
       end
@@ -71,17 +71,6 @@ RSpec.feature "Questions::Show", type: :feature, js: true do
     before do
       sign_in user
       visit question_path(question.id)
-    end
-
-    scenario "質問情報を表示" do
-      expect(page).to have_content question.user.name
-      expect(page).to have_selector("img[src$='#{question.user.user_icon.identifier}']")
-      expect(page).to have_content question.created_at.strftime("%Y年 %m月%d日 %H時%M分")
-      expect(page).to have_content question.updated_at.strftime("%Y年 %m月%d日 %H時%M分")
-      expect(page).to have_content question.q_title
-      expect(page).to have_content question.q_content
-      expect(page).to have_content question.q_favorites.count
-      expect(page).to have_content question.q_comments.count
     end
 
     describe 'お気に入りに登録、解除する' do
@@ -100,15 +89,6 @@ RSpec.feature "Questions::Show", type: :feature, js: true do
           find('.favorite-button').click
           expect(question.q_favorites.count).to eq(f - 1)
         end
-      end
-    end
-
-    scenario "質問に対するコメントを表示" do
-      question.q_comments.all? do |q_comment|
-        expect(page).to have_content q_comment.user.name
-        expect(page).to have_selector("img[src$='#{q_comment.user.user_icon.identifier}']")
-        expect(page).to have_content q_comment.created_at.strftime("%Y年 %m月%d日 %H時%M分")
-        expect(page).to have_content q_comment.q_content
       end
     end
   end

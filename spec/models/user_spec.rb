@@ -120,6 +120,14 @@ RSpec.describe User, type: :model do
       total_favorites = favorites.count + q_favorites.count
       expect(user.favorites_counts).to eq total_favorites
     end
+
+    it '投稿の平均得点を取得' do
+      t_score = 0
+      user.posts.each do |post|
+        t_score += (post.average / posts.count)
+      end
+      expect(user.user_score).to eq t_score
+    end
   end
 
   describe 'ゲストログイン' do

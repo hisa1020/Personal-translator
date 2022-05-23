@@ -9,7 +9,7 @@ RSpec.feature "Users::Profile_Edit", type: :feature do
     visit users_profile_edit_path
   end
 
-  describe "プロフィール変更が正常に行われる" do
+  describe "プロフィール変更" do
     scenario "変更前のユーザー情報を表示" do
       expect(page).to have_field("name", with: user.name)
       expect(page).to have_field("introduction", with: user.introduction)

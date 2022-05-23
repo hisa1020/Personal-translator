@@ -1,21 +1,31 @@
 require 'rails_helper'
 
-RSpec.describe "Users::Posts", type: :request do
+RSpec.describe "Users::Show", type: :request do
   let(:user) { FactoryBot.create(:user) }
-  let!(:post) { FactoryBot.create(:post, :with_feedback, user_id: user.id) }
+  let!(:posts) { FactoryBot.create_list(:post, rand(3), :with_feedback, user_id: user.id) }
+  let!(:questions) { FactoryBot.create_list(:question, rand(3), user_id: user.id) }
   let!(:others_post) { FactoryBot.create(:post, :others) }
 
   before do
     sign_in user
-    get users_posts_path
+    get user_path(user.id)
   end
 
   it "statusが200であること" do
     expect(response.status).to eq(200)
   end
 
+  it "ユーザー情報の表示" do
+    expect(response.body).to include user.name
+    expect(response.body).to include user.introduction
+    expect(response.body).to include user.posts.count.to_s
+    expect(response.body).to include user.questions.count.to_s
+    expect(response.body).to include user.user_score.round(1).to_s
+  end
+
   it "ユーザーと紐付いた投稿の表示" do
     user.posts.all? do |post|
+      expect(response.body).to include post.user.name
       expect(response.body).to include post.created_at.strftime("%Y年 %m月%d日 %H時%M分")
       expect(response.body).to include post.title
       expect(response.body).to include post.artist

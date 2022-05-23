@@ -5,6 +5,7 @@ RSpec.feature "Users::Favorite_Questions", type: :feature do
   let(:user) { FactoryBot.create(:user) }
   let(:question) { FactoryBot.create(:question) }
   let!(:q_favorite) { FactoryBot.create(:q_favorite, user_id: user.id, question_id: question.id) }
+  let!(:others_question) { FactoryBot.create(:question, :q_others) }
 
   before do
     sign_in user
@@ -18,6 +19,11 @@ RSpec.feature "Users::Favorite_Questions", type: :feature do
     end
   end
 
+  scenario "質問詳細ページに移動できる" do
+    find('.post-link-box').click
+    expect(current_path).to eq question_path(question.id)
+  end
+
   scenario "ユーザーのお気に入りの投稿を表示" do
     user.q_favorites.all? do |favorite|
       expect(page).to have_content favorite.question.user.name
@@ -28,5 +34,10 @@ RSpec.feature "Users::Favorite_Questions", type: :feature do
       expect(page).to have_content favorite.question.q_favorites.count
       expect(page).to have_content favorite.question.q_comments.count
     end
+  end
+
+  scenario "お気に入りに登録されていない質問を表示しない" do
+    expect(page).not_to have_content others_question.q_title
+    expect(page).not_to have_content others_question.q_content
   end
 end

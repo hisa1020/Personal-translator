@@ -13,8 +13,9 @@ RSpec.describe "Posts::Edit", type: :request do
     expect(response.status).to eq(200)
   end
 
-  it "ユーザー情報の表示" do
+  it "投稿情報の表示" do
     expect(response.body).to include post.title
+    expect(response.body).to include post.artist
     expect(response.body).to include post.content
   end
 end

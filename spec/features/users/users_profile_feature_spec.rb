@@ -3,7 +3,7 @@ require 'spec_helper'
 
 RSpec.feature "Users::Profile", type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  let!(:posts) { FactoryBot.create_list(:post, rand(3), user_id: user.id) }
+  let!(:posts) { FactoryBot.create_list(:post, rand(3), :with_feedback, user_id: user.id) }
   let!(:questions) { FactoryBot.create_list(:question, rand(3), user_id: user.id) }
   let!(:comments) { FactoryBot.create_list(:comment, rand(3), user_id: user.id) }
   let!(:q_comments) { FactoryBot.create_list(:q_comment, rand(3), user_id: user.id) }

@@ -22,4 +22,12 @@ RSpec.describe "Questions::Show", type: :request do
     expect(response.body).to include question.q_comments.count.to_s
     expect(response.body).to include question.q_favorites.count.to_s
   end
+
+  it "質問に紐付いたコメントの表示" do
+    question.q_comments.all? do |q_comment|
+      expect(response.body).to include q_comment.user.name
+      expect(response.body).to include q_comment.created_at.strftime("%Y年 %m月%d日 %H時%M分")
+      expect(response.body).to include q_comment.q_content
+    end
+  end
 end
