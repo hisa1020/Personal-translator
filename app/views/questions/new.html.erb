@@ -17,7 +17,7 @@
       <div class="post-view-box">
         <div class="update-content">
           <div class="row">
-            <h5>新規質問作成</h5>
+            <h5>新しく質問を作成する</h5>
           </div>
         </div>
         <%= form_with model: @question do |f| %>
@@ -35,7 +35,7 @@
               <label for="q_content" class="col-md-3 required-a">
               本文
               </label>
-              <%= f.text_area :q_content, id: "q_content", class: "form-control mb-4 col-md-9", placeholder: "ここに質問したい内容を記載してください。" , rows: 25 %>
+              <%= f.text_area :q_content, id: "q_content", class: "form-control mb-4 col-md-9", placeholder: "ここに質問したい内容を入力してください。" , rows: 25 %>
             </div>
           </div>
           <div class="update-content">

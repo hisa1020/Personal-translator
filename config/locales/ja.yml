@@ -11,12 +11,14 @@ ja:
        current_password: 現在のパスワード
        password: パスワード
      post:
-      title: タイトル
+      title: 曲名
+      artist: 歌手名
       content: 内容
      question:
       q_title: タイトル
       q_content: 内容
      comment:
+      rate: 評価点
       content: コメント
      q_comment:
       q_content: コメント

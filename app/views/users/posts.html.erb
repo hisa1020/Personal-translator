@@ -14,6 +14,9 @@
                 <h3><%= post.title %></h3>
               </li>
               <li>
+                <h5><%= post.artist %></h5>
+              </li>
+              <li>
                 <p class="post-content-box">
                   <%= truncate(post.content, length: 70) %>
                 </p>

@@ -29,9 +29,9 @@ class User < ApplicationRecord
     posts.each do |post|
       user_score += (post.average / posts.count)
     end
-    return user_score
+    user_score
   end
-  
+
   has_many :posts, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :comments, dependent: :destroy

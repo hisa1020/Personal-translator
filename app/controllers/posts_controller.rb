@@ -8,7 +8,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(params.require(:post).permit(:title, :content, :user_id))
+    @post = Post.new(params.require(:post).permit(:title, :artist, :content, :user_id))
     if @post.save
       flash[:notice] = "投稿が完了しました。"
       redirect_to post_path(@post.id)
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    if @post.update(params.require(:post).permit(:title, :content, :user_id))
+    if @post.update(params.require(:post).permit(:title, :artist, :content, :user_id))
       flash[:notice] = "投稿内容を更新しました。"
       redirect_to post_path(@post.id)
     else

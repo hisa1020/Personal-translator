@@ -239,8 +239,12 @@ btn-primary{
   margin: 12px 0;
 }
 
+.post h5{
+  margin-bottom: 12px;
+}
+
 .post .post-content-box{
-  margin-top: 8px;
+  margin-top: 0;
   font-size: 16px;
   line-height: 30px;
   word-break: break-all;
@@ -405,7 +409,11 @@ label{
 }
 
 .input-area .text_form{
-  width: 250px;
+  width: 350px;
+}
+
+.input-area select{
+  display: none;
 }
 
 .input-area .submit_form{

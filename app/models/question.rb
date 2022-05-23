@@ -15,15 +15,15 @@ class Question < ApplicationRecord
 
   def self.looks(search, word)
     if search == "perfect_match"
-      @questions = Question.where("q_title LIKE?","#{word}")
+      @questions = Question.where("q_title LIKE?", "#{word}")
     elsif search == "forward_match"
-      @questions = Question.where("q_title LIKE?","#{word}%")
+      @questions = Question.where("q_title LIKE?", "#{word}%")
     elsif search == "backward_match"
-      @questions = Question.where("q_title LIKE?","%#{word}")
+      @questions = Question.where("q_title LIKE?", "%#{word}")
     elsif search == "partial_match"
-      @questions = Question.where("q_title LIKE?","%#{word}%")
+      @questions = Question.where("q_title LIKE?", "%#{word}%")
     else
-      @questions = Question.where("q_title LIKE?","%#{word}%")
+      @questions = Question.where("q_title LIKE?", "%#{word}%")
     end
   end
 end

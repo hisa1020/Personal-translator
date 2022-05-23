@@ -28,6 +28,9 @@
                 <h3><%= favorite.post.title %></h3>
               </li>
               <li>
+                <h5><%= favorite.post.artist %></h5>
+              </li>
+              <li>
                 <p class="post-content-box">
                   <%= truncate(favorite.post.content, length: 70) %>
                 </p>

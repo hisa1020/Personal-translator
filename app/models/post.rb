@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   validates :title, presence: true
+  validates :artist, presence: true
   validates :content, presence: true
   belongs_to :user
   has_many :comments, dependent: :destroy
@@ -14,7 +15,7 @@ class Post < ApplicationRecord
     comments.each do |comment|
       average += (comment.rate / comments.count)
     end
-    return average
+    average
   end
 
   def favorited?(user)
@@ -23,15 +24,15 @@ class Post < ApplicationRecord
 
   def self.looks(search, word)
     if search == "perfect_match"
-      @posts = Post.where("title LIKE?","#{word}")
+      @posts = Post.where("title LIKE(?) OR artist LIKE(?)", "#{word}", "#{word}")
     elsif search == "forward_match"
-      @posts = Post.where("title LIKE?","#{word}%")
+      @posts = Post.where("title LIKE(?) OR artist LIKE(?)", "#{word}%", "#{word}%")
     elsif search == "backward_match"
-      @posts = Post.where("title LIKE?","%#{word}")
+      @posts = Post.where("title LIKE(?) OR artist LIKE(?)", "%#{word}", "%#{word}")
     elsif search == "partial_match"
-      @posts = Post.where("title LIKE?","%#{word}%")
+      @posts = Post.where("title LIKE(?) OR artist LIKE(?)", "%#{word}%", "%#{word}%")
     else
-      @posts = Post.where("title LIKE?","%#{word}%")
+      @posts = Post.where("title LIKE(?) OR artist LIKE(?)", "%#{word}%", "%#{word}%")
     end
   end
 end
