@@ -168,6 +168,7 @@ GEM
     parallel (1.22.1)
     parser (3.1.1.0)
       ast (~> 2.4.1)
+    pg (0.20.0)
     pry (0.14.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
@@ -317,6 +318,7 @@ DEPENDENCIES
   faker
   importmap-rails
   jbuilder
+  pg (= 0.20.0)
   pry-rails
   puma (~> 5.0)
   rails (~> 7.0.2, >= 7.0.2.2)
