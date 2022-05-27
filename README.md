@@ -1,24 +1,52 @@
-# README
+# Personal Translator
+<img src="app/assets/images/Personal-logo.png" width="250px" height="58px">
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+洋楽の訳詞の投稿、閲覧ができるサイトです:smile:  
+翻訳した歌詞を投稿し、投稿に対する評価とコメントを得ることができます。   
+曲名、歌手名で投稿を検索したり、投稿をお気に入りに登録したり、ユーザー詳細ページから過去の投稿や平均評価を見ることができます。  
 
-Things you may want to cover:
 
-* Ruby version
+![ログイン後のトップページ](app/assets/images/readme1.jpg)
+![投稿詳細ページ](app/assets/images/readme2.jpg)
 
-* System dependencies
+##  使い方
+まず、新規登録、または、ログインが必要です。  
+新規登録にはユーザー名、メールアドレス、パスワードの設定が必要になります。
+- 翻訳した歌詞を投稿する  
+洋楽の歌詞を翻訳して投稿することができます。  
+投稿には曲名、歌手名、歌詞内容の記入が必要です。  
+- 投稿にコメント、評価をする  
+投稿に対して、評価点、コメントを返すことができます。  
+気に入った投稿をお気に入りに登録してプロフィールの「お気に入りを見る」から確認することができます。また、投稿のユーザー名をクリックすれば、ユーザーの詳細を確認することができます。    
+- 質問を投稿する  
+翻訳してほしい歌詞の投稿がないとき、歌詞の訳が理解できないときなど、質問を投稿して他ユーザーに回答をお願いすることができます。質問には質問のタイトルと内容の記入が必要です。  
+- 歌詞を検索する  
+トップページ、検索ページの検索フォームから投稿をさがすことができます。  
+トップページの検索フォームからは投稿の検索ができ、曲名と歌手名の部分一致で検索ができます。  
+検索ページからは投稿、質問の両方を検索でき、部分一致、完全一致、前方一致、後方一致を選んで検索することができます。  
+- プロフィールを確認、編集する  
+プロフィールページから過去の投稿や質問、お気に入りを確認することができます。また、プロフィールの編集や、パスワード、メールアドレスの編集ができます。  
 
-* Configuration
+## 使用技術
+- Ruby 2.7.3
+- RUby on Rails 7.0.2
+- SQlite 1.4
+- Puma
+- RSpec
+- Rubocop
 
-* Database creation
+## 機能一覧
+- ユーザー登録機能、 ログイン機能(devise)
+  - ゲストログイン機能 
+  - アイコン登録機能(carrierwave) 
+- 投稿機能
+- 評価、 コメント機能
+- 質問投稿機能
+- お気に入り登録機能
+- 検索機能
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## テスト
+- RSpec
+  - 統合テスト(feature)
+  - 単体テスト(model, helper)
+  - 機能テスト(request)
