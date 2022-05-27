@@ -317,6 +317,10 @@ btn-primary{
   top: 16px;
 }
 
+.post-comment-content{
+  margin-top: 8px;
+}
+
 body{
   background-color: #fff;
   color: #333;
