@@ -17,7 +17,9 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
     <!-- TITLE -->
-    <title><%= full_title(yield(:title)) %></title> 
+    <title><%= full_title(yield(:title)) %></title>
+    <!-- FAVICON -->
+    <link rel="icon" href="/assets/favicon.png">
   </head>
   <body>
   <!-- HEADER -->
