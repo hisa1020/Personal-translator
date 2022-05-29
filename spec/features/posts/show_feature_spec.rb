@@ -63,14 +63,14 @@ RSpec.feature "Posts::Show", type: :feature, js: true do
       visit post_path(post.id)
     end
 
-    describe 'お気に入りに登録、解除する' do
-      scenario 'お気に入りの数が増える' do
+    describe 'favoriteに登録、解除する' do
+      scenario 'favoriteに登録' do
         f = post.favorites.count
         find('.favorite-button').click
         expect(post.favorites.count).to eq(f + 1)
       end
 
-      scenario 'お気に入りの数が減る' do
+      scenario 'favoriteの解除' do
         find('.favorite-button').click
         f = post.favorites.count
         find('.favorite-button').click

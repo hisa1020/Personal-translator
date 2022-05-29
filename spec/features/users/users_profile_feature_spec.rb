@@ -23,21 +23,21 @@ RSpec.feature "Users::Profile", type: :feature do
   describe "user_nav内のリンクが正常に作動する" do
     scenario "ユーザー投稿一覧に移動" do
       within('.user-nav') do
-        click_link '投稿をみる'
+        click_link '過去の投稿'
         expect(current_path).to eq users_posts_path
       end
     end
 
     scenario "ユーザー質問一覧に移動" do
       within('.user-nav') do
-        click_link '質問をみる'
+        click_link '過去の質問'
         expect(current_path).to eq users_questions_path
       end
     end
 
-    scenario "お気に入りに移動" do
+    scenario "いいねした投稿に移動" do
       within('.user-nav') do
-        click_link 'お気に入りをみる'
+        click_link 'いいねした投稿'
         expect(current_path).to eq users_favorite_posts_path
       end
     end
@@ -48,9 +48,9 @@ RSpec.feature "Users::Profile", type: :feature do
       expect(page).to have_content user.name
       expect(page).to have_content user.introduction
       expect(page).to have_selector("img[src$='#{user.user_icon.identifier}']")
-      expect(page).to have_content user.posts_counts
-      expect(page).to have_content user.comments_counts
-      expect(page).to have_content user.favorites_counts
+      expect(page).to have_content user.posts_count
+      expect(page).to have_content user.comments_count
+      expect(page).to have_content user.favorites_count
     end
   end
 

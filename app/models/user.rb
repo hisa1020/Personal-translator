@@ -12,24 +12,16 @@ class User < ApplicationRecord
     end
   end
 
-  def posts_counts
+  def posts_count
     posts.count + questions.count
   end
 
-  def comments_counts
+  def comments_count
     comments.count + q_comments.count
   end
 
-  def favorites_counts
+  def favorites_count
     favorites.count + q_favorites.count
-  end
-
-  def user_score
-    user_score = 0
-    posts.each do |post|
-      user_score += (post.average / posts.count)
-    end
-    user_score
   end
 
   has_many :posts, dependent: :destroy
