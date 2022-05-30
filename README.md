@@ -50,7 +50,7 @@
 - 検索機能
 
 ## ER図
-![ER図](erd.pdf)
+![ER図](app/assets/images/erd.pdf)
 
 ## テスト
 - RSpec
