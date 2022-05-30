@@ -21,8 +21,8 @@ RSpec.describe "Users::Profile", type: :request do
   it "ユーザー情報の表示" do
     expect(response.body).to include user.name
     expect(response.body).to include user.introduction
-    expect(response.body).to include user.posts_counts.to_s
-    expect(response.body).to include user.comments_counts.to_s
-    expect(response.body).to include user.favorites_counts.to_s
+    expect(response.body).to include user.posts_count.to_s
+    expect(response.body).to include user.comments_count.to_s
+    expect(response.body).to include user.favorites_count.to_s
   end
 end

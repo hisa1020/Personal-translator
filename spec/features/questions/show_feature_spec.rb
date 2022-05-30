@@ -73,22 +73,18 @@ RSpec.feature "Questions::Show", type: :feature, js: true do
       visit question_path(question.id)
     end
 
-    describe 'お気に入りに登録、解除する' do
-      context 'お気に入りに登録' do
-        scenario 'お気に入りの数が増える' do
-          f = question.q_favorites.count
-          find('.favorite-button').click
-          expect(question.q_favorites.count).to eq(f + 1)
-        end
+    describe 'favoriteに登録、解除する' do
+      scenario 'favoriteに登録' do
+        f = question.q_favorites.count
+        find('.favorite-button').click
+        expect(question.q_favorites.count).to eq(f + 1)
       end
 
-      context 'お気に入りを解除' do
-        scenario 'お気に入りの数が減る' do
-          find('.favorite-button').click
-          f = question.q_favorites.count
-          find('.favorite-button').click
-          expect(question.q_favorites.count).to eq(f - 1)
-        end
+      scenario 'favoriteを解除' do
+        find('.favorite-button').click
+        f = question.q_favorites.count
+        find('.favorite-button').click
+        expect(question.q_favorites.count).to eq(f - 1)
       end
     end
   end

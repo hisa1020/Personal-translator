@@ -57,6 +57,7 @@ group :development, :test do
   gem 'pry-rails'
   gem "capybara"
   gem 'faker'
+  gem 'rails-erd'
 end
 
 group :development do

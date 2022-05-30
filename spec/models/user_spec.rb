@@ -108,25 +108,17 @@ RSpec.describe User, type: :model do
 
     it '投稿と質問の総数を取得' do
       total_posts = posts.count + questions.count
-      expect(user.posts_counts).to eq total_posts
+      expect(user.posts_count).to eq total_posts
     end
 
     it 'コメントの総数を取得' do
       total_comments = comments.count + q_comments.count
-      expect(user.comments_counts).to eq total_comments
+      expect(user.comments_count).to eq total_comments
     end
 
     it 'お気に入りの総数を取得' do
       total_favorites = favorites.count + q_favorites.count
-      expect(user.favorites_counts).to eq total_favorites
-    end
-
-    it '投稿の平均得点を取得' do
-      t_score = 0
-      user.posts.each do |post|
-        t_score += (post.average / posts.count)
-      end
-      expect(user.user_score).to eq t_score
+      expect(user.favorites_count).to eq total_favorites
     end
   end
 

@@ -18,7 +18,7 @@ RSpec.feature "Users::Show", type: :feature do
     expect(page).to have_content user.introduction
     expect(page).to have_content user.posts.count
     expect(page).to have_content user.questions.count
-    expect(page).to have_content user.user_score.round(1)
+    expect(page).to have_content user.favorites_count
   end
 
   scenario "ユーザーの投稿を表示" do

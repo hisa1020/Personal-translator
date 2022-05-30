@@ -20,7 +20,7 @@ RSpec.describe "Users::Show", type: :request do
     expect(response.body).to include user.introduction
     expect(response.body).to include user.posts.count.to_s
     expect(response.body).to include user.questions.count.to_s
-    expect(response.body).to include user.user_score.round(1).to_s
+    expect(response.body).to include user.favorites_count.to_s
   end
 
   it "ユーザーと紐付いた投稿の表示" do
