@@ -33,7 +33,7 @@ RSpec.feature "Users::Show", type: :feature do
     end
   end
 
-  scenario "投稿詳細ページに移動できる" do
+  scenario "投稿詳細ページに移動" do
     find('.post-link-box').click
     expect(current_path).to eq post_path(post.id)
   end

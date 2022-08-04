@@ -11,7 +11,7 @@ RSpec.feature "Users::Posts", type: :feature do
     visit users_posts_path
   end
 
-  describe "user_nav内のリンクが正常に作動する" do
+  describe "user_nav内のリンク" do
     scenario "プロフィールに移動" do
       within('.user-nav') do
         click_link 'プロフィール'
@@ -20,12 +20,12 @@ RSpec.feature "Users::Posts", type: :feature do
     end
   end
 
-  scenario "投稿詳細ページに移動できる" do
+  scenario "投稿詳細ページに移動" do
     find('.post-link-box').click
     expect(current_path).to eq post_path(post.id)
   end
 
-  scenario "ユーザーの投稿を表示" do
+  scenario "過去の投稿を表示" do
     user.posts.all? do |post|
       expect(page).to have_content post.created_at.strftime("%Y年 %m月%d日 %H時%M分")
       expect(page).to have_content post.title

@@ -11,7 +11,7 @@ RSpec.feature "Users::Questions", type: :feature do
     visit users_questions_path
   end
 
-  scenario "質問詳細ページに移動できる" do
+  scenario "質問詳細ページに移動" do
     find('.post-link-box').click
     expect(current_path).to eq question_path(question.id)
   end

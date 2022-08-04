@@ -20,7 +20,7 @@ RSpec.feature "Users::Profile", type: :feature do
     expect(current_path).to eq root_path
   end
 
-  describe "user_nav内のリンクが正常に作動する" do
+  describe "user_nav内のリンク" do
     scenario "ユーザー投稿一覧に移動" do
       within('.user-nav') do
         click_link '過去の投稿'

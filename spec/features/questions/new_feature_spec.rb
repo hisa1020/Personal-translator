@@ -19,7 +19,7 @@ RSpec.feature "Questions::New", type: :feature do
 
   describe "新規質問" do
     context "新規質問成功" do
-      scenario "タイトルと内容を記入" do
+      scenario "タイトル、内容が入力されていると成功" do
         fill_in "q_title", with: question.q_title
         fill_in "q_content", with: question.q_content
         click_button '質問する'
@@ -28,7 +28,7 @@ RSpec.feature "Questions::New", type: :feature do
     end
 
     context "新規投稿失敗" do
-      scenario "タイトルが未記入" do
+      scenario "タイトルが空だと失敗" do
         fill_in "q_title", with: ""
         fill_in "q_content", with: question.q_content
         click_button '質問する'
@@ -36,7 +36,7 @@ RSpec.feature "Questions::New", type: :feature do
         expect(page).to have_field("q_content", with: question.q_content)
       end
 
-      scenario "内容が未記入" do
+      scenario "内容が空だと失敗" do
         fill_in "q_title", with: question.q_title
         fill_in "q_content", with: ""
         click_button '質問する'

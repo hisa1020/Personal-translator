@@ -26,17 +26,17 @@ RSpec.feature "Top::Index", type: :feature do
       visit root_path
     end
 
-    scenario "新規投稿(header)" do
+    scenario "ヘッダー右側から新規投稿に移動" do
       find('.header-new-post-link').click
       expect(current_path).to eq new_post_path
     end
 
-    scenario "プロフィールに移動(header)" do
+    scenario "ヘッダー右側からプロフィールに移動" do
       find('.users-profile-link').click
       expect(current_path).to eq users_profile_path
     end
 
-    scenario "サインアウトでトップページに移動" do
+    scenario "ヘッダー右側からサインアウトとトップページに移動" do
       find('.signout-link').click
       expect(page).to have_content("サインアウトしました。")
     end
@@ -55,14 +55,14 @@ RSpec.feature "Top::Index", type: :feature do
       let!(:others_post) { FactoryBot.create(:post, :others) }
       let!(:posts) { FactoryBot.create_list(:post, rand(3), :with_feedback) }
 
-      scenario "検索結果の表示" do
+      scenario "曲名で検索できる" do
         fill_in "word", with: "youthful days"
         click_button '検索'
         expect(page).to have_content("検索結果: 1件")
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "歌手名でも検索できる" do
+      scenario "歌手名で検索できる" do
         fill_in "word", with: "Mr.Children"
         click_button '検索'
         expect(page).to have_content("検索結果: 1件")

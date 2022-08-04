@@ -9,11 +9,11 @@ RSpec.describe "Questions::Edit", type: :request do
     get edit_question_path(question.id)
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 
-  it "質問情報の表示" do
+  it "質問情報が表示される" do
     expect(response.body).to include question.q_title
     expect(response.body).to include question.q_content
   end

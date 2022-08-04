@@ -19,7 +19,7 @@ RSpec.feature "Posts::New", type: :feature do
 
   describe "新規投稿" do
     context "新規投稿成功" do
-      scenario "タイトルと内容を記入" do
+      scenario "タイトル、歌手名、内容が入力されていると成功" do
         fill_in "title", with: post.title
         fill_in "artist", with: post.artist
         fill_in "content", with: post.content
@@ -29,7 +29,7 @@ RSpec.feature "Posts::New", type: :feature do
     end
 
     context "新規投稿失敗" do
-      scenario "曲名が未記入" do
+      scenario "曲名が空だと失敗" do
         fill_in "title", with: ""
         fill_in "artist", with: post.artist
         fill_in "content", with: post.content
@@ -39,7 +39,7 @@ RSpec.feature "Posts::New", type: :feature do
         expect(page).to have_field("content", with: post.content)
       end
 
-      scenario "歌手名が未記入" do
+      scenario "歌手名が空だと失敗" do
         fill_in "title", with: post.title
         fill_in "artist", with: ""
         fill_in "content", with: post.content
@@ -49,7 +49,7 @@ RSpec.feature "Posts::New", type: :feature do
         expect(page).to have_field("content", with: post.content)
       end
 
-      scenario "内容が未記入" do
+      scenario "内容が空だと失敗" do
         fill_in "title", with: post.title
         fill_in "artist", with: post.artist
         fill_in "content", with: ""

@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.feature "Questions::Show", type: :feature, js: true do
-  context "ログインユーザーと質問者が同じ場合" do
+  context "ログインユーザーと質問者が同じとき" do
     let(:user) { FactoryBot.create(:user) }
     let(:question) { FactoryBot.create(:question, user_id: user.id) }
     let(:new_Qcomment) { FactoryBot.build(:q_comment, question_id: question.id) }
@@ -12,7 +12,7 @@ RSpec.feature "Questions::Show", type: :feature, js: true do
       visit question_path(question.id)
     end
 
-    scenario "質問編集ページに移動できる" do
+    scenario "質問編集ページに移動" do
       find('.question-edit-link').click
       expect(current_path).to eq edit_question_path(question.id)
     end
@@ -46,16 +46,16 @@ RSpec.feature "Questions::Show", type: :feature, js: true do
     end
 
     describe '質問に対するコメントの作成' do
-      context '新規コメント成功' do
-        it '内容に問題ない場合' do
+      context 'コメント成功' do
+        it '内容が入力されていると成功' do
           fill_in "q_content", with: new_Qcomment.q_content
           click_button '回答する'
           expect(page).to have_content("コメントを投稿しました。")
         end
       end
 
-      context '新規コメント失敗' do
-        it '内容が空' do
+      context 'コメント失敗' do
+        it '内容が空だと失敗' do
           fill_in "q_content", with: ''
           click_button '回答する'
           expect(page).to have_content("コメントの投稿に失敗しました。")
@@ -64,7 +64,7 @@ RSpec.feature "Questions::Show", type: :feature, js: true do
     end
   end
 
-  context "ログインユーザーと質問者が違う場合" do
+  context "ログインユーザーと質問者が違うとき" do
     let(:user) { FactoryBot.create(:user) }
     let(:question) { FactoryBot.create(:question) }
 
@@ -73,14 +73,14 @@ RSpec.feature "Questions::Show", type: :feature, js: true do
       visit question_path(question.id)
     end
 
-    describe 'favoriteに登録、解除する' do
-      scenario 'favoriteに登録' do
+    describe 'favoriteに登録解除' do
+      scenario 'favoriteに登録できる' do
         f = question.q_favorites.count
         find('.favorite-button').click
         expect(question.q_favorites.count).to eq(f + 1)
       end
 
-      scenario 'favoriteを解除' do
+      scenario 'favoriteをできる' do
         find('.favorite-button').click
         f = question.q_favorites.count
         find('.favorite-button').click

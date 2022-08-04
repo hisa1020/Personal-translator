@@ -10,7 +10,7 @@ RSpec.feature "Users::Sign_In", type: :feature do
 
   describe "サインイン" do
     context "サインイン成功" do
-      scenario "全ての条件を満たす" do
+      scenario "メールアドレス、パスワードが入力されていると成功" do
         fill_in "email", with: user.email
         fill_in "password", with: user.password
         click_button 'サインイン'
@@ -19,28 +19,28 @@ RSpec.feature "Users::Sign_In", type: :feature do
     end
 
     context "サインイン失敗" do
-      scenario "メールアドレス認証失敗(空白)" do
+      scenario "メールアドレスが空だと失敗" do
         fill_in "email", with: ""
         fill_in "password", with: user.password
         click_button 'サインイン'
         expect(page).to have_content("メールアドレス もしくはパスワードが不正です。")
       end
 
-      scenario "メールアドレス認証失敗(不一致)" do
+      scenario "メールアドレスが正しくないと失敗" do
         fill_in "email", with: "abcdefghijklmn@sample.jp"
         fill_in "password", with: user.password
         click_button 'サインイン'
         expect(page).to have_content("メールアドレス もしくはパスワードが不正です。")
       end
 
-      scenario "パスワード認証失敗(空白)" do
+      scenario "パスワードが空だと失敗" do
         fill_in "email", with: user.email
         fill_in "password", with: ""
         click_button 'サインイン'
         expect(page).to have_content("メールアドレス もしくはパスワードが不正です。")
       end
 
-      scenario "パスワード認証失敗(不一致)" do
+      scenario "パスワードが正しくないと失敗" do
         fill_in "email", with: user.email
         fill_in "password", with: "123abcd"
         click_button 'サインイン'
@@ -54,7 +54,7 @@ RSpec.feature "Users::Sign_In", type: :feature do
     expect(current_path).to eq new_user_registration_path
   end
 
-  scenario "ゲストログイン" do
+  scenario "ゲストログインができる" do
     click_link 'ゲストログイン'
     expect(page).to have_content("ゲストユーザーとしてサインインしました。")
   end

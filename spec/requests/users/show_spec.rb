@@ -11,11 +11,11 @@ RSpec.describe "Users::Show", type: :request do
     get user_path(user.id)
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 
-  it "ユーザー情報の表示" do
+  it "ユーザー情報が表示される" do
     expect(response.body).to include user.name
     expect(response.body).to include user.introduction
     expect(response.body).to include user.posts.count.to_s
@@ -23,7 +23,7 @@ RSpec.describe "Users::Show", type: :request do
     expect(response.body).to include user.favorites_count.to_s
   end
 
-  it "ユーザーと紐付いた投稿の表示" do
+  it "ユーザーと紐付いた投稿が表示される" do
     user.posts.all? do |post|
       expect(response.body).to include post.user.name
       expect(response.body).to include post.created_at.strftime("%Y年 %m月%d日 %H時%M分")

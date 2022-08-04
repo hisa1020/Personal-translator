@@ -7,13 +7,13 @@ RSpec.describe QComment, type: :model do
 
   describe '質問に対するコメント' do
     context '新規コメント成功' do
-      it '内容に問題ない場合' do
+      it '内容が入力されていると成功' do
         expect(q_comment).to be_valid
       end
     end
 
     context '新規コメント失敗' do
-      it '内容が空' do
+      it '内容が空だと失敗' do
         q_comment.q_content = ""
         q_comment.valid?
         expect(q_comment.errors.full_messages).to include("コメントを入力してください")
