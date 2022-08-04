@@ -1,4 +1,6 @@
 class QuestionsController < ApplicationController
+  before_action :set_question, only: %i(show edit update destroy)
+
   def index
     @questions = Question.all.order(updated_at: :DESC)
   end
@@ -8,7 +10,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = Question.new(params.require(:question).permit(:q_title, :q_content, :user_id))
+    @question = Question.new(question_params)
     if @question.save
       flash[:notice] = "質問の投稿が完了しました。"
       redirect_to question_path(@question.id)
@@ -18,18 +20,15 @@ class QuestionsController < ApplicationController
   end
 
   def show
-    @question = Question.find(params[:id])
     @q_comments = @question.q_comments
     @q_comment = QComment.new
   end
 
   def edit
-    @question = Question.find(params[:id])
   end
 
   def update
-    @question = Question.find(params[:id])
-    if @question.update(params.require(:question).permit(:q_title, :q_content, :user_id))
+    if @question.update(question_params)
       flash[:notice] = "質問内容を更新しました。"
       redirect_to question_path(@question.id)
     else
@@ -38,9 +37,18 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question = Question.find(params[:id])
     @question.destroy
     flash[:notice] = "質問を削除しました。"
     redirect_to questions_path, status: :see_other
   end
+end
+
+private
+
+def question_params
+  params.require(:question).permit(:q_title, :q_content, :user_id)
+end
+
+def set_question
+  @question = Question.find(params[:id])
 end
