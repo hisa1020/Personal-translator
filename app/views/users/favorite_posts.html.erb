@@ -3,17 +3,8 @@
   <div class="row">
     <%= render"shared/user_navbar" %>
     <div class="col-lg-10 post-view">
-      <div class="align-menu-bar">
-        <ul>
-          <li class="<%= 'active' if current_page?(users_favorite_posts_path) %>">
-            <%= link_to "投稿", users_favorite_posts_path %>
-          </li>
-          <li class="<%= 'active' if current_page?(users_favorite_questions_path) %>">
-            <%= link_to "質問", users_favorite_questions_path %>
-          </li>
-        </ul>
-      </div>
-      <% @favorites.each do |favorite| %>
+      <%= render "favorites_navbar" %>
+      <% @user.favorites.each do |favorite| %>
         <div class="post-view-box">
           <%= link_to post_path(favorite.post_id), class: "post-link-box" do %>
             <ul class="post-box">
@@ -45,7 +36,7 @@
                     <i class="fa-regular fa-comment"></i> <%= favorite.post.comments.count %>
                   </span>
                   <span>
-                    <% if favorite.post.comments.count == 0 %>
+                    <% if favorite.post.comments.empty? %>
                       未評価
                     <% else %>
                       評価 <%= favorite.post.average.round(1) %> 点

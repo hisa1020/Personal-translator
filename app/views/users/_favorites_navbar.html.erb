@@ -1,0 +1,10 @@
+<div class="align-menu-bar">
+  <ul>
+    <li class="<%= 'active' if current_page?(users_favorite_posts_path) %>">
+      <%= link_to "投稿", users_favorite_posts_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(users_favorite_questions_path) %>">
+      <%= link_to "質問", users_favorite_questions_path %>
+    </li>
+  </ul>
+</div>

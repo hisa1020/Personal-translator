@@ -1,0 +1,10 @@
+<div class="align-menu-bar">
+  <ul>
+    <li class="<%= 'active' if current_page?(new_post_path) %>">
+      <%= link_to "投稿", new_post_path %>
+    </li>
+    <li class="<%= 'active' if current_page?(new_question_path) %>">
+      <%= link_to "質問", new_question_path %>
+    </li>
+  </ul>
+</div>
