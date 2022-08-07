@@ -1,9 +1,9 @@
 <% provide(:title, "過去の質問をみる") %>
 <div class="container-fruid post">
   <div class="row">
-    <%= render"shared/user_navbar" %>
+    <%= render "shared/user_navbar" %>
     <div class="col-lg-10 post-view">
-      <% @questions.each do |question| %>
+      <% @user.questions.each do |question| %>
         <div class="post-view-box">
           <%= link_to question, class: "post-link-box" do %>
             <ul class="post-box">

@@ -14,11 +14,11 @@ RSpec.describe "Users::Profile", type: :request do
     get users_profile_path
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 
-  it "ユーザー情報の表示" do
+  it "ユーザー情報が表示される" do
     expect(response.body).to include user.name
     expect(response.body).to include user.introduction
     expect(response.body).to include user.posts_count.to_s

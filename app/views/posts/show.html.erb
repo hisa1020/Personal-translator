@@ -12,14 +12,7 @@
               <p class="user-name"><%= @post.user.name %></p>
             <% end %>
             <div class="post-content-right">
-              <% if @post.user_id == current_user.id %>
-                <%= link_to edit_post_path, class: "post-edit-link my-2 mx-3" do %>
-                  <i class="fa-solid fa-pen-to-square"></i>
-                <% end %>
-                <%= link_to post_path, data: {turbo_method: :delete, turbo_confirm: '本当に削除してよろしいですか?'}, class: "post-delete-link my-2 mx-3" do %>
-                  <i class="fa-solid fa-trash-can"></i>
-                <% end %>
-              <% else %>
+              <% unless @post.user_id == current_user.id %>
                 <% if @post.favorited?(current_user) %>
                   <%= link_to post_favorites_path(@post.id), data: {turbo_method: :delete}, class: "favorite-button my-2 mx-3" do %>
                     <i style="color: #4a90e2;" class="fa-solid fa-star fa-lg"></i>
@@ -28,6 +21,13 @@
                   <%= link_to post_favorites_path(@post.id), data: {turbo_method: :post}, class: "favorite-button my-2 mx-3" do %>
                     <i class="fa-regular fa-star fa-lg"></i>
                   <% end %>
+                <% end %>   
+              <% else %>
+                <%= link_to edit_post_path, class: "post-edit-link my-2 mx-3" do %>
+                  <i class="fa-solid fa-pen-to-square"></i>
+                <% end %>
+                <%= link_to post_path, data: {turbo_method: :delete, turbo_confirm: '本当に削除してよろしいですか?'}, class: "post-delete-link my-2 mx-3" do %>
+                  <i class="fa-solid fa-trash-can"></i>
                 <% end %>
               <% end %>
             </div>
@@ -49,7 +49,7 @@
                 <%= @post.favorites.count %>
               </span>
               <span>
-                <% if @post.comments.count == 0 %>
+                <% if @post.comments.empty? %>
                   未評価
                 <% else %>
                   平均評価 <%= @post.average.round(1) %> 点
@@ -62,59 +62,13 @@
           </p>
         </div>
       </div>
-      <% @comments.each do |comment| %>
-        <div class="post-view-box">
-          <ul class="post-box">
-            <li>
-              <%= image_tag comment.user.user_icon.url, class: "user-icon" %>
-              <p class="post-detail">
-              <span><%= comment.user.name %></span>さんが
-              <%= comment.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>にコメントしました。</p>
-            </li>
-            <li class="post-comment-content">
-              <p class="post-content-box">
-                <% unless comment.content == "" %>
-                  評価 <%= comment.rate %> 点 | <%= comment.content %>
-                <% else %>
-                  <%= comment.rate %> 点の評価をつけました!
-                <% end %>
-              </p>
-            </li>
-          </ul>
-        </div>
-      <% end %>
+
+      <!-- COMMENT FIELD -->
+      <%= render "comments_field", comments: @comments %>
+
+      <!-- COMMENT FORM  -->
       <% unless @post.user_id == current_user.id %>
-        <div class="post-view-box post-new">
-          <div class="update-content">
-            <div class="row">
-              <h5>感想を書く</h5>
-            </div>
-          </div>
-          <%= form_with model: @comment do |f| %>
-            <%= f.hidden_field :post_id, value: @post.id %>
-            <div class="update-content">
-              <div class="row">
-                <label for="rate" class="col-md-3 col-md-3 required-a">
-                評価
-                </label>
-                <%= f.number_field :rate, id: "rate", class: "form-control mb-4 col-md-9", placeholder: "投稿のわかりやすさを5点満点で評価してください。", min:1, max:5 %>
-              </div>
-            </div>
-            <div class="update-content">
-              <div class="row">
-                <label for="content" class="col-md-3">
-                コメント
-                </label>
-                <%= f.text_area :content, id: "content", class: "form-control mb-4 col-md-9", placeholder: "投稿に対して感想や気になった点があれば記載してください。" , rows: 6 %>
-              </div>
-            </div>
-            <div class="update-content">
-              <div class="row">
-                <%= f.submit "コメントする", class: "col-md-2 btn btn-primary mx-3" %>
-              </div>
-            </div>
-          <% end %>
-        </div>
+        <%= render "comment_form", {comment: @comment, post: @post} %>
       <% end %>
     </div>
   </div>

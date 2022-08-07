@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.feature "Posts::Show", type: :feature, js: true do
-  context "ログインユーザーと投稿者が同じ場合" do
+  context "ログインユーザーと投稿者が同じとき" do
     let(:user) { FactoryBot.create(:user) }
     let(:post) { FactoryBot.create(:post, user_id: user.id) }
     let(:comment) { FactoryBot.create(:comment, :no_content, post_id: post.id) }
@@ -12,17 +12,17 @@ RSpec.feature "Posts::Show", type: :feature, js: true do
       visit post_path(post.id)
     end
 
-    scenario "ユーザーページに移動できる" do
+    scenario "ユーザーページに移動" do
       find('.post-user-link').click
       expect(current_path).to eq user_path(post.user_id)
     end
 
-    scenario "編集ページに移動できる" do
+    scenario "編集ページに移動" do
       find('.post-edit-link').click
       expect(current_path).to eq edit_post_path(post.id)
     end
 
-    scenario "投稿を削除できる" do
+    scenario "投稿を削除" do
       find('.post-delete-link').click
       expect  do
         expect(page.accept_confirm).to eq "本当に削除してよろしいですか?"
@@ -53,7 +53,7 @@ RSpec.feature "Posts::Show", type: :feature, js: true do
     end
   end
 
-  context "ログインユーザーと投稿者が違う場合" do
+  context "ログインユーザーと投稿者が違うとき" do
     let(:user) { FactoryBot.create(:user) }
     let(:post) { FactoryBot.create(:post, :with_feedback) }
     let(:new_comment) { FactoryBot.build(:comment, post_id: post.id) }
@@ -63,14 +63,14 @@ RSpec.feature "Posts::Show", type: :feature, js: true do
       visit post_path(post.id)
     end
 
-    describe 'favoriteに登録、解除する' do
-      scenario 'favoriteに登録' do
+    describe 'favoriteに登録解除' do
+      scenario 'favoriteに登録できる' do
         f = post.favorites.count
         find('.favorite-button').click
         expect(post.favorites.count).to eq(f + 1)
       end
 
-      scenario 'favoriteの解除' do
+      scenario 'favoriteを解除できる' do
         find('.favorite-button').click
         f = post.favorites.count
         find('.favorite-button').click
@@ -102,15 +102,15 @@ RSpec.feature "Posts::Show", type: :feature, js: true do
     end
 
     describe '投稿に対するコメントの作成' do
-      context '新規コメント成功' do
-        scenario '内容に問題ない場合' do
+      context 'コメント成功' do
+        scenario '全ての条件を満たすと成功' do
           fill_in "rate", with: new_comment.rate
           fill_in "content", with: new_comment.content
           click_button 'コメントする'
           expect(page).to have_content("コメントを投稿しました。")
         end
 
-        scenario '内容が空でもコメントできる' do
+        scenario '評価のみでコメントできる' do
           fill_in "rate", with: new_comment.rate
           fill_in "content", with: ''
           click_button 'コメントする'
@@ -118,8 +118,8 @@ RSpec.feature "Posts::Show", type: :feature, js: true do
         end
       end
 
-      context '新規コメント失敗' do
-        scenario '評価点が空' do
+      context 'コメント失敗' do
+        scenario '評価が空だと失敗' do
           fill_in "rate", with: ''
           fill_in "content", with: new_comment.content
           click_button 'コメントする'

@@ -9,11 +9,11 @@ RSpec.describe "Posts::Index", type: :request do
     get posts_path
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 
-  it "投稿情報の表示" do
+  it "投稿情報が表示される" do
     expect(response.body).to include post.user.name
     expect(response.body).to include post.created_at.strftime("%Y年 %m月%d日 %H時%M分")
     expect(response.body).to include post.updated_at.strftime("%Y年 %m月%d日 %H時%M分")

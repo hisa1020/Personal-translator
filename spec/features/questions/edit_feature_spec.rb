@@ -10,52 +10,50 @@ RSpec.feature "Questions::Edit", type: :feature do
     visit edit_question_path(question.id)
   end
 
-  describe "質問内容を変更できる" do
-    scenario "変更前の質問内容が表示されている" do
+  describe "質問内容を変更" do
+    scenario "変更前の質問内容が表示される" do
       expect(page).to have_field("q_title", with: question.q_title)
       expect(page).to have_field("q_content", with: question.q_content)
     end
 
-    scenario "質問の変更に成功" do
-      fill_in "q_title", with: "New-Test-Question-Title"
-      fill_in "q_content", with: "New-Test-Question-Content"
-      click_button '質問内容を更新'
-      expect(page).to have_content("質問内容を更新しました。")
-    end
+    context "質問内容の変更成功" do
+      scenario "タイトル、内容を変更できる" do
+        fill_in "q_title", with: "New-Test-Question-Title"
+        fill_in "q_content", with: "New-Test-Question-Content"
+        click_button '質問内容を更新'
+        expect(page).to have_content("質問内容を更新しました。")
+      end
 
-    context "変更なしで質問を更新する場合" do
-      scenario "元の質問を表示" do
+      scenario "変更なしで質問を更新できる" do
         click_button '質問内容を更新'
         expect(page).to have_content("質問内容を更新しました。")
         expect(page).to have_content question.q_title
         expect(page).to have_content question.q_content
       end
-    end
 
-    context "タイトルを更新する場合" do
-      scenario "新しいタイトルを表示" do
+      scenario "タイトルのみを変更できる" do
         fill_in "q_title", with: "New-Test-Question-Title"
         click_button '質問内容を更新'
         expect(page).to have_content("質問内容を更新しました。")
         expect(page).to have_content("New-Test-Question-Title")
       end
 
-      scenario "タイトルを更新できず(空白)" do
-        fill_in "q_title", with: ""
-        click_button '質問内容を更新'
-        expect(page).to have_content("タイトルを入力してください")
-      end
-    end
-
-    context "内容を更新する場合" do
-      scenario "新しい内容を表示" do
+      scenario "内容のみを変更できる" do
         fill_in "q_content", with: "New-Test-Question-Content"
         click_button '質問内容を更新'
         expect(page).to have_content("質問内容を更新しました。")
         expect(page).to have_content("New-Test-Question-Content")
       end
+    end
 
-      scenario "内容を更新できず(空白)" do
+    context "質問内容の変更成功" do
+      scenario "タイトルが空だと更新失敗" do
+        fill_in "q_title", with: ""
+        click_button '質問内容を更新'
+        expect(page).to have_content("タイトルを入力してください")
+      end
+
+      scenario "内容が空だと更新失敗" do
         fill_in "q_content", with: ""
         click_button '質問内容を更新'
         expect(page).to have_content("内容を入力してください")

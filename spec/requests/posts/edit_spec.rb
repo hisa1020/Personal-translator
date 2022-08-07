@@ -9,11 +9,11 @@ RSpec.describe "Posts::Edit", type: :request do
     get edit_post_path(post.id)
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 
-  it "投稿情報の表示" do
+  it "投稿情報が表示される" do
     expect(response.body).to include post.title
     expect(response.body).to include post.artist
     expect(response.body).to include post.content

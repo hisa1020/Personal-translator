@@ -1,6 +1,13 @@
 inherit_from:
   - .rubocop_airbnb.yml
 
+Airbnb/ModuleMethodInWrongFile:
+  Description: Define a module method in the file that defines the module, not a file that happens to use the module as a namespace.
+  Enabled: false
+  Include:
+  - 'app/**/*'
+  - 'lib/**/*'
+  
 AllCops:
   Exclude:
     - 'db/**/*'

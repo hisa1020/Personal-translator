@@ -5,7 +5,7 @@
         <div class="form-fream">
           <div class="form-area">
             <h3 class="form-area-title mb-4">
-            洋楽の訳詞が簡単に探せる。
+            洋楽の訳が簡単に探せる。
             </h3>
             <% if user_signed_in? %>
               <div class="input-area mb-4">
@@ -16,8 +16,7 @@
                 <% end %>
               </div>
             <% else %>
-              <%= link_to "新規登録", new_user_registration_path, class: "col-5 btn btn-primary" %>
-              <%= link_to "サインイン", new_user_session_path, class: "col-5 btn btn-secondary my-2" %>
+              <%= link_to "新規登録して始める", new_user_registration_path, class: "col-md-8 col-10 btn btn-primary" %>
             <% end %>
           </div>
         </div>
@@ -43,18 +42,18 @@
     <% else %>
       <div class="site-guide">
         <h1>
-        お気に入りの歌詞の意味を知る、翻訳する。
+        お気に入りの歌詞の意味を知る、翻訳を投稿する。
         </h1>
-        <div class="guide-box">
-          <%= image_tag '/assets/computer_man_simple.png', class:"guide-image col-12" %> 
-          <div class="guide-right col-12">
-            <h3>○このサイトを使ってできること</h3>
+        <div class="guide-box row">
+          <div class="guide-right col-lg-7">
+            <h3>-このサイトを使ってできること-</h3>
             <p>洋楽の歌詞を簡単に調べられる!</p>
             <p>英語の歌詞を翻訳して投稿することができる!</p>
             <p>投稿に対して評価・コメントを返すことができる!</p>
-            <p>わからない部分や翻訳してほしい歌詞があるときに質問を投稿できる!</p>
+            <p>翻訳してほしい歌詞があるときに質問を投稿できる!</p>
             <p>各ユーザーの過去の投稿・評価を見ることができる!</p>
           </div>
+          <%= image_tag '/assets/guide.jpg', class:"guide-image col-lg-5 col-12 mt-4 mt-lg-0" %> 
         </div>
       </div>
     <% end %>

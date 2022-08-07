@@ -5,11 +5,11 @@ RSpec.describe User, type: :model do
     let(:user) { FactoryBot.build(:user) }
 
     context '新規登録成功' do
-      it '内容に問題ない場合' do
+      it 'ユーザー名、メールアドレス、パスワード、確認用パスワードが入力されていると成功' do
         expect(user).to be_valid
       end
 
-      it 'emailが255文字以下のユーザーが作成可能' do
+      it '255文字以下のメールアドレスを登録できる' do
         user.email = 'a' * 245 + '@sample.jp'
         expect(user).to be_valid
       end
@@ -19,68 +19,8 @@ RSpec.describe User, type: :model do
         user.save!
         expect(user.reload.email).to eq 'sample@sample.jp'
       end
-    end
 
-    context '新規登録失敗' do
-      it 'ユーザー名が空' do
-        user.name = ""
-        user.valid?
-        expect(user.errors.full_messages).to include("ユーザー名を入力してください")
-      end
-
-      it 'nameが3文字以下のユーザーを許可しない' do
-        user.name = 'ああ'
-        user.valid?
-        expect(user.errors.full_messages).to include("ユーザー名は3文字以上で入力してください")
-      end
-
-      it 'nameが13文字以上のユーザーを許可しない' do
-        user.name = 'あ' * 13
-        user.valid?
-        expect(user.errors.full_messages).to include("ユーザー名は12文字以内で入力してください")
-      end
-
-      it "emailが空では登録できない" do
-        user.email = ""
-        user.valid?
-        expect(user.errors.full_messages).to include("メールアドレスを入力してください")
-      end
-
-      it "重複したemailが存在する場合登録できない" do
-        user.save
-        another_user = FactoryBot.build(:user)
-        another_user.email = user.email
-        another_user.valid?
-        expect(another_user.errors.full_messages).to include("メールアドレスはすでに存在します")
-      end
-
-      it "passwordが空では登録できない" do
-        user.password = ""
-        user.valid?
-        expect(user.errors.full_messages).to include("パスワードを入力してください")
-      end
-
-      it "passwordが5文字以下であれば登録できない" do
-        user.password = "00000"
-        user.password_confirmation = "00000"
-        user.valid?
-        expect(user.errors.full_messages).to include("パスワードは6文字以上で入力してください")
-      end
-
-      it "passwordが存在してもpassword_confirmationが空では登録できない" do
-        user.password_confirmation = ""
-        user.valid?
-        expect(user.errors.full_messages).to include("確認用パスワードとパスワードの入力が一致しません")
-      end
-
-      it 'パスワードと確認用パスワードが間違っている場合、無効であること' do
-        user.password = 'password'
-        user.password_confirmation = 'pass'
-        user.valid?
-        expect(user.errors.full_messages).to include("確認用パスワードとパスワードの入力が一致しません")
-      end
-
-      it 'メールアドレスが正常なフォーマットの場合、有効であること' do
+      it 'メールアドレスが正常なフォーマットのときは成功' do
         valid_addresses = %w(
           user@example.com USER@foo.COM A_US-ER@foo.bar.org
           first.last@foo.jp alice+bob@baz.cn
@@ -89,6 +29,66 @@ RSpec.describe User, type: :model do
           user.email = valid_address
           expect(user).to be_valid
         end
+      end
+    end
+
+    context '新規登録失敗' do
+      it 'ユーザー名が空だと失敗' do
+        user.name = ""
+        user.valid?
+        expect(user.errors.full_messages).to include("ユーザー名を入力してください")
+      end
+
+      it 'ユーザー名が3文字未満だと失敗' do
+        user.name = 'ああ'
+        user.valid?
+        expect(user.errors.full_messages).to include("ユーザー名は3文字以上で入力してください")
+      end
+
+      it 'ユーザー名が13文字以上だと失敗' do
+        user.name = 'あ' * 13
+        user.valid?
+        expect(user.errors.full_messages).to include("ユーザー名は12文字以内で入力してください")
+      end
+
+      it "メールアドレスが空だと失敗" do
+        user.email = ""
+        user.valid?
+        expect(user.errors.full_messages).to include("メールアドレスを入力してください")
+      end
+
+      it "メースアドレスが既に存在すると失敗" do
+        user.save
+        another_user = FactoryBot.build(:user)
+        another_user.email = user.email
+        another_user.valid?
+        expect(another_user.errors.full_messages).to include("メールアドレスはすでに存在します")
+      end
+
+      it "パスワードが空だと失敗" do
+        user.password = ""
+        user.valid?
+        expect(user.errors.full_messages).to include("パスワードを入力してください")
+      end
+
+      it "パスワードが5文字以下だと失敗" do
+        user.password = "00000"
+        user.password_confirmation = "00000"
+        user.valid?
+        expect(user.errors.full_messages).to include("パスワードは6文字以上で入力してください")
+      end
+
+      it "確認用パスワードが空だと失敗" do
+        user.password_confirmation = ""
+        user.valid?
+        expect(user.errors.full_messages).to include("確認用パスワードとパスワードの入力が一致しません")
+      end
+
+      it 'パスワードと確認用パスワードが不一致だと失敗' do
+        user.password = 'password'
+        user.password_confirmation = 'pass'
+        user.valid?
+        expect(user.errors.full_messages).to include("確認用パスワードとパスワードの入力が一致しません")
       end
     end
   end
@@ -102,7 +102,7 @@ RSpec.describe User, type: :model do
     let!(:favorites) { FactoryBot.create_list(:favorite, rand(3), user_id: user.id) }
     let!(:q_favorites) { FactoryBot.create_list(:q_favorite, rand(3), user_id: user.id) }
 
-    it 'パスワードが暗号化されていること' do
+    it 'パスワードが暗号化されている' do
       expect(user.encrypted_password).not_to eq 'password'
     end
 
@@ -123,7 +123,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'ゲストログイン' do
-    it 'ゲストログイン用のアカウントが作られること' do
+    it 'ゲストログイン用のアカウントが作られる' do
       expect(User.guest.name).to eq "ゲスト"
       expect(User.guest.email).to eq "guest@example.com"
     end

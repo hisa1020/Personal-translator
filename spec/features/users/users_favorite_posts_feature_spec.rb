@@ -12,19 +12,19 @@ RSpec.feature "Users::Favorite_Posts", type: :feature do
     visit users_favorite_posts_path
   end
 
-  scenario "いいね(質問)に移動" do
+  scenario "いいねした質問一覧に移動" do
     within('.align-menu-bar') do
       click_link '質問'
       expect(current_path).to eq users_favorite_questions_path
     end
   end
 
-  scenario "投稿詳細ページに移動できる" do
+  scenario "投稿詳細ページに移動" do
     find('.post-link-box').click
     expect(current_path).to eq post_path(post.id)
   end
 
-  scenario "ユーザーがいいねした投稿を表示" do
+  scenario "過去にいいねした投稿を表示" do
     user.favorites.all? do |favorite|
       expect(page).to have_content favorite.post.user.name
       expect(page).to have_selector("img[src$='#{favorite.post.user.user_icon.identifier}']")
@@ -38,7 +38,7 @@ RSpec.feature "Users::Favorite_Posts", type: :feature do
     end
   end
 
-  scenario "いいねしてない投稿を表示しない" do
+  scenario "その他の投稿を表示しない" do
     expect(page).not_to have_content others_post.title
     expect(page).not_to have_content others_post.artist
     expect(page).not_to have_content others_post.content

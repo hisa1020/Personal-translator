@@ -8,7 +8,7 @@ RSpec.describe "Top::Index", type: :request do
     get root_path
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 end

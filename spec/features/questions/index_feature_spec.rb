@@ -10,7 +10,7 @@ RSpec.feature "Questions::Index", type: :feature do
     visit questions_path
   end
 
-  describe "post_nav内のリンクが正常に作動する" do
+  describe "post_nav内のリンク" do
     scenario "投稿一覧に移動" do
       within('.post-nav') do
         click_link '投稿一覧'
@@ -19,7 +19,7 @@ RSpec.feature "Questions::Index", type: :feature do
     end
   end
 
-  scenario "質問詳細ページに移動できる" do
+  scenario "質問詳細ページに移動" do
     find('.post-link-box').click
     expect(current_path).to eq question_path(question.id)
   end

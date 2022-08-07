@@ -1,0 +1,31 @@
+<div class="post-view-box post-new">
+  <div class="update-content">
+    <div class="row">
+      <h5>感想を書く</h5>
+    </div>
+  </div>
+  <%= form_with model: comment do |f| %>
+    <%= f.hidden_field :post_id, value: post.id %>
+    <div class="update-content">
+      <div class="row">
+        <label for="rate" class="col-md-3 col-md-3 required-a">
+          評価
+        </label>
+        <%= f.number_field :rate, id: "rate", class: "form-control mb-4 col-md-9", placeholder: "投稿のわかりやすさを5点満点で評価してください。", min:1, max:5 %>
+      </div>
+    </div>
+    <div class="update-content">
+      <div class="row">
+        <label for="content" class="col-md-3">
+          コメント
+        </label>
+        <%= f.text_area :content, id: "content", class: "form-control mb-4 col-md-9", placeholder: "投稿に対して感想や気になった点があれば記載してください。" , rows: 6 %>
+      </div>
+    </div>
+    <div class="update-content">
+      <div class="row">
+        <%= f.submit "コメントする", class: "col-md-2 btn btn-primary mx-3" %>
+      </div>
+    </div>
+  <% end %>
+</div>

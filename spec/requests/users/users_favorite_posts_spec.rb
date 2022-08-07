@@ -11,11 +11,11 @@ RSpec.describe "Users::Favorite_Posts", type: :request do
     get users_favorite_posts_path
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 
-  it "お気に入りに登録済みの投稿の表示" do
+  it "お気に入りに登録済みの投稿が表示される" do
     user.favorites.all? do |favorite|
       expect(response.body).to include favorite.post.user.name
       expect(response.body).to include favorite.post.created_at.strftime("%Y年 %m月%d日 %H時%M分")

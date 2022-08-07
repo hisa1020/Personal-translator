@@ -11,7 +11,7 @@ RSpec.feature "Posts::Index", type: :feature do
     visit posts_path
   end
 
-  describe "post_nav内のリンクが正常に作動する" do
+  describe "post_navのリンク" do
     scenario "新規投稿に移動" do
       within('.post-nav') do
         click_link '新規作成'
@@ -34,12 +34,12 @@ RSpec.feature "Posts::Index", type: :feature do
     end
   end
 
-  scenario "投稿詳細ページに移動できる" do
+  scenario "投稿詳細ページに移動" do
     page.all('.post-link-box')[1].click
     expect(current_path).to eq post_path(post.id)
   end
 
-  context "投稿に対するコメントがない場合" do
+  context "投稿に対するコメントがないとき" do
     scenario "投稿情報を表示" do
       expect(page).to have_content post.user.name
       expect(page).to have_selector("img[src$='#{post.user.user_icon.identifier}']")
@@ -54,7 +54,7 @@ RSpec.feature "Posts::Index", type: :feature do
     end
   end
 
-  context "投稿に対するコメントがある場合" do
+  context "投稿に対するコメントがあるとき" do
     scenario "平均評価を含む投稿情報を表示" do
       expect(page).to have_content postB.user.name
       expect(page).to have_selector("img[src$='#{postB.user.user_icon.identifier}']")

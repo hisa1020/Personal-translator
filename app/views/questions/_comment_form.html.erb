@@ -1,0 +1,18 @@
+<div class="post-view-box post-new">
+  <%= form_with model: comment do |f| %>
+    <%= f.hidden_field :question_id, value: @question.id %>
+    <div class="update-content">
+      <div class="row">
+        <label for="q_content" class="col-md-3 required-a">
+        回答する
+        </label>
+        <%= f.text_area :q_content, id: "q_content", class: "form-control mb-4 col-md-9", placeholder: "ここに内容を記載してください。" , rows: 6 %>
+      </div>
+    </div>
+    <div class="update-content">
+      <div class="row">
+        <%= f.submit "回答する", class: "col-md-2 btn btn-primary mx-3" %>
+      </div>
+    </div>
+  <% end %>
+</div>

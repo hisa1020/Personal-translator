@@ -10,11 +10,11 @@ RSpec.describe "Users::Posts", type: :request do
     get users_posts_path
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 
-  it "ユーザーと紐付いた投稿の表示" do
+  it "ユーザーと紐付いた投稿が表示される" do
     user.posts.all? do |post|
       expect(response.body).to include post.created_at.strftime("%Y年 %m月%d日 %H時%M分")
       expect(response.body).to include post.title

@@ -9,11 +9,11 @@ RSpec.describe "Posts::Show", type: :request do
     get post_path(post.id)
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 
-  it "投稿情報の表示" do
+  it "投稿情報が表示される" do
     expect(response.body).to include post.user.name
     expect(response.body).to include post.created_at.strftime("%Y年 %m月%d日 %H時%M分")
     expect(response.body).to include post.updated_at.strftime("%Y年 %m月%d日 %H時%M分")
@@ -25,7 +25,7 @@ RSpec.describe "Posts::Show", type: :request do
     expect(response.body).to include post.average.round(1).to_s
   end
 
-  it "投稿に紐付いたコメントの表示" do
+  it "投稿に紐付いたコメントが表示される" do
     post.comments.all? do |comment|
       expect(response.body).to include comment.user.name
       expect(response.body).to include comment.created_at.strftime("%Y年 %m月%d日 %H時%M分")

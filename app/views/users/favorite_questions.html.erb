@@ -1,19 +1,10 @@
 <% provide(:title, "お気に入りをみる") %>
 <div class="container-fruid post">
   <div class="row">
-    <%= render"shared/user_navbar" %>
+    <%= render "shared/user_navbar" %>
     <div class="col-lg-10 post-view">
-      <div class="align-menu-bar">
-        <ul>
-          <li class="<%= 'active' if current_page?(users_favorite_posts_path) %>">
-            <%= link_to "投稿", users_favorite_posts_path %>
-          </li>
-          <li class="<%= 'active' if current_page?(users_favorite_questions_path) %>">
-            <%= link_to "質問", users_favorite_questions_path %>
-          </li>
-        </ul>
-      </div>
-      <% @favorites.each do |favorite| %>
+      <%= render "favorites_navbar" %>
+      <% @user.q_favorites.each do |favorite| %>
         <div class="post-view-box">
           <%= link_to question_path(favorite.question_id), class: "post-link-box" do %>
             <ul class="post-box">

@@ -9,11 +9,11 @@ RSpec.describe "Questions::Show", type: :request do
     get question_path(question.id)
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 
-  it "ユーザー情報の表示" do
+  it "ユーザー情報が表示される" do
     expect(response.body).to include question.user.name
     expect(response.body).to include question.created_at.strftime("%Y年 %m月%d日 %H時%M分")
     expect(response.body).to include question.updated_at.strftime("%Y年 %m月%d日 %H時%M分")
@@ -23,7 +23,7 @@ RSpec.describe "Questions::Show", type: :request do
     expect(response.body).to include question.q_favorites.count.to_s
   end
 
-  it "質問に紐付いたコメントの表示" do
+  it "質問に紐付いたコメントが表示される" do
     question.q_comments.all? do |q_comment|
       expect(response.body).to include q_comment.user.name
       expect(response.body).to include q_comment.created_at.strftime("%Y年 %m月%d日 %H時%M分")

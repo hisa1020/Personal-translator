@@ -10,11 +10,11 @@ RSpec.describe "Users::Questions", type: :request do
     get users_questions_path
   end
 
-  it "statusが200であること" do
+  it "statusが200である" do
     expect(response.status).to eq(200)
   end
 
-  it "ユーザーと紐付いた質問の表示" do
+  it "ユーザーと紐付いた質問が表示される" do
     user.questions.all? do |question|
       expect(response.body).to include question.created_at.strftime("%Y年 %m月%d日 %H時%M分")
       expect(response.body).to include question.q_title

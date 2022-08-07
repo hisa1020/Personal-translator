@@ -1,7 +1,7 @@
 <% provide(:title, @user.name) %>
 <div class="container-fruid post">
   <div class="row">
-    <%= render"shared/post_navbar" %>
+    <%= render "shared/post_navbar" %>
     <div class="col-lg-10 post-view">
       <div class="post-view-box">
         <ul class="profile-box">
@@ -26,50 +26,7 @@
           </table>
         </ul>
       </div>
-      <% @user.posts.each do |post| %>
-        <div class="post-view-box">
-          <%= link_to post, class: "post-link-box" do %>
-            <ul class="post-box">
-              <li>
-                <%= image_tag post.user.user_icon.url, class: "user-icon" %>
-                <p class="post-detail">
-                  <span><%= post.user.name %></span>が
-                  <%= post.created_at.strftime("%Y年 %m月%d日 %H時%M分") %>に投稿しました。
-                </p>
-              </li>
-              <li>
-                <h3><%= post.title %></h3>
-              </li>
-              <li>
-                <h5><%= post.artist %></h5>
-              </li>
-              <li>
-                <p class="post-content-box">
-                  <%= truncate(post.content, length: 70) %>
-                </p>
-              </li>
-              <li>
-                <p class="post-count-box">
-                  <span>
-                    <i class="fa-regular fa-star"></i>
-                    <%= post.favorites.count %>
-                  </span>
-                  <span>
-                    <i class="fa-regular fa-comment"></i> <%= post.comments.count %>
-                  </span>
-                  <span>
-                    <% if post.comments.count == 0 %>
-                      未評価
-                    <% else %>
-                      評価 <%= post.average.round(1) %> 点
-                    <% end %>
-                  </span>
-                </p>
-              </li>
-            </ul>
-          <% end %>
-        </div>
-      <% end %>
+      <%= render "posts/posts_index", posts: @user.posts %>
     </div>
   </div>
 </div>

@@ -10,11 +10,11 @@ RSpec.feature "Search", type: :feature do
   end
 
   describe "検索機能" do
-    context "投稿の検索" do
+    context "投稿の検索ができる" do
       let!(:others_post) { FactoryBot.create(:post, :others) }
       let!(:posts) { FactoryBot.create_list(:post, rand(3), :with_feedback) }
 
-      scenario "部分一致(曲名)" do
+      scenario "曲名を部分一致で検索できる" do
         fill_in "word", with: "ful"
         find("#range").find("option[value='投稿']").select_option
         find("#search").find("option[value='partial_match']").select_option
@@ -23,7 +23,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "前方一致(曲名)" do
+      scenario "曲名を前方一致で検索できる" do
         fill_in "word", with: "youth"
         find("#range").find("option[value='投稿']").select_option
         find("#search").find("option[value='forward_match']").select_option
@@ -32,7 +32,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "後方一致(曲名)" do
+      scenario "曲名を後方一致で検索できる" do
         fill_in "word", with: "days"
         find("#range").find("option[value='投稿']").select_option
         find("#search").find("option[value='backward_match']").select_option
@@ -41,7 +41,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "完全一致(曲名)" do
+      scenario "曲名を完全一致できる" do
         fill_in "word", with: "youthful days"
         find("#range").find("option[value='投稿']").select_option
         find("#search").find("option[value='perfect_match']").select_option
@@ -50,7 +50,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "部分一致(歌手名)" do
+      scenario "歌手名を部分一致で検索できる" do
         fill_in "word", with: "child"
         find("#range").find("option[value='投稿']").select_option
         find("#search").find("option[value='partial_match']").select_option
@@ -59,7 +59,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "前方一致(歌手名)" do
+      scenario "歌手名を前方一致で検索できる" do
         fill_in "word", with: "Mr."
         find("#range").find("option[value='投稿']").select_option
         find("#search").find("option[value='forward_match']").select_option
@@ -68,7 +68,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "後方一致(歌手名)" do
+      scenario "歌手名を後方一致で検索できる" do
         fill_in "word", with: "ren"
         find("#range").find("option[value='投稿']").select_option
         find("#search").find("option[value='backward_match']").select_option
@@ -77,7 +77,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "完全一致(歌手名)" do
+      scenario "歌手名を完全一致で検索できる" do
         fill_in "word", with: "Mr.Children"
         find("#range").find("option[value='投稿']").select_option
         find("#search").find("option[value='perfect_match']").select_option
@@ -86,7 +86,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "投稿詳細ページに移動できる" do
+      scenario "投稿詳細ページに移動" do
         fill_in "word", with: "youthful days"
         find("#range").find("option[value='投稿']").select_option
         find("#search").find("option[value='perfect_match']").select_option
@@ -100,7 +100,7 @@ RSpec.feature "Search", type: :feature do
       let!(:others_question) { FactoryBot.create(:question, :q_others) }
       let!(:question) { FactoryBot.create(:question) }
 
-      scenario "部分一致" do
+      scenario "タイトルを部分一致で検索できる" do
         fill_in "word", with: "new"
         find("#range").find("option[value='質問']").select_option
         find("#search").find("option[value='partial_match']").select_option
@@ -109,7 +109,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "前方一致" do
+      scenario "タイトルを前方一致で検索できる" do
         fill_in "word", with: "brand"
         find("#range").find("option[value='質問']").select_option
         find("#search").find("option[value='forward_match']").select_option
@@ -118,7 +118,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "後方一致" do
+      scenario "タイトルを後方一致で検索できる" do
         fill_in "word", with: "planet"
         find("#range").find("option[value='質問']").select_option
         find("#search").find("option[value='backward_match']").select_option
@@ -127,7 +127,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "完全一致" do
+      scenario "タイトルを完全一致で検索できる" do
         fill_in "word", with: "brand new planet"
         find("#range").find("option[value='質問']").select_option
         find("#search").find("option[value='perfect_match']").select_option
@@ -136,7 +136,7 @@ RSpec.feature "Search", type: :feature do
         expect(page.all('.post-view-box').count).to eq 1
       end
 
-      scenario "質問詳細ページに移動できる" do
+      scenario "質問詳細ページに移動" do
         fill_in "word", with: "brand new planet"
         find("#range").find("option[value='質問']").select_option
         find("#search").find("option[value='perfect_match']").select_option

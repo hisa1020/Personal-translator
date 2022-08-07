@@ -13,9 +13,9 @@ RSpec.feature "Users::Sign_Up", type: :feature do
     expect(current_path).to eq root_path
   end
 
-  describe "パスワード変更" do
+  describe "新規登録" do
     context "新規登録成功" do
-      scenario "全ての条件を満たす" do
+      scenario "ユーザー名、メールアドレス、パスワード、確認用パスワードが入力されていると成功" do
         fill_in "name", with: user.name
         fill_in "email", with: user.email
         fill_in "password", with: user.password
@@ -26,7 +26,7 @@ RSpec.feature "Users::Sign_Up", type: :feature do
     end
 
     context "新規登録失敗" do
-      scenario "nameが空" do
+      scenario "ユーザー名が空だと失敗" do
         fill_in "name", with: ''
         fill_in "email", with: user.email
         fill_in "password", with: user.password
@@ -35,7 +35,7 @@ RSpec.feature "Users::Sign_Up", type: :feature do
         expect(page).to have_content("ユーザー名を入力してください")
       end
 
-      scenario "nameが3文字以下" do
+      scenario "ユーザー名が3文字以下だと失敗" do
         fill_in "name", with: 'aa'
         fill_in "email", with: user.email
         fill_in "password", with: user.password
@@ -44,7 +44,7 @@ RSpec.feature "Users::Sign_Up", type: :feature do
         expect(page).to have_content("ユーザー名は3文字以上で入力してください")
       end
 
-      scenario "nameが12文字以上" do
+      scenario "ユーザー名が12文字以上だと失敗" do
         fill_in "name", with: 'a' * 13
         fill_in "email", with: user.email
         fill_in "password", with: user.password
@@ -53,7 +53,7 @@ RSpec.feature "Users::Sign_Up", type: :feature do
         expect(page).to have_content("ユーザー名は12文字以内で入力してください")
       end
 
-      scenario "emailが空" do
+      scenario "メールアドレスが空だと失敗" do
         fill_in "name", with: user.name
         fill_in "email", with: ''
         fill_in "password", with: user.password
@@ -62,7 +62,7 @@ RSpec.feature "Users::Sign_Up", type: :feature do
         expect(page).to have_content("メールアドレスを入力してください")
       end
 
-      scenario "emailが重複" do
+      scenario "メールアドレスが重複して存在すると失敗" do
         user.save
         another_user = FactoryBot.build(:user)
         another_user.email = user.email
@@ -74,7 +74,7 @@ RSpec.feature "Users::Sign_Up", type: :feature do
         expect(page).to have_content("メールアドレスはすでに存在します")
       end
 
-      scenario "passwordが空" do
+      scenario "パスワードが空だと失敗" do
         fill_in "name", with: user.name
         fill_in "email", with: user.email
         fill_in "password", with: ''
@@ -83,7 +83,7 @@ RSpec.feature "Users::Sign_Up", type: :feature do
         expect(page).to have_content("パスワードを入力してください")
       end
 
-      scenario "passwordが6文字以下" do
+      scenario "パスワードが6文字以下だと失敗" do
         fill_in "name", with: user.name
         fill_in "email", with: user.email
         fill_in "password", with: 'aaaaa'
@@ -92,7 +92,7 @@ RSpec.feature "Users::Sign_Up", type: :feature do
         expect(page).to have_content("パスワードは6文字以上で入力してください")
       end
 
-      scenario "password_confirmationが空" do
+      scenario "確認用パスワードが空だと失敗" do
         fill_in "name", with: user.name
         fill_in "email", with: user.email
         fill_in "password", with: user.password
@@ -101,7 +101,7 @@ RSpec.feature "Users::Sign_Up", type: :feature do
         expect(page).to have_content("確認用パスワードとパスワードの入力が一致しません")
       end
 
-      scenario "passwordとpassword_confirmationが不一致" do
+      scenario "パスワードと確認用パスワードが不一致だと失敗" do
         fill_in "name", with: user.name
         fill_in "email", with: user.email
         fill_in "password", with: user.password
