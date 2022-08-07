@@ -21,9 +21,5 @@ Capybara.register_driver :chrome do |app|
   options.add_argument('disable-infobars')
   options.add_argument('window-size=1280,960')
 
-  Capybara::Selenium::Driver.new(
-    app,
-    browser: :chrome,
-    options: options
-  )
+  Capybara::Selenium::Driver.new(app, browser: :remote, url: url, capabilities: capabilities)
 end
